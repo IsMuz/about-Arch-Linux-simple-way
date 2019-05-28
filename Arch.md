@@ -350,6 +350,12 @@ yay -Rns epiphany
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
 ```
 
+Отключение:
+
+```
+gsettings reset org.gnome.mutter experimental-features
+```
+
 ## Заменяем ядро на стабильное
 
 Если надоело, что что-то ломается почти после каждого обновления ядра, запускаем терминал и выполняем:
