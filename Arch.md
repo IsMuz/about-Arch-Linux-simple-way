@@ -900,6 +900,12 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 yay -S ttf-emojione
 ```
 
+# Блокировка рекламных сайтов
+
+```bash
+wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
+```
+
 # Шпаргалка по командам Bash
 
 | Название <img width="450"> | Описание <img width="450"> |
@@ -915,3 +921,4 @@ yay -S ttf-emojione
 | `systemctl list-unit-files \| grep enabled` | Все включенные сервисы |
 | `fc-list` | Список установленных шрифтов |
 | `netstat -lnt` | Все запущенные сервера на хосте |
+| `paste file1.txt file2.txt > fileresults.txt` | Слияние файлов в один |
