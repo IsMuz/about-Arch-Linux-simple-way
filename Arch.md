@@ -906,6 +906,12 @@ yay -S ttf-emojione
 wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
 ```
 
+# Менеджер версий для Python, Node.js, Ruby...
+
+[Страница проекта](https://github.com/asdf-vm/asdf). [Документация](https://asdf-vm.com/#/core-manage-asdf-vm).
+
+⚠️ В каталоге ~/.asdf все хранится.
+
 # Шпаргалка по командам Bash
 
 | Название <img width="450"> | Описание <img width="450"> |
