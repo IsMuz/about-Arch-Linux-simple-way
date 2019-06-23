@@ -913,13 +913,15 @@ wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sud
 Установка:
 
 ```bash
-# Через AUR
-yay -S asdf-vm
 # Вручную
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 cd ~/.asdf
 git checkout "$(git describe --abbrev=0 --tags)"
+# Через AUR
+yay -S asdf-vm
 ```
+
+Пакет из AUR ненастроенный и ставится в /opt.
 
 Удаление при ручной установке:
 
