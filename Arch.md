@@ -910,7 +910,22 @@ wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sud
 
 [Страница проекта](https://github.com/asdf-vm/asdf). [Документация](https://asdf-vm.com/#/core-manage-asdf-vm).
 
-⚠️ В каталоге ~/.asdf все хранится.
+Установка:
+
+```bash
+# Через AUR
+yay -S asdf-vm
+# Вручную
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+cd ~/.asdf
+git checkout "$(git describe --abbrev=0 --tags)"
+```
+
+Удаление при ручной установке:
+
+```bash
+rm -rf ~/.asdf/ ~/.tool-versions
+```
 
 # Шпаргалка по командам Bash
 
