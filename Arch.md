@@ -917,6 +917,7 @@ wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sud
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 cd ~/.asdf
 git checkout "$(git describe --abbrev=0 --tags)"
+
 # Через AUR
 yay -S asdf-vm
 ```
@@ -928,6 +929,19 @@ yay -S asdf-vm
 ```bash
 rm -rf ~/.asdf/ ~/.tool-versions
 ```
+
+Управление плагинами:
+
+```bash
+# Установили плагин для работы с Python
+asdf plugin-add python
+# Установили персию Python 2.7.15
+asdf install python 2.7.15
+# Сделали ее глобальной
+asdf global python 2.7.15
+```
+
+[Все плагины](https://asdf-vm.com/#/plugins-all).
 
 # Шпаргалка по командам Bash
 
