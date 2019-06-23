@@ -935,7 +935,7 @@ rm -rf ~/.asdf/ ~/.tool-versions
 ```bash
 # Установили плагин для работы с Python
 asdf plugin-add python
-# Установили персию Python 2.7.15
+# Установили версию Python 2.7.15
 asdf install python 2.7.15
 # Сделали ее глобальной
 asdf global python 2.7.15
