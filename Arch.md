@@ -918,6 +918,9 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 cd ~/.asdf
 git checkout "$(git describe --abbrev=0 --tags)"
 
+echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.zshrc
+echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
+
 # Через AUR
 yay -S asdf-vm
 ```
