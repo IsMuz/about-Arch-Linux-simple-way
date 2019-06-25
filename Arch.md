@@ -944,6 +944,8 @@ $ asdf list python
   3.7.3
 $ asdf uninstall python 2.7.15
 $ asdf global python 3.7.3
+# Сделать системную версию Python глобальной
+$ asdf global python system
 $ which python
 /home/sergey/.asdf/shims/python
 
