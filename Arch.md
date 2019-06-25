@@ -958,7 +958,7 @@ $ which npm
 /home/sergey/.asdf/shims/npm
 ```
 
-[Все плагины](https://asdf-vm.com/#/plugins-all).
+[Все доступные плагины](https://asdf-vm.com/#/plugins-all). При установке, использовании плагинов могут возникать проблемы. Например, плагин для Python работает поверх [pyenv](https://github.com/pyenv/pyenv) и при возникновении проблем, следует изучить страницу [«Common build problems»](https://github.com/pyenv/pyenv/wiki/common-build-problems).
 
 # Шпаргалка по командам Bash
 
