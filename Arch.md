@@ -933,15 +933,29 @@ yay -S asdf-vm
 rm -rf ~/.asdf/ ~/.tool-versions
 ```
 
-Управление плагинами:
+Примеры:
 
 ```bash
-# Установили плагин для работы с Python
-asdf plugin-add python
-# Установили версию Python 2.7.15
-asdf install python 2.7.15
-# Сделали ее глобальной
-asdf global python 2.7.15
+$ asdf plugin-add python
+$ asdf install python 3.7.3
+$ asdf install python 2.7.15
+$ asdf list python
+  2.7.15
+  3.7.3
+$ asdf uninstall python 2.7.15
+$ asdf global python 3.7.3
+$ which python
+/home/sergey/.asdf/shims/python
+
+$ asdf plugin-add nodejs
+# see: <https://github.com/asdf-vm/asdf-nodejs#install>
+$ bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+$ asdf install nodejs 10.16.0
+$ asdf global nodejs 10.16.0
+$ which node  
+/home/sergey/.asdf/shims/node
+$ which npm 
+/home/sergey/.asdf/shims/npm
 ```
 
 [Все плагины](https://asdf-vm.com/#/plugins-all).
