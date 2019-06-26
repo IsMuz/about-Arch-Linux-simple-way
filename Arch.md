@@ -930,7 +930,7 @@ echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
 yay -S asdf-vm
 ```
 
-Так же необходимо отредактировать `~/.zshrc`:
+В `~/.zshrc` добавляем строки:
 
 ```bash
 export PATH=/opt/asdf-vm/bin:$PATH
