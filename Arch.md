@@ -910,7 +910,9 @@ wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sud
 
 [Страница проекта](https://github.com/asdf-vm/asdf). [Документация](https://asdf-vm.com/#/core-manage-asdf-vm).
 
-Установка:
+## Установка:
+
+### Git
 
 ```bash
 # Вручную
@@ -920,20 +922,29 @@ git checkout "$(git describe --abbrev=0 --tags)"
 
 echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.zshrc
 echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
+```
 
-# Через AUR
+### AUR
+
+```bash
 yay -S asdf-vm
 ```
 
-Пакет из AUR ненастроенный и ставится в /opt.
+Так же необходимо отредактировать `~/.zshrc`:
 
-Удаление при ручной установке:
+```bash
+export PATH=/opt/asdf-vm/bin:$PATH
+. /opt/asdf-vm/asdf.sh
+. /opt/asdf-vm/completions/asdf.bash
+```
+
+## Удаление
 
 ```bash
 rm -rf ~/.asdf/ ~/.tool-versions
 ```
 
-Примеры:
+## Примеры
 
 ```bash
 $ asdf plugin-add python
