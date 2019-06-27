@@ -314,13 +314,13 @@ yay -Sy linux-headers \ # нужны для компиляции некотор�
   neofetch \ # выводит в консоль информацию о системе
   nginx \ # самый быстрый веб-сервер
   ntfs-3g \ # добавляет поддержку файловой системы ntfs
-  nvm \ # менеджер версий для Node.js
-  postgresql \ # лучшая SQL база данных
+  \ # nvm \ # менеджер версий для Node.js
+  \ # postgresql \ # лучшая SQL база данных
   pgadmin4 \ # админка для Postgres
   pgmodeler \ # визуальный редактор для моделирования в Postgres
-  phpenv \ # менеджер версий для PHP
-  pyenv \ # менеджер версий для Python
-  redis \ # СУБД в оперативной памяти, используемая для межпроцессового взаимодействия
+  \ # phpenv \ # менеджер версий для PHP
+  \ # pyenv \ # менеджер версий для Python
+  \ # redis \ # СУБД в оперативной памяти, используемая для межпроцессового взаимодействия
   smartmontools \ # утилита для проверки состояния SSD
   telegram-desktop-bin \ # лучший мессенджер
   texmaker \ # редактор LaTex, генерирует PDF
@@ -420,7 +420,7 @@ touch ~/Templates/{Empty\ Document,Text\ Document.txt,README.md,pyfile.py}
 chsh
 ```
 
-Чтобы изменения вступили в силу нужно перегрузиться (Alt-F2 и ввести reboot).
+Чтобы изменения вступили в силу нужно залогиниться по-новой.
 
 В настройках терминала выбираем шрифт `Source Code Pro Regular`, чтобы отображались стрелочки.
 
@@ -483,6 +483,73 @@ bash -c  "$(wget -qO- https://git.io/vQgMr)"
 ```bash
 wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
 ```
+
+# asdf-vm
+
+[Страница проекта](https://github.com/asdf-vm/asdf). [Документация](https://asdf-vm.com/#/core-manage-asdf-vm).
+
+## Установка:
+
+### Git
+
+```bash
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+cd ~/.asdf
+git checkout "$(git describe --abbrev=0 --tags)"
+
+echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.zshrc
+echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
+```
+
+### AUR
+
+```bash
+yay -S asdf-vm
+```
+
+В `~/.zshrc` добавляем строки:
+
+```bash
+export PATH=/opt/asdf-vm/bin:$PATH
+. /opt/asdf-vm/asdf.sh
+. /opt/asdf-vm/completions/asdf.bash
+```
+
+## Удаление
+
+```bash
+rm -rf ~/.asdf/ ~/.tool-versions
+```
+
+## Примеры
+
+```bash
+$ asdf plugin-add python
+$ asdf install python 3.7.3
+$ asdf install python 2.7.15
+$ asdf list python
+  2.7.15
+  3.7.3
+$ asdf uninstall python 2.7.15
+$ asdf global python 3.7.3
+# Сделать системную версию Python глобальной
+$ asdf global python system
+$ which python
+/home/sergey/.asdf/shims/python
+
+$ asdf plugin-add nodejs
+# see: <https://github.com/asdf-vm/asdf-nodejs#install>
+$ bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+$ asdf install nodejs 10.16.0
+$ asdf global nodejs 10.16.0
+$ which node  
+/home/sergey/.asdf/shims/node
+$ which npm 
+/home/sergey/.asdf/shims/npm
+```
+
+[Все доступные плагины](https://asdf-vm.com/#/plugins-all). При установке, использовании плагинов могут возникать проблемы. Например, плагин для Python работает поверх [pyenv](https://github.com/pyenv/pyenv) и при возникновении проблем, следует изучить страницу [«Common build problems»](https://github.com/pyenv/pyenv/wiki/common-build-problems).
+
 
 ## Использование NVM
 
@@ -905,72 +972,6 @@ yay -S ttf-emojione
 ```bash
 wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
 ```
-
-# Менеджер версий для Python, Node.js, Ruby...
-
-[Страница проекта](https://github.com/asdf-vm/asdf). [Документация](https://asdf-vm.com/#/core-manage-asdf-vm).
-
-## Установка:
-
-### Git
-
-```bash
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-cd ~/.asdf
-git checkout "$(git describe --abbrev=0 --tags)"
-
-echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.zshrc
-echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
-```
-
-### AUR
-
-```bash
-yay -S asdf-vm
-```
-
-В `~/.zshrc` добавляем строки:
-
-```bash
-export PATH=/opt/asdf-vm/bin:$PATH
-. /opt/asdf-vm/asdf.sh
-. /opt/asdf-vm/completions/asdf.bash
-```
-
-## Удаление
-
-```bash
-rm -rf ~/.asdf/ ~/.tool-versions
-```
-
-## Примеры
-
-```bash
-$ asdf plugin-add python
-$ asdf install python 3.7.3
-$ asdf install python 2.7.15
-$ asdf list python
-  2.7.15
-  3.7.3
-$ asdf uninstall python 2.7.15
-$ asdf global python 3.7.3
-# Сделать системную версию Python глобальной
-$ asdf global python system
-$ which python
-/home/sergey/.asdf/shims/python
-
-$ asdf plugin-add nodejs
-# see: <https://github.com/asdf-vm/asdf-nodejs#install>
-$ bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
-$ asdf install nodejs 10.16.0
-$ asdf global nodejs 10.16.0
-$ which node  
-/home/sergey/.asdf/shims/node
-$ which npm 
-/home/sergey/.asdf/shims/npm
-```
-
-[Все доступные плагины](https://asdf-vm.com/#/plugins-all). При установке, использовании плагинов могут возникать проблемы. Например, плагин для Python работает поверх [pyenv](https://github.com/pyenv/pyenv) и при возникновении проблем, следует изучить страницу [«Common build problems»](https://github.com/pyenv/pyenv/wiki/common-build-problems).
 
 # Шпаргалка по командам Bash
 
