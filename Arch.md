@@ -457,8 +457,8 @@ plugins=(
   zsh-syntax-highlighting
 )
 ...
-# Нужно для автодополнения?
-compinit
+# Без этого не будет работать автоподстановка для команд
+autoload -Uz compinit && compinit
 ```
 
 Плагины для zsh в aur нерабочие:
@@ -503,14 +503,14 @@ echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
 yay -S asdf-vm
 ```
 
-В `~/.zshrc` добавляем строки:
+В `~/.zshrc` (до compinit) добавляем строки:
 
 ```bash
 . /opt/asdf-vm/asdf.sh
 . /opt/asdf-vm/completions/asdf.bash
 ```
 
-В `~/.zprofile`:
+В `~/.zprofile` (можно и в `~/.zshrc`):
 
 ```bash
 export PATH=/opt/asdf-vm/bin:$PATH
