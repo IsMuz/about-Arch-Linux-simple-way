@@ -510,9 +510,14 @@ yay -S asdf-vm
 В `~/.zshrc` добавляем строки:
 
 ```bash
-export PATH=/opt/asdf-vm/bin:$PATH
 . /opt/asdf-vm/asdf.sh
 . /opt/asdf-vm/completions/asdf.bash
+```
+
+В `~/.zprofile`:
+
+```bash
+export PATH=/opt/asdf-vm/bin:$PATH
 ```
 
 ## Удаление
