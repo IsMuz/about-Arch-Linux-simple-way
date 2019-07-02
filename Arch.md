@@ -555,6 +555,7 @@ $ which npm
 
 [Все доступные плагины](https://asdf-vm.com/#/plugins-all). При установке, использовании плагинов могут возникать проблемы. Например, плагин для Python работает поверх [pyenv](https://github.com/pyenv/pyenv) и при возникновении проблем, следует изучить страницу [«Common build problems»](https://github.com/pyenv/pyenv/wiki/common-build-problems).
 
+> If you use pip to install a module like ipython that has a binaries. You will need to run asdf reshim python for the binary to be in your path.
 
 ## Использование NVM
 
