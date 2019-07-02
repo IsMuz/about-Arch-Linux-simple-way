@@ -453,15 +453,11 @@ plugins=(
   command-not-found
   extract
   git
-  pyenv
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
 ...
-# Плагин у меня не работает
-source /usr/share/nvm/init-nvm.sh
-...
-# Нужно для автодополнения (если нет)
+# Нужно для автодополнения?
 compinit
 ```
 
