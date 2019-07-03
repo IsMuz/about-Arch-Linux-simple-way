@@ -507,6 +507,8 @@ cd && curl -fsSLO https://raw.githubusercontent.com/romkatv/dotfiles-public/mast
 echo 'source ~/.purepower' >>! ~/.zshrc
 ```
 
+![image](https://user-images.githubusercontent.com/12753171/60625968-d72c1d00-9dd8-11e9-902a-a0ecbe2279b1.png)
+
 ### Ссылки
 
 * [Приемы при работе с ZSH](http://zzapper.co.uk/zshtips.html).
