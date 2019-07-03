@@ -366,7 +366,7 @@ yay -R linux linux-headers
 mkinitcpio -p linux
 ```
 
-## Шрифты как в Ubuntu
+## Шрифты
 
 ![screenshot from 2019-02-20 23-17-46](https://user-images.githubusercontent.com/41215002/53122109-da7be600-3566-11e9-9de7-06582f3d6a53.png)
 
@@ -377,6 +377,11 @@ mkinitcpio -p linux
 * `Ctrl + Alt + V`  для запуска Visual Code (`code`).
 
 ![image](https://user-images.githubusercontent.com/41215002/53122203-1adb6400-3567-11e9-919c-a031dce832e5.png)
+
+Шрифты, обязательыне для установки:
+
+* [Powrline Fonts](https://github.com/powerline/fonts);
+* [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts) – почти тоже, что и предыдущее, но есть еще иконки.
 
 ## Запуск исполняемых файлов по двойному клику
 
