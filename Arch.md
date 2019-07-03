@@ -1014,3 +1014,5 @@ wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sud
 | `paste file1.txt file2.txt > fileresults.txt` | Слияние файлов в один |
 | `find /path/to/files* -mtime +5 -exec rm {} \;` | Удалить файлы старше 5 дней |
 | `sudo lvresize -L +10GB /dev/mapper/lvm-root` | Увеличить размер логического раздела LVM |
+| `df -h --total` | Покажет что куда смонтировано (можно свободное место узнать) |
+| `df -h /tmp` | Узнать на каком разделе смонтирован каталог |
