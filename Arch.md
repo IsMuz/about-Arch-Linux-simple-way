@@ -515,7 +515,7 @@ echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
 yay -S asdf-vm
 ```
 
-В `~/.zshrc` (до compinit) добавляем строки:
+В `~/.zshrc` (после compinit) добавляем строки:
 
 ```zsh
 . /opt/asdf-vm/asdf.sh
