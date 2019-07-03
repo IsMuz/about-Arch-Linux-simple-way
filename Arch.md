@@ -419,6 +419,12 @@ touch ~/Templates/{Empty\ Document,Text\ Document.txt,README.md,pyfile.py}
 
 ## ZSH
 
+### Установка
+
+```bash
+$ yay -S zsh
+```
+
 Меняем shell на `/bin/zsh`:
 
 ```bash
@@ -427,9 +433,11 @@ chsh
 
 Чтобы изменения вступили в силу нужно залогиниться по-новой.
 
-В настройках терминала выбираем шрифт `Source Code Pro Regular`, чтобы отображались стрелочки.
 
-Далее ставим [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh). Лучше всего это делать способом описанным на странице проекта:
+
+### [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)
+
+Установка:
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -447,6 +455,14 @@ cp /usr/share/oh-my-zsh/zshrc ~/.zshrc
 
 ```bash
 yay -S powerline-fonts
+```
+
+Ставим must-have плагины:
+
+```zsh
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
 Изменяем `.zshrc`:
@@ -468,15 +484,23 @@ autoload -Uz compinit && compinit
 source $ZSH/oh-my-zsh.sh
 ```
 
-Установка плагинов:
+Для темы Agnoster настройках терминала выбираем шрифт `Source Code Pro Regular`, чтобы отображались стрелочки.
+
+### [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
+
+Это красивая тема для ZSH.
 
 ```zsh
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 ```
 
-Для установки вне рабочей директории нужен `sudo`.
+`~/.zshrc`:
+
+```zsh
+ZSH_THEME=powerlevel10k/powerlevel10k
+```
+
+### Ссылки
 
 * [Приемы при работе с ZSH](http://zzapper.co.uk/zshtips.html).
 
