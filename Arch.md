@@ -480,11 +480,16 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 ## Цветовые схемы для терминала
 
-[Gogh](https://github.com/Mayccoll/Gogh).
+### Установка
 
 ```bash
 bash -c  "$(wget -qO- https://git.io/vQgMr)"
 ```
+
+### Ссылки
+
+* [Gogh на Github](https://github.com/Mayccoll/Gogh);
+* [Обзор тем](https://mayccoll.github.io/Gogh/).
 
 ## Блокируем сайты с рекламой через hosts
 
