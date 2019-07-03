@@ -478,6 +478,8 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 Для установки вне рабочей директории нужен `sudo`.
 
+* [Приемы при работе с ZSH](http://zzapper.co.uk/zshtips.html).
+
 ## Цветовые схемы для терминала
 
 ### Установка
