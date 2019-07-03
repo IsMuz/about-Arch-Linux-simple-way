@@ -261,7 +261,7 @@ reboot
 
 ## Пакетные менеджеры
 
-Пакетным менеджером по-умолчанию для Arch Linux является pacman. Для подсветки вывода pacman в `/etc/pacman.conf` нужно раскомментировать Color. Пользовательским репозиторием является [AUR](https://aur.archlinux.org/). Пакеты из него можно использовать только на свой страх и риск. Чтобы не собирать пакеты из него ручками можно поставить yay:
+Пакетным менеджером по-умолчанию для Arch Linux является pacman. Для подсветки вывода pacman в `/etc/pacman.conf` нужно раскомментировать `Color`. Пользовательским репозиторием является [AUR](https://aur.archlinux.org/). Пакеты из него можно использовать только на свой страх и риск. Чтобы не собирать пакеты из него ручками можно поставить yay:
 
 ```bash
 sudo pacman -S git
@@ -378,10 +378,10 @@ mkinitcpio -p linux
 
 ![image](https://user-images.githubusercontent.com/41215002/53122203-1adb6400-3567-11e9-919c-a031dce832e5.png)
 
-Шрифты, обязательыне для установки:
+Наборы шрифтов:
 
 * [Powrline Fonts](https://github.com/powerline/fonts);
-* [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts) – почти тоже, что и предыдущее, но есть еще иконки.
+* [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts).
 
 ## Запуск исполняемых файлов по двойному клику
 
@@ -443,7 +443,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 cp /usr/share/oh-my-zsh/zshrc ~/.zshrc
 ```
 
-Так же для некоторых тем oh Mu Zsh нужны шрифты наподобие Powerline:
+Так же для некоторых тем Oh My Zsh нужны шрифты наподобие Powerline:
 
 ```bash
 yay -S powerline-fonts
@@ -480,6 +480,8 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 ## Цветовые схемы для терминала
 
+[Gogh](https://github.com/Mayccoll/Gogh).
+
 ```bash
 bash -c  "$(wget -qO- https://git.io/vQgMr)"
 ```
@@ -515,16 +517,18 @@ yay -S asdf-vm
 
 В `~/.zshrc` (до compinit) добавляем строки:
 
-```bash
+```zsh
 . /opt/asdf-vm/asdf.sh
 . /opt/asdf-vm/completions/asdf.bash
 ```
 
-В `~/.zprofile` (можно и в `~/.zshrc`):
+В `~/.zprofile`:
 
-```bash
+```zsh
 export PATH=/opt/asdf-vm/bin:$PATH
 ```
+
+Эту строку можно и в `~/.zshrc`.
 
 ## Удаление
 
