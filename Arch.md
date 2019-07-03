@@ -500,6 +500,13 @@ git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerl
 ZSH_THEME=powerlevel10k/powerlevel10k
 ```
 
+Изменим prompt:
+
+```zsh
+cd && curl -fsSLO https://raw.githubusercontent.com/romkatv/dotfiles-public/master/.purepower
+echo 'source ~/.purepower' >>! ~/.zshrc
+```
+
 ### Ссылки
 
 * [Приемы при работе с ZSH](http://zzapper.co.uk/zshtips.html).
