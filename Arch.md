@@ -532,6 +532,12 @@ echo 'source ~/.purepower' >>! ~/.zshrc
 bash -c  "$(wget -qO- https://git.io/vQgMr)"
 ```
 
+### Удаление всех тем
+
+```bash
+dconf reset -f /org/gnome/terminal/legacy/profiles:/
+```
+
 ### Ссылки
 
 * [Обзор тем](https://mayccoll.github.io/Gogh/).
