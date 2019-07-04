@@ -866,6 +866,19 @@ yay -S ttf-emojione
 wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
 ```
 
+## Редактирование DConf
+
+DConf хранит профили терминала в `~/.config/dconf/user`, в формате GVDB [пруф](https://en.wikipedia.org/wiki/Dconf).
+
+![image](https://user-images.githubusercontent.com/12753171/60671500-ba3c2c00-9e62-11e9-9f70-79b1bd9aed19.png)
+
+```bash
+# Делаем дамп
+$ dconf dump / > /tmp/dconf
+# Редактируем и загружаем
+$ dconf load / < /tmp/dconf
+```
+
 ---
 
 # i3
