@@ -444,6 +444,8 @@ chsh
 
 Чтобы изменения вступили в силу нужно залогиниться по-новой.
 
+
+
 ### [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)
 
 Установка:
@@ -522,21 +524,16 @@ echo 'source ~/.purepower' >>! ~/.zshrc
 
 * [Приемы при работе с ZSH](http://zzapper.co.uk/zshtips.html).
 
-## [Цветовые схемы для терминала](https://github.com/Mayccoll/Gogh)
-
-### Установка
+## [Цветовые схемы для Gnome Terminal](https://github.com/Mayccoll/Gogh)
 
 ```bash
+# Интерактивная установка
 bash -c  "$(wget -qO- https://git.io/vQgMr)"
-```
-
-### Удаление всех тем
-
-```bash
+# Удаление всех тем
 dconf reset -f /org/gnome/terminal/legacy/profiles:/
 ```
 
-### Ссылки
+Ссылки:
 
 * [Обзор тем](https://mayccoll.github.io/Gogh/).
 
