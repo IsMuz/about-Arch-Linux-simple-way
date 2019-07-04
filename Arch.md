@@ -1065,3 +1065,5 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 | `sudo lvresize -L +10GB /dev/mapper/lvm-root` | Увеличить размер логического раздела LVM |
 | `df -h --total` | Покажет что куда смонтировано (можно свободное место узнать) |
 | `df -h /tmp` | Узнать на каком разделе смонтирован каталог |
+| `less /path/to/file` или более короткая версия в ZSH `< /path/to/file` | Просмотр содержимого фйала с навигацией |
+| `tail -r /var/log/syslog | less` | Просмотр логов в обратном порядке |
