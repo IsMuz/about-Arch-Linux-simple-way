@@ -444,8 +444,6 @@ chsh
 
 Чтобы изменения вступили в силу нужно залогиниться по-новой.
 
-
-
 ### [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)
 
 Установка:
