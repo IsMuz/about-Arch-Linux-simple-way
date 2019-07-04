@@ -1,4 +1,4 @@
-# Установка Arch Linux  рядом с Windows
+# Установка
 
 ## Предисловие
 
@@ -253,7 +253,9 @@ exit
 reboot
 ```
 
-# Настройка Arch Linux
+---
+
+# Настройка
 
 ## Введение
 
@@ -292,7 +294,7 @@ yay -Sy linux-headers \ # нужны для компиляции некотор�
   ttf-ms-fonts \
   arc-gtk-theme-git \ # тема для интерфейса
   apache \ # самый популярный веб-сервер
-  apache-tools \ # содержит ab, нагрузочный клиент 
+  apache-tools \ # содержит ab, нагрузочный клиент
   blender \ # самый простой 3D-редактор
   dconf-editor \ # все настройки gnome в одном месте
   dmraid \ # утилита для работы с raid-массивами дисков
@@ -325,7 +327,7 @@ yay -Sy linux-headers \ # нужны для компиляции некотор�
   telegram-desktop-bin \ # лучший мессенджер
   texmaker \ # редактор LaTex, генерирует PDF
   tor \ # сервис, который можно использовать для подключения к сети Tor
-  torsocks \ # утилита torify, которая заставляет другие программы работать через Tor 
+  torsocks \ # утилита torify, которая заставляет другие программы работать через Tor
   transmission-qt \ # торрент-клиент
   thunderbird \ # email-клиент
   virtualbox \ # виртуальная машина, позволяет запускать Windows и Linux
@@ -522,7 +524,7 @@ echo 'source ~/.purepower' >>! ~/.zshrc
 
 * [Приемы при работе с ZSH](http://zzapper.co.uk/zshtips.html).
 
-## Цветовые схемы для терминала
+## [Цветовые схемы для терминала](https://github.com/Mayccoll/Gogh)
 
 ### Установка
 
@@ -532,7 +534,6 @@ bash -c  "$(wget -qO- https://git.io/vQgMr)"
 
 ### Ссылки
 
-* [Gogh на Github](https://github.com/Mayccoll/Gogh);
 * [Обзор тем](https://mayccoll.github.io/Gogh/).
 
 ## Блокируем сайты с рекламой через hosts
@@ -541,11 +542,11 @@ bash -c  "$(wget -qO- https://git.io/vQgMr)"
 wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
 ```
 
-# [asdf-vm](https://github.com/asdf-vm/asdf)
+## [asdf-vm](https://github.com/asdf-vm/asdf)
 
-## Установка:
+### Установка:
 
-### Git
+#### Git
 
 ```bash
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
@@ -556,7 +557,7 @@ echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.zshrc
 echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
 ```
 
-### AUR
+#### AUR
 
 ```bash
 yay -S asdf-vm
@@ -577,13 +578,13 @@ export PATH=/opt/asdf-vm/bin:$PATH
 
 Эту строку можно и в `~/.zshrc`.
 
-## Удаление
+### Удаление
 
 ```bash
 rm -rf ~/.asdf/ ~/.tool-versions
 ```
 
-## Примеры
+### Примеры
 
 ```bash
 $ asdf plugin-add python
@@ -604,9 +605,9 @@ $ asdf plugin-add nodejs
 $ bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 $ asdf install nodejs 10.16.0
 $ asdf global nodejs 10.16.0
-$ which node  
+$ which node
 /home/sergey/.asdf/shims/node
-$ which npm 
+$ which npm
 /home/sergey/.asdf/shims/npm
 ```
 
@@ -614,11 +615,11 @@ $ which npm
 
 > If you use pip to install a module like ipython that has a binaries. You will need to run asdf reshim python for the binary to be in your path.
 
-## Ссылки
+### Ссылки
 
 * [Документация](https://asdf-vm.com/#/core-manage-asdf-vm).
 
-## Использование NVM
+## Использование [NVM](https://github.com/nvm-sh/nvm)
 
 Устанавливаем последнюю версию Node.js:
 
@@ -626,16 +627,16 @@ $ which npm
 nvm install node
 ```
 
-## TLDR
+## [TLDR](https://github.com/tldr-pages/tldr)
 
 ```bash
-npm i tldr -g 
+npm i tldr -g
 ```
 
 Получаем краткую справку по команде:
 
 ```bash
-$ tldr nvm  
+$ tldr nvm
 ✔ Page not found. Updating cache...
 ✔ Creating index...
 
@@ -782,12 +783,12 @@ sudo mkinitcpio -p linux
 [sergey@sergey-pc ~]$ sudo systemctl start postgresql
 [sergey@sergey-pc ~]$ sudo systemctl enable postgresql
 [sergey@sergey-pc ~]$ sudo -u postgres -i initdb --locale $LANG -E UTF8 -D /var/lib/postgres/data
-[sergey@sergey-pc ~]$                      
+[sergey@sergey-pc ~]$
 [postgres@sergey-pc ~]$ createuser --interactive -P
 Enter name of role to add: sergey
-Enter password for new role: 
-Enter it again: 
-Shall the new role be a superuser? (y/n) 
+Enter password for new role:
+Enter it again:
+Shall the new role be a superuser? (y/n)
 Please answer "y" or "n".
 Shall the new role be a superuser? (y/n) n
 Shall the new role be allowed to create databases? (y/n) y
@@ -852,6 +853,20 @@ $ torify curl http://httpbin.org/ip
   "origin": "173.244.209.5, 173.244.209.5"
 }
 ```
+
+## Emoji
+
+```yay
+yay -S ttf-emojione
+```
+
+## Блокировка рекламных сайтов
+
+```bash
+wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
+```
+
+---
 
 # i3
 
@@ -954,9 +969,9 @@ exec --no-startup-id setxkbmap -model pc105 -layout us,ru -option grp:ctrl_shift
 exec --no-startup-id nitrogen --restore
 ```
 
-Нужно выйти из сессии и выбрать в Display Manager сессию `i3 custom`. 
+Нужно выйти из сессии и выбрать в Display Manager сессию `i3 custom`.
 
-**LXAppearance**  используется для изменения значков, шрифта по-умолчанию в приложениях. 
+**LXAppearance**  используется для изменения значков, шрифта по-умолчанию в приложениях.
 
 **Nitrogen**  позволяет менять обои.
 
@@ -1028,17 +1043,7 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 
 [Документация](https://i3wm.org/docs/layout-saving.html).
 
-# Emoji
-
-```yay
-yay -S ttf-emojione
-```
-
-# Блокировка рекламных сайтов
-
-```bash
-wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
-```
+---
 
 # Шпаргалка по командам Bash
 
@@ -1050,7 +1055,7 @@ wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sud
 | `yay -Syu --devel --timeupdate` | Обновить в т.ч. с пакетами для разработчика |
 | `yay -Yc` | Удалить все ненужные зависимости |
 | `yay -Ps` | Статистика по пакетами |
-| `yay -Y --gendb` | Generates development package DB used for devel updates | 
+| `yay -Y --gendb` | Generates development package DB used for devel updates |
 | `journalctl -f ` | Просмотр логов в реальном времени |
 | `systemctl list-unit-files \| grep enabled` | Все включенные сервисы |
 | `fc-list` | Список установленных шрифтов |
