@@ -366,10 +366,6 @@ yay -R linux linux-headers
 mkinitcpio -p linux
 ```
 
-## Шрифты
-
-![screenshot from 2019-02-20 23-17-46](https://user-images.githubusercontent.com/41215002/53122109-da7be600-3566-11e9-9de7-06582f3d6a53.png)
-
 ## Пользовательские сочетания клавиш
 
 В Settings → Devices → Keyboard добавляем сочетания клавиш:
@@ -377,6 +373,19 @@ mkinitcpio -p linux
 * `Ctrl + Alt + V`  для запуска Visual Code (`code`).
 
 ![image](https://user-images.githubusercontent.com/41215002/53122203-1adb6400-3567-11e9-919c-a031dce832e5.png)
+
+## Шрифты
+
+Шрифты надо кидать в `/usr/share/fonts` либо в `~/.fonts` или в `~/.local/share/fonts`. После выполняем:
+
+```zsh
+$ fc-cache -f -v
+
+# Чтобы проверить установлен ли шрифт
+$ fc-list | grep "<name-of-font>"
+```
+
+![screenshot from 2019-02-20 23-17-46](https://user-images.githubusercontent.com/41215002/53122109-da7be600-3566-11e9-9de7-06582f3d6a53.png)
 
 Наборы шрифтов:
 
