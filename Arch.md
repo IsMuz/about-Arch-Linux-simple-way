@@ -532,6 +532,10 @@ echo 'source ~/.purepower' >>! ~/.zshrc
 bash -c  "$(wget -qO- https://git.io/vQgMr)"
 ```
 
+### Редактирование профилей в dconf
+
+![image](https://user-images.githubusercontent.com/12753171/60671500-ba3c2c00-9e62-11e9-9f70-79b1bd9aed19.png)
+
 ### Ссылки
 
 * [Обзор тем](https://mayccoll.github.io/Gogh/).
