@@ -1082,3 +1082,4 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 | `less /path/to/file` или более короткая версия в ZSH `< /path/to/file` | Просмотр содержимого фйала с навигацией |
 | `tail -r /var/log/syslog | less` | Просмотр логов в обратном порядке |
 | `grep -Pv <exclude_pattern> <filename>` | Вывести строки не соответствующие шаблону |
+| `gnome-terminal --geometry 135x45` | Изменить размер терминала |
