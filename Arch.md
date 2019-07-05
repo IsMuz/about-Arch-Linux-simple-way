@@ -1080,6 +1080,6 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 | `df -h --total` | Покажет что куда смонтировано (можно свободное место узнать) |
 | `df -h /tmp` | Узнать на каком разделе смонтирован каталог |
 | `less /path/to/file` или более короткая версия в ZSH `< /path/to/file` | Просмотр содержимого фйала с навигацией |
-| `tail -r /var/log/syslog | less` | Просмотр логов в обратном порядке |
+| `tail -r /var/log/syslog \| less` | Просмотр логов в обратном порядке |
 | `grep -Pv <exclude_pattern> <filename>` | Вывести строки не соответствующие шаблону |
 | `gnome-terminal --geometry 135x45` | Изменить размер терминала |
