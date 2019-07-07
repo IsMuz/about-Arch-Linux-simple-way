@@ -1070,9 +1070,11 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 | `yay -Yc` | Удалить все ненужные зависимости |
 | `yay -Ps` | Статистика по пакетами |
 | `yay -Y --gendb` | Generates development package DB used for devel updates |
+| `ln -sf path/to/new_file path/to/symlink` | Создать мягкую ссылку на файл. Жесткая ссылается на inode, искомый файл при перемещении доступенпо ссылке, невозможно ссылаться на файл надругом устройстве |
 | `journalctl -f ` | Просмотр логов в реальном времени |
 | `systemctl list-unit-files \| grep enabled` | Все включенные сервисы |
 | `fc-list` | Список установленных шрифтов |
+| `fc-cache -f -v` | Обновить базу шрифтов после добавления/удаления их в/из `/usr/share/fonts` либо `~/.local/share/fonts` |
 | `netstat -lnt` | Все запущенные сервера на хосте |
 | `paste file1.txt file2.txt > fileresults.txt` | Слияние файлов в один |
 | `find /path/to/files* -mtime +5 -exec rm {} \;` | Удалить файлы старше 5 дней |
@@ -1083,3 +1085,5 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 | `tail -r /var/log/syslog \| less` | Просмотр логов в обратном порядке |
 | `grep -Pv <exclude_pattern> <filename>` | Вывести строки не соответствующие шаблону |
 | `gnome-terminal --geometry 135x45` | Изменить размер терминала |
+| `netstat -plantu` | Показать все прослушиваемые и установленные порты TCP и UDP вместе с PID связанного процесса |
+| `netstat -ltn` | Активные соединения (только серверы) |
