@@ -1061,7 +1061,7 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 
 # Шпаргалка по командам Bash
 
-| Название <img width="450"> | Описание <img width="450"> |
+| Название | Описание |
 | -- | -- |
 | `yay -S <package>` | Установить пакет |
 | `yay -Rns <package>` | Удалить пакет |
@@ -1070,7 +1070,8 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 | `yay -Yc` | Удалить все ненужные зависимости |
 | `yay -Ps` | Статистика по пакетами |
 | `yay -Y --gendb` | Generates development package DB used for devel updates |
-| `ln -sf path/to/new_file path/to/symlink` | Создать мягкую ссылку на файл. Жесткая ссылается на inode, искомый файл при перемещении доступенпо ссылке, невозможно ссылаться на файл надругом устройстве |
+| `compgen -c` | Список всех доступных команд |
+| `ln -sf path/to/new_file path/to/symlink` | Создать мягкую ссылку на файл. Мягкая ссылка содержит путь до файла. Жесткая ссылается на inode, искомый файл при перемещении остается доступен по ссылке, невозможно ссылаться на файл на другом устройстве |
 | `journalctl -f ` | Просмотр логов в реальном времени |
 | `systemctl list-unit-files \| grep enabled` | Все включенные сервисы |
 | `fc-list` | Список установленных шрифтов |
