@@ -1071,25 +1071,25 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 # ==============================================================================
 
 # Установить пакет
-❯ yay -S <package>
+$ yay -S <package>
 
 # Удалить пакет
-❯ yay -Rns <package>
+$ yay -Rns <package>
 
 # Обновить все установленные пакеты
-❯ yay -Syu
+$ yay -Syu
 
 # Обновить в т.ч. с пакетами для разработчика
-❯ yay -Syu --devel --timeupdate
+$ yay -Syu --devel --timeupdate
 
 # Удалить все ненужные зависимости
-❯ yay -Yc
+$ yay -Yc
 
 # Статистика по пакетами
-❯ yay -Ps
+$ yay -Ps
 
 # Generates development package DB used for devel updates
-❯ yay -Y --gendb
+$ yay -Y --gendb
 
 # ==============================================================================
 #
@@ -1098,13 +1098,13 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 # ==============================================================================
 
 # Замена в тексте
-❯ echo "This is a test" | sed 's/test/another test/'
+$ echo "This is a test" | sed 's/test/another test/'
 
 # Ключ -e позволяет выполнить несколько команд:
 #   sed -e 's/This/That/; s/test/another test/'
 
 # Перевод регистра
-❯ echo lowercase | tr '[:lower:]' '[:upper:]'
+$ echo lowercase | tr '[:lower:]' '[:upper:]'
 LOWERCASE
 
 # ==============================================================================
@@ -1114,46 +1114,57 @@ LOWERCASE
 # ==============================================================================
 
 # Создать мягкую ссылку на файл либо заменить ее новой
-❯ ln -sf path/to/new_file path/to/symlink
+$ ln -sf path/to/new_file path/to/symlink
 
 # Мягкая ссылка содержит путь до файла. Жесткая ссылается на inode, искомый
 # файл при перемещении остается доступен по ссылке, невозможно ссылаться на
 # файл на другом устройстве
 
 # Заархивировать каталог
-❯ tar -czvf filename.tar.gz directory
+$ tar -czvf filename.tar.gz directory
 
 # Для извлечения файлов проще всего пользоваться плагином Oh My ZSH extract
 
 # Извлечь архив и удалить его (ключ -r)
-❯ extract -r <filename>
+$ extract -r <filename>
 
 # Слияние файлов в один
-❯ paste file1.txt file2.txt > fileresults.txt
+$ paste file1.txt file2.txt > fileresults.txt
 
 # Удалить файлы старше 5 дней
-❯ find /path/to/files* -mtime +5 -exec rm {} \;
+$ find /path/to/files* -mtime +5 -exec rm {} \;
 
 # Увеличить размер логического раздела LVM
-❯ sudo lvresize -L +10GB /dev/mapper/lvm-root
+$ sudo lvresize -L +10GB /dev/mapper/lvm-root
 
 # Покажет что куда смонтировано (можно свободное место узнать)
-❯ df -h --total
+$ df -h --total
 
 # Узнать на каком разделе смонтирован каталог
-❯ df -h /tmp
+$ df -h /tmp
 
 # Просмотр содержимого фйала с навигацией
-❯ less /path/to/file
+$ less /path/to/file
 
 # или более короткая версия в ZSH
-❯ < /path/to/file
+$ < /path/to/file
 
 # Просмотр логов в обратном порядке
-❯ tail -r /var/log/syslog | less
+$ tail -r /var/log/syslog | less
 
 # Вывести строки не соответствующие шаблону
-❯ grep -Pv <exclude_pattern> <filename>
+$ grep -Pv <exclude_pattern> <filename>
+
+# Создать файл, забитый null-байтами
+$ dd if=/dev/zero of=/tmp/nullbytes bs=1M count=1
+
+# Конфертировать .md в .rst
+$ pip install m2r
+$ m2r --help
+
+# Конвертировать .webp в .png
+$ yay -S libwebp
+$ dwebp file.webp -o file.png
 
 # ==============================================================================
 #
@@ -1163,10 +1174,52 @@ LOWERCASE
 
 # Показать все прослушиваемые и установленные порты TCP и UDP вместе с PID
 # связанного процесса
-❯ netstat -plantu
+$ netstat -plantu
 
 # Все запущенные сервера на хосте
-❯ netstat -lnt
+$ netstat -lnt
+
+# ==============================================================================
+#
+# Git
+#
+# ==============================================================================
+
+# List all the tags:
+
+$ git tag
+
+# Search tags for a particular pattern:
+
+$ git tag -l <tag-pattern>
+
+# Show a tag data:
+
+$ git show <tag-name>
+
+# Create a Lightweight Tag:
+
+$ git tag <tag-name>
+
+# Create an Annotated Tag:
+
+$ git tag -a <tag-name> -m <tag-message>
+
+# Create a tag for a specific commit:
+
+$ git tag -a <tag-name> <commit-checksome>
+
+# Push a specific tag to remote:
+
+$ git push origin <tag-name>
+
+# Push all the tags to remote:
+
+$ git push origin --tags
+
+# Checkout a specific to local:
+
+$ git checkout -b <branch-name> <tag-name>
 
 # ==============================================================================
 #
@@ -1175,39 +1228,48 @@ LOWERCASE
 # ==============================================================================
 
 # Перегрузить Shell
-❯ exec "$SHELL"
+$ exec "$SHELL"
 
 # Список всех доступных команд
-❯ compgen -c
+$ compgen -c
 
 # Ищем Chrome
-❯ compgen -c | grep chrome
+$ compgen -c | grep chrome
 google-chrome-stable
 chrome-gnome-shell
 google-chrome
 
 # Все включенные сервисы
-❯ systemctl list-unit-files | grep enabled
+$ systemctl list-unit-files | grep enabled
 
 # Просмотр логов в реальном времени
-❯ journalctl -f
+$ journalctl -f
 
 # Изменить размер терминала
-❯ gnome-terminal --geometry 135x45
+$ gnome-terminal --geometry 135x45
 
 # Список установленных шрифтов
-❯ fc-list
+$ fc-list
 
 # Обновить базу шрифтов после добавления/удаления их в/из `/usr/share/fonts`
 # либо `~/.local/share/fonts`
-❯ fc-cache -f -v
+$ fc-cache -f -v
 
 # Скопировать текст в буфер обмена
-❯ echo 123 | xclip -sel clip
+$ echo 123 | xclip -sel clip
 
 # Копировать содержимое файла в буфер обмена
-❯ xclip -sel clip < ~/.ssh/github_rsa.pub
+$ xclip -sel clip < ~/.ssh/github_rsa.pub
 
 # Вывести содержимое буфера обмена
-❯ xclip -o -sel clip
+$ xclip -o -sel clip
+
+# Конвертировать файл в base64 и скопировать в буфер обмена
+$ file="test.docx"
+$ base64 -w 0 $file  | xclip -selection clipboard
+
+# Генерация пароля
+$ yay -S pwgen
+$ pwgen -c 10 -s 1
+wz1m3gVH5p
 ```
