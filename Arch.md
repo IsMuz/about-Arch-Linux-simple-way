@@ -279,6 +279,10 @@ makepkg -si
 
 Синтаксис команды Yay аналогичен pacman. Так что будет полезным почитать справку по [pacman](https://wiki.archlinux.org/index.php/Pacman_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9)).
 
+Ссылки:
+
+* [Сравнеие пакетных менеджеров](https://wiki.archlinux.org/index.php/AUR_helpers_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9)).
+
 ## Нужные пакеты
 
 Это список необходимых для меня пакетов:
@@ -523,6 +527,11 @@ echo 'source ~/.purepower' >>! ~/.zshrc
 ### Ссылки
 
 * [Приемы при работе с ZSH](http://zzapper.co.uk/zshtips.html).
+
+## cat с цветной подсветкой
+
+* [ccat](https://github.com/jingweno/ccat);
+* [lolcat](https://github.com/busyloop/lolcat).
 
 ## [Цветовые схемы для Gnome Terminal](https://github.com/Mayccoll/Gogh)
 
