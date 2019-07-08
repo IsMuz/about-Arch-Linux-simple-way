@@ -1186,6 +1186,9 @@ $ ls -ltu <path>
 $ sudo lvscan
   ACTIVE            '/dev/lvm/root' [40.00 GiB] inherit
   ACTIVE            '/dev/lvm/home' [20.00 GiB] inherit
+  
+# Изменить размер каталога /tmp
+$ mount -o remount,size=2G /tmp/
 
 # ==============================================================================
 #
