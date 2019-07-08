@@ -1100,6 +1100,9 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 # Замена в тексте
 ❯ echo "This is a test" | sed 's/test/another test/'
 
+# Ключ -e позволяет выполнить несколько команд:
+#   sed -e 's/This/That/; s/test/another test/'
+
 # Перевод регистра
 ❯ echo lowercase | tr '[:lower:]' '[:upper:]'
 LOWERCASE
@@ -1176,6 +1179,12 @@ LOWERCASE
 
 # Список всех доступных команд
 ❯ compgen -c
+
+# Ищем Chrome
+❯ compgen -c | grep chrome
+google-chrome-stable
+chrome-gnome-shell
+google-chrome
 
 # Все включенные сервисы
 ❯ systemctl list-unit-files | grep enabled
