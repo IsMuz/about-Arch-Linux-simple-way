@@ -1182,6 +1182,11 @@ $ ccat ./file
 # Вывести файлы в каталоге, отсортировав их по времени до доступа
 $ ls -ltu <path>
 
+# Список логических разделов LVM
+$ sudo lvscan
+  ACTIVE            '/dev/lvm/root' [40.00 GiB] inherit
+  ACTIVE            '/dev/lvm/home' [20.00 GiB] inherit
+
 # ==============================================================================
 #
 # Сеть
@@ -1293,3 +1298,7 @@ wz1m3gVH5p
 $ tldr cat
 $ tldr --search create file
 ```
+
+Ссылки:
+
+* (Управление разделами LVM)[https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/s1-disk-storage-lvm.html]
