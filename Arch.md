@@ -1272,4 +1272,8 @@ $ base64 -w 0 $file  | xclip -selection clipboard
 $ yay -S pwgen
 $ pwgen -c 10 -s 1
 wz1m3gVH5p
+
+# Документация по командам
+$ tldr cat
+$ tldr --search create file
 ```
