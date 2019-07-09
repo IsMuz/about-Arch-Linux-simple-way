@@ -1307,4 +1307,4 @@ $ tldr --search create file
 
 Ссылки:
 
-* (Управление разделами LVM)[https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/s1-disk-storage-lvm.html]
+* [Управление разделами LVM](https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/s1-disk-storage-lvm.html)
