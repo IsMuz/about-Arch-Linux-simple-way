@@ -1213,10 +1213,13 @@ $ netstat -lnt
 # ==============================================================================
 
 # Сменить ветку
-$ git branch <name>
+$ git checkout <branchname>
 
 # Создать ветку и переключится на нее
-$ git branch -b <name>
+$ git checkout -b <branchname>
+
+# Объединить текущую ветку с branchname
+$ git merge <branchname>
 
 # Добавить изменения (все файлы в каталоге и вложеннхы)
 $ git add .
@@ -1224,8 +1227,36 @@ $ git add .
 # Закоммитить изменения (сделать описание)
 $ git commit -m "Комментарий"
 
-# Обновить репозиторий
+# Обновить репозиторий на сервере
 $ git push
+
+# Выгрузить изменения с сервера (тоже самое, что git fetch + git merge)
+$ git pull
+
+# Копировать репозиторий
+$ git clone https://github.com/someuser/repo.git [ <assigneddirectory> ]
+
+# Посмотреть историю
+$ git log --graph --oneline --decorate --all
+
+# Посмотреть отличия по сравнения с предыдущей версией
+$ git diff 871d36b [ <filename> ]
+
+# Сохранить изменения
+$ git stash [ save "my stash message here" ]
+
+# Удалить stach и применить его
+$ git stash pop [ stash@{1} ]
+
+# Список stash
+$ git stash list
+
+# Посмотреть что там лежит
+$ git stash show stash@{0}
+
+$ git stash apply
+$ git stash drop stash@{2}
+$ git stash clear
 
 # List all the tags:
 
@@ -1322,4 +1353,6 @@ $ tldr --search create file
 
 Ссылки:
 
-* [Управление разделами LVM](https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/s1-disk-storage-lvm.html)
+* [Управление разделами LVM](https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/s1-disk-storage-lvm.html);
+* [Часто используемые команды Git](https://carolinegabriel.com/used-git-commands-copy-paste-format/);
+* .
