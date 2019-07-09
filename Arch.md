@@ -1186,7 +1186,7 @@ $ ls -ltu <path>
 $ sudo lvscan
   ACTIVE            '/dev/lvm/root' [40.00 GiB] inherit
   ACTIVE            '/dev/lvm/home' [20.00 GiB] inherit
-  
+
 # Изменить размер каталога /tmp
 $ mount -o remount,size=2G /tmp/
 
@@ -1211,6 +1211,21 @@ $ netstat -lnt
 # Git
 #
 # ==============================================================================
+
+# Сменить ветку
+$ git branch <name>
+
+# Создать ветку и переключится на нее
+$ git branch -b <name>
+
+# Добавить изменения (все файлы в каталоге и вложеннхы)
+$ git add .
+
+# Закоммитить изменения (сделать описание)
+$ git commit -m "Комментарий"
+
+# Обновить репозиторий
+$ git push
 
 # List all the tags:
 
