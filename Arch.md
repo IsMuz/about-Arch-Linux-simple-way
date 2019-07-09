@@ -1238,19 +1238,19 @@ $ git push
 $ git pull
 
 # Копировать репозиторий
-$ git clone https://github.com/someuser/repo.git [ <assigneddirectory> ]
+$ git clone https://github.com/someuser/repo.git [<assigneddirectory>]
 
 # Посмотреть историю
 $ git log --graph --oneline --decorate --all
 
 # Посмотреть отличия по сравнения с предыдущей версией
-$ git diff 871d36b [ <filename> ]
+$ git diff 871d36b [<filename>]
 
 # Сохранить изменения
-$ git stash [ save "my stash message here" ]
+$ git stash [save "my stash message here"]
 
 # Удалить stach и применить его
-$ git stash pop [ stash@{1} ]
+$ git stash pop [stash@{1}]
 
 # Список stash
 $ git stash list
