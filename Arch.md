@@ -1106,6 +1106,33 @@ $ yay -Y --gendb
 #
 # ==============================================================================
 
+# Все сервисы
+
+# Покажут только включенные
+$ systemctl
+$ systemctl list-units --type service
+
+# + выключенные
+$ systemctl list-unit-files --type service
+
+$ sudo systemctl enable docker
+
+$ sudo systemctl disable docker
+
+$ sudo systemctl restart nginx.service
+
+$ sudo systemctl start application.service
+
+$ sudo systemctl start application.service
+
+$ systemctl status nginx.service
+
+# ==============================================================================
+#
+# Текст
+#
+# ==============================================================================
+
 # Замена в тексте
 $ echo "This is a test" | sed 's/test/another test/'
 
@@ -1149,6 +1176,14 @@ $ find /path/to/files* -mtime +5 -exec rm {} \;
 # Поиск фала по имени в специальной базе
 $ locate -e login.keyring
 /home/sergey/.local/share/keyrings/login.keyring
+
+# Установка
+$ yay -S mlocate
+
+# Перед первым запуском следует выполнить
+$ sudo updatedb
+
+# После установки будет доступен сервис updatedb.timer, который будет ежедневно обновлять базу
 
 # Стастика 
 $ locate -S
@@ -1345,9 +1380,6 @@ $ compgen -c | grep chrome
 google-chrome-stable
 chrome-gnome-shell
 google-chrome
-
-# Все включенные сервисы
-$ systemctl list-unit-files | grep enabled
 
 # Просмотр логов в реальном времени
 $ journalctl -f
