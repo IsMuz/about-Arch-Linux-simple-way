@@ -1362,8 +1362,9 @@ $ base64 -w 0 $file  | xclip -selection clipboard
 
 # Генерация пароля
 $ yay -S pwgen
-$ pwgen -c 10 -s 1
-wz1m3gVH5p
+$ pwgen -cnys 8 10
+~GO}10dF (4z#b<ZR WmS8{/Fg B?7ekVmi ?L;fk.A3 78I#nfdz 5NaN~05A n80$\~I5
+{8'I^58# o?/Q{2pz
 
 # Документация по командам
 $ tldr cat
