@@ -1143,6 +1143,18 @@ $ paste file1.txt file2.txt > fileresults.txt
 # Удалить файлы старше 5 дней
 $ find /path/to/files* -mtime +5 -exec rm {} \;
 
+# Поиск фала по имени в специальной базе
+$ locate -e login.keyring
+/home/sergey/.local/share/keyrings/login.keyring
+
+# Стастика 
+$ locate -S
+Database /var/lib/mlocate/mlocate.db:
+	157 512 directories
+	1 384 522 files
+	119 423 666 bytes in file names
+	38 722 751 bytes used to store database
+
 # Увеличить размер логического раздела LVM
 $ sudo lvresize -L +10GB /dev/mapper/lvm-root
 
@@ -1373,6 +1385,7 @@ $ tldr --search create file
 
 Ссылки:
 
+* [Поиск файлов на Сервере](https://www.8host.com/blog/ispolzovanie-find-i-locate-dlya-poiska-fajlov-na-servere-linux/);
 * [Управление разделами LVM](https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/s1-disk-storage-lvm.html);
 * [Часто используемые команды Git](https://carolinegabriel.com/used-git-commands-copy-paste-format/);
 * .
