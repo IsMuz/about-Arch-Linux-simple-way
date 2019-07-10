@@ -1079,9 +1079,12 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 Решение:
 
 ```bash
+# Если не установлено
 $ yay -S seahorse
 $ seahorse &
 ```
+
+Можно нажать `Super+A` и поискать приложение `Passwords and keys`.
 
 ![image](https://user-images.githubusercontent.com/12753171/61012059-723e6d00-a36c-11e9-8fbb-8e0b8ca26e5e.png)
 
