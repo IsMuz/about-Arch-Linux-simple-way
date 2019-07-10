@@ -1070,6 +1070,32 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 
 ---
 
+# Частые проблемы
+
+## Enter password to unlock your login keyring
+
+В один прекрасный день Chrome выдаст такое предупреждение, после чего перестанут сохраняться пароли и не будет работать автозаполнение форм для логина.
+
+Решение:
+
+```bash
+$ yay -S seahorse
+$ seahorse &
+```
+
+![image](https://user-images.githubusercontent.com/12753171/61012059-723e6d00-a36c-11e9-8fbb-8e0b8ca26e5e.png)
+
+Удаляем вкладку Login:
+
+![image](https://user-images.githubusercontent.com/12753171/61012086-88e4c400-a36c-11e9-84c6-f8d17c0acc6c.png)
+
+```bash
+# Удаляем настройки Chrome
+$ rm -rf ~/.config/google-chrome
+# Переустанавливаем Chrome?
+# $ yay -S google-chrome
+```
+
 # Шпаргалка по командам Shell
 
 ```bash
