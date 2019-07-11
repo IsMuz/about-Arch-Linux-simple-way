@@ -449,6 +449,17 @@ d         | rwx      | r-x    | r-x
 
 * [Права доступа к файлам и каталогам](https://www.linuxcenter.ru/lib/books/kostromin/gl_04_05.phtml)
 
+## bin в домашнем каталоге
+
+```bash
+mkdir ~/bin
+echo 'export PATH=$HOME/bin:$PATH' >> ~/.zprofile
+# or
+echo 'export PATH=$HOME/bin:$PATH' >> ~/.zhrc
+```
+
+Теперь кидаем  самописные скрипты в `~/bin`.
+
 ## Расширения для Gnome
 
 Устанавливаем [расширение](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=ru) для Chrome.
