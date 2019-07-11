@@ -1728,6 +1728,9 @@ $ sudo lvresize -L +10GB /dev/mapper/lvm-root
 # После lvresize нужно обязательно изменить размер файловой системы
 $ sudo resize2fs /dev/mapper/lvm-root
 
+# Делает то же самое, что и две команды выше
+$ sudo lvresize -r -L +10GB /dev/mapper/lvm-root
+
 # Список логических разделов LVM
 $ sudo lvscan
   ACTIVE            '/dev/lvm/root' [40.00 GiB] inherit
