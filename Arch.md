@@ -1211,8 +1211,25 @@ $ rm -rf ~/.config/google-chrome
 #
 # ==============================================================================
 
+# $1, $2, $3, ... are the positional parameters.
+# "$@" is an array-like construct of all positional parameters, {$1, $2, $3 ...}.
+# "$*" is the IFS expansion of all positional parameters, $1 $2 $3 ....
+# $# is the number of positional parameters.
+# $- current options set for the shell.
+# $$ pid of the current shell (not subshell).
+# $_ most recent parameter (or the abs path of the command to start the current shell immediately after startup).
+# $IFS is the (input) field separator.
+# $? is the most recent foreground pipeline exit status.
+# $! is the PID of the most recent background command.
+# $0 is the name of the shell or shell script.
+
 # присвоить значение переменной
 x=42
+
+# Для вывода используем echo и printf
+echo "x=$x"
+echo "x=${x}"
+printf "x=%s\n" x
 
 # Если переменная не задана, то присваиваем ей дефолтное значение
 x=${x:-default}
@@ -1223,6 +1240,50 @@ export VAR=42
 # Выполянем скрипт и экспортирует в глобальную область видимости 
 source /path/to/script
 
+# Условия
+
+if [ "$seconds" -eq 0 ]; then
+  timezone_string="Z"
+elif [ "$seconds" -gt 0 ]; then
+  timezone_string=$(printf "%02d:%02d" $((seconds/3600)) $(((seconds / 60) % 60)))
+else
+  echo "Unknown parameter"
+fi
+
+case $VAR in
+  foo) ... ;;
+  bar) ... ;;
+  # Все остальные значения
+  *) ... ;;
+esac
+
+# Циклы
+
+for i in $(seq 1 10);
+do
+  echo $i
+done
+
+for ((i = 0 ; i < max ; i++ )); do echo "$i"; done
+
+for i in {1..10} ; do ... ; done
+
+for w in word1 word2 word3
+do
+  doSomething($w)
+done
+
+i=0
+while (( ++i <= num )); do
+  printf 'counter is at %d\n' "$i"
+done
+
+i=1
+while [ "$i" -le "$num" ]; do
+  printf 'counter is at %d\n' "$i"
+  i=$(( i + 1 ))
+done
+
 # Объявление функции
 foo() {
   # Аргументы функции
@@ -1230,10 +1291,16 @@ foo() {
   # Локальная переменная
   local x=42
   ...
+  # Теперь в $1 будет $2, в $2 ‒ $3 и т.д.
+  shift
 }
 
 # Экспорт функции
 export -f foo
+
+die() { echo "$*" 1>&2 ; exit 1; }
+...
+die "Kaboom"
 
 # ==============================================================================
 #
