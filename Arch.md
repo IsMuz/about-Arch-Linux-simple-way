@@ -1408,6 +1408,73 @@ while [ "$i" -le "$num" ]; do
   i=$(( i + 1 ))
 done
 
+# Массивы
+
+arr=(Hello World)
+
+echo ${arr[0]} ${arr[1]}
+
+${arr[*]} # Все записи в массиве
+${!arr[*]} # Все индексы в массиве
+${#arr[*]} # Количество записей в массиве
+${#arr[0]} # Длина первой записи (нумерация с нуля)
+
+array=(one two three four [5]=five)
+
+echo "Array size: ${#array[*]}"  # Выводим размер массива
+
+echo "Array items:" # Выводим записи массива
+for item in ${array[*]}
+do
+  printf "   %s\n" $item
+done
+
+echo "Array indexes:" # Выводим индексы массива
+for index in ${!array[*]}
+do
+  printf "   %d\n" $index
+done
+
+echo "Array items and indexes:" # Выводим записи массива с их индексами
+for index in ${!array[*]}
+do
+  printf "%4d: %s\n" $index ${array[$index]}
+done
+
+# Следующий пример покажет, как кавычки и конструкции без кавычек возвращают строки (особенно важно, когда в этих строках есть пробелы):
+
+array=("first item" "second item" "third" "item")
+
+echo "Number of items in original array: ${#array[*]}"
+for ix in ${!array[*]}
+do
+  printf "   %s\n" "${array[$ix]}"
+done
+echo
+
+arr=(${array[*]})
+echo "After unquoted expansion: ${#arr[*]}"
+for ix in ${!arr[*]}
+do
+  printf "   %s\n" "${arr[$ix]}"
+done
+echo
+
+arr=("${array[*]}")
+echo "After * quoted expansion: ${#arr[*]}"
+for ix in ${!arr[*]}
+do
+  printf "   %s\n" "${arr[$ix]}"
+done
+echo
+
+arr=("${array[@]}")
+echo "After @ quoted expansion: ${#arr[*]}"
+for ix in ${!arr[*]}
+do
+  printf "   %s\n" "${arr[$ix]}"
+done
+
 # Объявление функции
 foo() {
   # Аргументы функции
