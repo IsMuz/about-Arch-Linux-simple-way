@@ -1338,7 +1338,7 @@ fi
 # -le
 # is less than or equal to
 
-if [ "$a" -le "$b" ]
+[ "$a" -le "$b" ]
 
 # <
 # is less than (within double parentheses)
@@ -1686,9 +1686,6 @@ Database /var/lib/mlocate/mlocate.db:
 	119 423 666 bytes in file names
 	38 722 751 bytes used to store database
 
-# Увеличить размер логического раздела LVM
-$ sudo lvresize -L +10GB /dev/mapper/lvm-root
-
 # Покажет что куда смонтировано (можно свободное место узнать)
 $ df -h --total
 
@@ -1959,7 +1956,7 @@ $ htop
 
 Ссылки:
 
+* [Цвет и форматирование текста в консоли](https://misc.flogisoft.com/bash/tip_colors_and_formatting);
 * [Поиск файлов на Сервере](https://www.8host.com/blog/ispolzovanie-find-i-locate-dlya-poiska-fajlov-na-servere-linux/);
 * [Управление разделами LVM](https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/s1-disk-storage-lvm.html);
-* [Часто используемые команды Git](https://carolinegabriel.com/used-git-commands-copy-paste-format/);
-* .
+* [Часто используемые команды Git](https://carolinegabriel.com/used-git-commands-copy-paste-format/).
