@@ -1566,6 +1566,16 @@ $ yay -Ps
 # Generates development package DB used for devel updates
 $ yay -Y --gendb
 
+# Ошибки с удалением зависимостей
+
+$ yay -Rns gnome-extra                               
+checking dependencies...
+error: failed to prepare transaction (could not satisfy dependencies)
+:: nautilus: removing nautilus-sendto breaks dependency 'nautilus-sendto'
+$ yay -Rdd nautilus-sendto
+
+# Теперь можно снести gnome-extra
+
 # ==============================================================================
 #
 # systemd
