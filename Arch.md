@@ -1534,6 +1534,9 @@ $ gnome-terminal --geometry 135x45
 # Документация по командам
 $ tldr cat
 $ tldr --search create file
+
+# Сделать дам базы
+$ pg_dump -d test -f /tmp/schema.sql
 ```
 
 Ссылки:
