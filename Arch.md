@@ -1310,6 +1310,64 @@ fi
 # Подробнее тут:
 #   <https://stackoverflow.com/a/47576482>
 
+# -eq
+# is equal to
+
+[ "$a" -eq "$b" ]
+
+# -ne
+# is not equal to
+
+[ "$a" -ne "$b" ]
+
+# -gt
+# is greater than
+
+[ "$a" -gt "$b" ]
+
+# -ge
+# is greater than or equal to
+
+[ "$a" -ge "$b" ]
+
+# -lt
+# is less than
+
+[ "$a" -lt "$b" ]
+
+# -le
+# is less than or equal to
+
+if [ "$a" -le "$b" ]
+
+# <
+# is less than (within double parentheses)
+
+(("$a" < "$b"))
+
+# <=
+# is less than or equal to (within double parentheses)
+
+(("$a" <= "$b"))
+
+# >
+# is greater than (within double parentheses)
+
+(("$a" > "$b"))
+
+# >=
+# is greater than or equal to (within double parentheses)
+
+(("$a" >= "$b"))
+
+# <http://tldp.org/LDP/abs/html/comparison-ops.html>
+
+# [ ‒ это всего лишь команда, последним аргументом которой всегда должна быть "]"! Все операторы описаны в man'е:
+man [
+
+# Это вполне себе валидное выражение
+"[" 1 -eq 0 "]" || echo fail
+
 case $VAR in
   foo) ... ;;
   bar) ... ;;
