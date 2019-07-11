@@ -412,6 +412,43 @@ $ fc-list | grep "<name-of-font>"
 touch ~/Templates/{Empty\ Document,Text\ Document.txt,README.md,pyfile.py}
 ```
 
+## Права
+
+4 - Чтение (r)
+2 - Запись (w)
+1 - Выполнение (x)
+
+Сумма этих чисел дает разные сочетания типа:
+1 + 2 + 4 = 7 или 1 + 4 = 5
+
+Права задаются тремя числами, например, 755, где первое число – права владельца, далее: группа и остальные пользователи. Владелец может делать все  (1 + 2 + 4 = 7), другие пользователи – только читать и исполнять файлы (1 + 4 = 5).
+
+Для работы с правами на файлы используется команда chroot:
+
+```bash
+chroot --help
+```
+
+В Python права можно записывать так:
+
+```bash
+0o755
+```
+
+```bash
+$ ll                          
+total 20K
+drwxr-xr-x 3 sergey sergey 4,0K июн 20 17:22 backend
+...
+
+d         | rwx      | r-x    | r-x
+тип файла | владелец | группа | остальные
+```
+
+Ссылки:
+
+* [Права доступа к файлам и каталогам](https://www.linuxcenter.ru/lib/books/kostromin/gl_04_05.phtml)
+
 ## Расширения для Gnome
 
 Устанавливаем [расширение](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=ru) для Chrome.
