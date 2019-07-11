@@ -449,6 +449,16 @@ d         | rwx      | r-x    | r-x
 
 * [Права доступа к файлам и каталогам](https://www.linuxcenter.ru/lib/books/kostromin/gl_04_05.phtml)
 
+## Добавляем путь в PATH
+
+* Bash Shell: `~.bash_profile`, `~/.bashrc` or `~/.profile`
+* Korn Shell: `~/.kshrc` or `~/.profile`
+* Z Shell: `~/.zshrc` or `~/.zprofile`
+
+```bash
+export PATH=/path/to/bin:$PATH
+```
+
 ## bin в домашнем каталоге
 
 ```bash
@@ -458,7 +468,7 @@ echo 'export PATH=$HOME/bin:$PATH' >> ~/.zprofile
 echo 'export PATH=$HOME/bin:$PATH' >> ~/.zhrc
 ```
 
-Теперь кидаем  самописные скрипты в `~/bin`.
+Теперь самописные скрипты можно кидать в `~/bin`, так они будут доступны только для текущего пользователя.
 
 ## Расширения для Gnome
 
