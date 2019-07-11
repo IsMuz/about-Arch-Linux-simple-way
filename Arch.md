@@ -1072,6 +1072,20 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 
 # Частые проблемы
 
+## Что делать, если каталоги открываются в VSCode?
+
+Существует файл /usr/share/applications/mimeinfo.cache. В нем хранятся ассоциации между mime-типами и приложениями. Его редактирование исправляет проблему, НО такое решение является временным, так как этот файл генерируется при каждом обновлении системы из *.desktop файлов.
+
+Нужно отредактировать MimeType (я его просто закомментировал) в /usr/share/applications/visual-studio-code.desktop и обновить mimeinfo.cache:
+
+```bash
+$ sudo nano /usr/share/applications/visual-studio-code.desktop
+...
+# MimeType=text/plain;inode/directory;
+...
+$ sudo update-desktop-database /usr/share/applications
+```
+
 ## Enter password to unlock your login keyring
 
 В один прекрасный день Chrome выдаст такое предупреждение, после чего перестанут сохраняться пароли и не будет работать автозаполнение форм для логина.
