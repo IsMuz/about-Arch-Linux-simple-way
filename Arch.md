@@ -436,7 +436,7 @@ chroot --help
 ```
 
 ```bash
-$ ll                          
+$ ll
 total 20K
 drwxr-xr-x 3 sergey sergey 4,0K июн 20 17:22 backend
 ...
@@ -1234,10 +1234,56 @@ printf "x=%s\n" x
 # Если переменная не задана, то присваиваем ей дефолтное значение
 x=${x:-default}
 
+# $ { varname :- word }
+# If varname exists and isn’t null, return its value; otherwise return word.
+
+# Purpose:
+# Returning a default value if the variable is undefined.
+
+# Example:
+# ${count:-0} evaluates to 0 if count is undefined.
+
+# $ { varname := word}
+# If varname exists and isn’t null, return its value; otherwise set it to word and then return its value. Positional and special parameters cannot be assigned this way.
+
+# Purpose:
+# Setting a variable to a default value if it is undefined.
+
+# Example:
+# $ {count := 0} sets count to 0 if it is undefined.
+
+# $ { varname :? message }
+# If varname exists and isn’t null, return its value; otherwise print varname : followed by message, and abort the current command or script (non-interactive shells only). Omitting message produces the default message parameter null or not set.
+
+# Purpose:
+# Catching errors that result from variables being undefined.
+
+# Example:
+# {count :?” undefined! " } prints “count: undefined!” and exits if count is undefined.
+
+# $ { varname :+word }
+# If varname exists and isn’t null, return word; otherwise return null.
+
+# Purpose:
+# Testing for the existence of a variable.
+
+# Example:
+# $ {count :+ 1} returns 1 (which could mean “true”) if count is defined.
+
+
+# $ { varname : offset }
+# $ { varname : offset:length }
+
+# Purpose:
+# Returning parts of a string (substrings or slices).
+
+# Example:
+# If count is set to frogfootman, $ {count :4} returns footman. $ {count :4:4} returns foot.
+
 # Экспорт глобальной переменной
 export VAR=42
 
-# Выполянем скрипт и экспортирует в глобальную область видимости 
+# Выполянем скрипт и экспортирует в глобальную область видимости
 source /path/to/script
 
 # Условия
@@ -1261,7 +1307,7 @@ fi
 # x='a b'; [[ $x = 'a b' ]]: true, quotes not needed
 # x='a b'; [ $x = 'a b' ]: syntax error, expands to [ a b = 'a b' ]
 
-# Подробнее тут: 
+# Подробнее тут:
 #   <https://stackoverflow.com/a/47576482>
 
 case $VAR in
@@ -1451,7 +1497,7 @@ $ sudo updatedb
 
 # После установки будет доступен сервис updatedb.timer, который будет ежедневно обновлять базу
 
-# Стастика 
+# Стастика
 $ locate -S
 Database /var/lib/mlocate/mlocate.db:
 	157 512 directories
@@ -1664,7 +1710,7 @@ $ locale -a
 $ sudo nano /etc/locale.gen
 
 # Генерируем локали
-$ sudo locale-gen 
+$ sudo locale-gen
 
 # Можно так же локали так добавлять
 $ sudo locale-gen de_DE.UTF-8
@@ -1679,7 +1725,7 @@ echo "LANG=de_DE.UTF-8" > /etc/locale.conf
 # ==============================================================================
 
 $ yay -S pwgen
-$ pwgen -cnsy 10 1 
+$ pwgen -cnsy 10 1
 1u_dr<ZLH;
 
 $ pip install xkcdpass
@@ -1718,6 +1764,10 @@ $ tldr --search create file
 
 # Сделать дам базы
 $ pg_dump -d test -f /tmp/schema.sql
+
+# Мониторинг процессов
+$ yay -S htop
+$ htop
 ```
 
 Ссылки:
