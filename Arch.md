@@ -1250,10 +1250,10 @@ else
   echo "Unknown parameter"
 fi
 
+# В условиях нужно использовать двойные скобки
+
 # [ is just a regular command with a weird name.
 # ] is just an argument of [ that prevents further arguments from being used.
-
-# В условиях нужно использовать двойные скобки
 
 # [[ a = a && b = b ]]: true, logical and
 # [ a = a && b = b ]: syntax error, && parsed as an AND command separator cmd1 && cmd2just an argument of [ that prevents further arguments from being used.
