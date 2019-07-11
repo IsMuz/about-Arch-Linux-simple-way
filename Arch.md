@@ -1079,12 +1079,12 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 Решение:
 
 ```bash
-# Если не установлено
-$ yay -S seahorse
+# можно нажать `Super+A` и поискать приложение `passwords and keys`
 $ seahorse &
-```
 
-Можно нажать `Super+A` и поискать приложение `Passwords and keys`.
+# Если пакет не установлен
+$ yay -S seahorse
+```
 
 ![image](https://user-images.githubusercontent.com/12753171/61012059-723e6d00-a36c-11e9-8fbb-8e0b8ca26e5e.png)
 
@@ -1092,11 +1092,16 @@ $ seahorse &
 
 ![image](https://user-images.githubusercontent.com/12753171/61012086-88e4c400-a36c-11e9-84c6-f8d17c0acc6c.png)
 
+Другой вариант удалить все кейринги вручную:
+
 ```bash
-# Удаляем настройки Chrome
+$ rm -rf ~/.local/share/keyrings
+```
+
+Удаляем настройки Chrome:
+
+```bash
 $ rm -rf ~/.config/google-chrome
-# Переустанавливаем Chrome?
-# $ yay -S google-chrome
 ```
 
 # Шпаргалка по командам Shell
