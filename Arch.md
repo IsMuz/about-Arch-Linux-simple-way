@@ -1725,13 +1725,19 @@ $ ccat ./file
 # Вывести файлы в каталоге, отсортировав их по времени до доступа
 $ ls -ltu <path>
 
+# Увеличиваем размер логического раздела
+$ sudo lvresize -L +10GB /dev/mapper/lvm-root
+
+# После lvresize нужно обязательно изменить размер файловой системы
+$ sudo resize2fs /dev/mapper/lvm-root
+
 # Список логических разделов LVM
 $ sudo lvscan
   ACTIVE            '/dev/lvm/root' [40.00 GiB] inherit
   ACTIVE            '/dev/lvm/home' [20.00 GiB] inherit
 
 # Изменить размер каталога /tmp
-$ mount -o remount,size=2G /tmp/
+$ mount -o remount,size=4G /tmp/
 
 # Подробная информация о диске
 $ sudo smartctl -a /dev/nvme0
