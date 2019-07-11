@@ -1250,6 +1250,20 @@ else
   echo "Unknown parameter"
 fi
 
+# [ is just a regular command with a weird name.
+# ] is just an argument of [ that prevents further arguments from being used.
+
+# В условиях нужно использовать двойные скобки
+
+# [[ a = a && b = b ]]: true, logical and
+# [ a = a && b = b ]: syntax error, && parsed as an AND command separator cmd1 && cmd2just an argument of [ that prevents further arguments from being used.
+
+# x='a b'; [[ $x = 'a b' ]]: true, quotes not needed
+# x='a b'; [ $x = 'a b' ]: syntax error, expands to [ a b = 'a b' ]
+
+# Подробнее тут: 
+#   <https://stackoverflow.com/a/47576482>
+
 case $VAR in
   foo) ... ;;
   bar) ... ;;
@@ -1301,6 +1315,8 @@ export -f foo
 die() { echo "$*" 1>&2 ; exit 1; }
 ...
 die "Kaboom"
+
+[ "$#" -eq 2] || die "Needs 2 arguments, input and output"
 
 # The syntax is token-level, so the meaning of the dollar sign depends on the token it's in. The expression $(command) is a modern synonym for `command` which stands for command substitution; it means, run command and put its output here. So
 
