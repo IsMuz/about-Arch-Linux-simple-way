@@ -703,6 +703,18 @@ $ which node
 /home/sergey/.asdf/shims/node
 $ which npm
 /home/sergey/.asdf/shims/npm
+$ asdf list                
+golang
+  1.12
+nodejs
+  10.16.0
+postgres
+  11.4
+python
+  2.7.15
+  3.7.3
+sqlite
+  3.29.0
 ```
 
 [Все доступные плагины](https://asdf-vm.com/#/plugins-all). При установке, использовании плагинов могут возникать проблемы. Например, плагин для Python работает поверх [pyenv](https://github.com/pyenv/pyenv) и при возникновении проблем, следует изучить страницу [«Common build problems»](https://github.com/pyenv/pyenv/wiki/common-build-problems).
