@@ -1219,6 +1219,37 @@ $ rm -rf ~/.config/google-chrome
 
 Теперь остается только перезапустить Chrome.
 
+# [Cheat.sh](https://github.com/chubin/cheat.sh)
+
+Ищет на stackoverflow и других ресурсах справку по языкам программирования
+
+Установка:
+
+```bash
+curl https://cht.sh/:cht.sh | sudo tee /usr/local/bin/cht.sh
+chmod +x /usr/local/bin/cht.sh
+```
+
+Использование:
+
+```
+# Интерактивный режим
+$ cht.sh --shell <language>
+
+$ cht.sh go create file
+/*
+ * go - Create an empty text file
+ * 
+ * Don't try to check the existence first, since you then have a race if
+ * the file is created at the same time. You can open the file with the
+ * O_CREATE flag to create it if it doesn't exist:
+ */
+
+os.OpenFile(name, os.O_RDONLY|os.O_CREATE, 0666)
+
+// [JimB] [so/q/35558787] [cc by-sa 3.0]
+```
+
 # Шпаргалка по командам Shell
 
 ```bash
