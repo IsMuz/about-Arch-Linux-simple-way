@@ -585,6 +585,9 @@ source $ZSH/oh-my-zsh.sh
 
 Для темы Agnoster настройках терминала выбираем шрифт `Source Code Pro Regular`, чтобы отображались стрелочки.
 
+* [Встроенные темы](https://github.com/robbyrussell/oh-my-zsh/wiki/Themes);
+* [Сторонние темы](https://github.com/robbyrussell/oh-my-zsh/wiki/External-themes).
+
 ### [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
 Это красивая тема для ZSH.
@@ -617,7 +620,7 @@ echo 'source ~/.purepower' >>! ~/.zshrc
 * [ccat](https://github.com/jingweno/ccat);
 * [lolcat](https://github.com/busyloop/lolcat).
 
-## [Цветовые схемы для Gnome Terminal](https://github.com/Mayccoll/Gogh)
+## [Цветовые схемы для терминала](https://github.com/Mayccoll/Gogh)
 
 ```bash
 # Интерактивная установка
