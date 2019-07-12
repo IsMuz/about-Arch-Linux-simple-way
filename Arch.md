@@ -1196,11 +1196,13 @@ $ yay -S seahorse
 $ rm -rf ~/.local/share/keyrings
 ```
 
-Удаляем настройки Chrome:
+Далее удаляем настройки Chrome:
 
 ```bash
 $ rm -rf ~/.config/google-chrome
 ```
+
+Теперь остается только перезапустить Chrome.
 
 # Шпаргалка по командам Shell
 
