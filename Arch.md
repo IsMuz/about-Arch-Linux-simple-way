@@ -1228,6 +1228,9 @@ $ rm -rf ~/.config/google-chrome
 ```bash
 curl https://cht.sh/:cht.sh | sudo tee /usr/local/bin/cht.sh
 chmod +x /usr/local/bin/cht.sh
+
+# Так же требуются пакеты xsel и rlwrap
+yay -S xsel lwrap
 ```
 
 Использование:
@@ -1235,6 +1238,21 @@ chmod +x /usr/local/bin/cht.sh
 ```
 # Интерактивный режим
 $ cht.sh --shell <language>
+$ cht.sh --shell bash        
+type 'help' for the cht.sh shell help
+cht.sh/bash> for
+# shell - Bash 'for' loop syntax?
+# 
+# Replace
+
+for (($i=0...
+
+# with
+
+for ((i=0;i<10;i++))
+
+# [jman] [so/q/6854118] [cc by-sa 3.0]
+cht.sh/bash>
 
 $ cht.sh go create file
 /*
