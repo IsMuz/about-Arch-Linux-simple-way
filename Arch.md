@@ -544,12 +544,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 Пакет из репозитория ставится вне домашнего каталога, а потому требует root права при установке плагинов, что не удобно.
 
-Копируем файл настроек (не нужно):
-
-```bash
-cp /usr/share/oh-my-zsh/zshrc ~/.zshrc
-```
-
 Так же для некоторых тем Oh My Zsh нужны шрифты наподобие Powerline:
 
 ```bash
@@ -587,6 +581,14 @@ source $ZSH/oh-my-zsh.sh
 
 * [Встроенные темы](https://github.com/robbyrussell/oh-my-zsh/wiki/Themes);
 * [Сторонние темы](https://github.com/robbyrussell/oh-my-zsh/wiki/External-themes).
+
+Из сторонних тем наиболее симпатична [jovial](https://github.com/zthxxx/jovial). 
+
+```bash
+# Сначала сохраняем копию zhsrc, потому как jovial изменить оригинальеный файл
+$ cp ~/.zshrc ~/.zhrc.bak
+$ curl -sSL git.io/jovial | sudo bash -s $USER
+```
 
 ### [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
