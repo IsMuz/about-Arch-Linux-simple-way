@@ -1785,6 +1785,9 @@ $ df -h --total
 # Узнать на каком разделе смонтирован каталог
 $ df -h /tmp
 
+# Просмотр числа inode
+$ df -i
+
 # Просмотр содержимого фйала с навигацией
 $ less /path/to/file
 
@@ -2057,5 +2060,7 @@ $ htop
 
 * [Цвет и форматирование текста в консоли](https://misc.flogisoft.com/bash/tip_colors_and_formatting);
 * [Поиск файлов на Сервере](https://www.8host.com/blog/ispolzovanie-find-i-locate-dlya-poiska-fajlov-na-servere-linux/);
+* [Файловая система Linux](https://opencentr.ru/article/fajlovaya-sistema-linux/);
+* [Inode](https://ru.wikipedia.org/wiki/Inode);
 * [Управление разделами LVM](https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/s1-disk-storage-lvm.html);
 * [Часто используемые команды Git](https://carolinegabriel.com/used-git-commands-copy-paste-format/).
