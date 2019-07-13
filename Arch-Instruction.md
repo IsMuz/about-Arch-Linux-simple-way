@@ -1,6 +1,6 @@
 
 <!-- nav -->
-# Table of Contents
+# Содержимое
 
 1. [Установка Arch Linux](#установка-arch-linux)
    1. [Arch Linux](#arch-linux)
