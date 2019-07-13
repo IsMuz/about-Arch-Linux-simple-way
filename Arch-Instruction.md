@@ -931,7 +931,11 @@ $ lvresize -r -L +10G /dev/linux/home
 $ sudo lvrename <oldname> <newname>
 ```
 
-После нужно отредактировать `/etc/fstab`, изменив пути до разделов.
+После нужно отредактировать `/etc/fstab`, изменив пути до разделов, а затем выполнить:
+
+```bash
+$ sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
 
 # Установка и настройка Postgres
 
@@ -1866,8 +1870,12 @@ $ stat /path/to/file
 # Вывести все вложенные файлы
 $ ls -R <path>
 $ find <path> -print
+
 # Покажет имя и размер
 $ du -a <path>
+
+# Размер всех файлов с расширеним .txt
+$ du -chs *.txt
 
 # Создание каталога
 $ mkdir <target>
@@ -1892,14 +1900,6 @@ $ ln -sf path/to/new_file path/to/symlink
 # Мягкая ссылка содержит путь до файла. Жесткая ссылается на inode, искомый
 # файл при перемещении остается доступен по ссылке и невозможно ссылаться на
 # файл на другом устройстве
-
-# Заархивировать каталог
-$ tar -czvf filename.tar.gz directory
-
-# Для извлечения файлов проще всего пользоваться плагином Oh My ZSH extract
-
-# Извлечь архив и удалить его (ключ -r)
-$ extract -r <filename>
 
 # Слияние файлов в один
 $ paste file1.txt file2.txt > fileresults.txt
@@ -1967,13 +1967,13 @@ $ ccat ./file
 $ ls -ltu <path>
 
 # Увеличиваем размер логического раздела
-$ sudo lvresize -L +10GB /dev/mapper/lvm-root
+$ sudo lvresize -L +10GB /dev/mapper/linux-root
 
 # После lvresize нужно обязательно изменить размер файловой системы
-$ sudo resize2fs /dev/mapper/lvm-root
+$ sudo resize2fs /dev/mapper/linux-root
 
 # Делает то же самое, что и две команды выше
-$ sudo lvresize -r -L +10GB /dev/mapper/lvm-root
+$ sudo lvresize -r -L +10GB /dev/mapper/linux-root
 
 # Список логических разделов LVM
 $ sudo lvscan
@@ -1985,6 +1985,34 @@ $ mount -o remount,size=4G /tmp/
 
 # Подробная информация о диске
 $ sudo smartctl -a /dev/nvme0
+
+# ==============================================================================
+#
+# Работа с архивами
+#
+# ==============================================================================
+
+# Заархивировать каталог
+$ tar -czvf filename.tar.gz directory
+
+# Для извлечения файлов проще всего пользоваться плагином Oh My ZSH extract
+
+# Извлечь архив и удалить его (ключ -r)
+$ extract -r <filename>
+
+# Извлечь .tar.gz
+$ tar zxvf <yourfile>.tar.gz -C /usr/src/
+
+# Скачать и Распаковать Архив с помощью WGET
+$ wget http://example.com/archive.tar -O - | tar -x
+$ wget http://example.com/archive.tar.gz -O - | tar -xz
+$ wget http://example.com/archive.tar.bz2 -O - | tar -xj
+
+# Скачать и Распаковать Архив с помощью CURL
+$ curl http://example.com/archive.tar | tar -x
+$ curl http://example.com/archive.tar.gz | tar -xz
+$ curl http://example.com/archive.tar.bz2 | tar -xj
+
 
 # ==============================================================================
 #
