@@ -1,5 +1,6 @@
 
-<!-- nav --># Оглавление
+<!-- nav -->
+# Table of Contents
 
 1. [Установка Arch Linux](#установка-arch-linux)
    1. [Arch Linux](#arch-linux)
@@ -71,7 +72,8 @@
    1. [Cheat.sh](#cheatsh)
    1. [Marker](#marker)
    1. [TLDR](#tldr)
-1. [Шпаргалка по командам Shell](#шпаргалка-по-командам-shell)<!-- /nav -->
+1. [Шпаргалка по командам Shell](#шпаргалка-по-командам-shell)
+<!-- /nav -->
 
 # Установка Arch Linux
 
@@ -2195,4 +2197,3 @@ $ htop
 * [Inode](https://ru.wikipedia.org/wiki/Inode);
 * [Управление разделами LVM](https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/s1-disk-storage-lvm.html);
 * [Часто используемые команды Git](https://carolinegabriel.com/used-git-commands-copy-paste-format/).
- используемые команды Git](https://carolinegabriel.com/used-git-commands-copy-paste-format/).
