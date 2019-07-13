@@ -68,8 +68,9 @@
    1. [Что делать, если каталоги открываются в VSCode?](#что-делать-если-каталоги-открываются-в-vscode)
    1. [Enter password to unlock your login keyring](#enter-password-to-unlock-your-login-keyring)
 1. [Справка по командам и т.д.](#справка-по-командам-и-тд)
-   1. [TLDR](#tldr)
    1. [Cheat.sh](#cheatsh)
+   1. [Marker](#marker)
+   1. [TLDR](#tldr)
 1. [Шпаргалка по командам Shell](#шпаргалка-по-командам-shell)
 
 # Установка
@@ -364,8 +365,8 @@ yay -Sy linux-headers \ # нужны для компиляции некотор�
   adobe-source-code-pro-fonts \ # шрифт для терминала, нужен для темы Oh My Zsh! agnoster
   ttf-droid \ # шрифт по-умолчанию для VScode
   \ # шрифты по-умолчанию для Chrome
-  consolas-font \
-  ttf-ms-fonts \
+  \ # consolas-font \
+  \ # ttf-ms-fonts \
   arc-gtk-theme-git \ # тема для интерфейса
   apache \ # самый популярный веб-сервер
   apache-tools \ # содержит ab, нагрузочный клиент
@@ -376,16 +377,16 @@ yay -Sy linux-headers \ # нужны для компиляции некотор�
   exfat-utils \ # добавляет поддержку файловой системы exfat
   firefox \ # один из лучших браузеров, единственный конкурент Chrome и единственный популярный non-chromium браузер
   flat-remix-git \ # тема с иконками
-  gimp \ # скромненький аналог Photoshop
+  \ # gimp \ # скромненький аналог Photoshop
   gnome-panel \ # я ставил только чтобы ярлыки из GUI создавать
   google-chrome \ # лучший браузер, противники проприетарщины предпочитают chromium
   chrome-gnome-shell \ # позволяет устанавливать расширения для Gnome
   gparted \ # графическая оболочка для разметки дисков
   htop \ # показывает запущенные процессы, загрузку cpu и потребление памяти
-  inkscape \ # векторный графический редактор
+  \ # inkscape \ # векторный графический редактор
   mariadb \ # свободная реализация самой популярной СУБД MySQL
   mc \ # аналог виндового Far + mcedit, замена nano
-  mongodb-bin \ # лучшая NoSQL база данных
+  \ # mongodb-bin \ # лучшая NoSQL база данных
   net-tools \ # содержит netstat
   neofetch \ # выводит в консоль информацию о системе
   nginx \ # самый быстрый веб-сервер
@@ -393,7 +394,7 @@ yay -Sy linux-headers \ # нужны для компиляции некотор�
   \ # nvm \ # менеджер версий для Node.js
   \ # postgresql \ # лучшая SQL база данных
   pgadmin4 \ # админка для Postgres
-  pgmodeler \ # визуальный редактор для моделирования в Postgres
+  \ # pgmodeler \ # визуальный редактор для моделирования в Postgres
   \ # phpenv \ # менеджер версий для PHP
   \ # pyenv \ # менеджер версий для Python
   \ # redis \ # СУБД в оперативной памяти, используемая для межпроцессового взаимодействия
@@ -595,8 +596,6 @@ $ chsh -s $(which zsh)
 ```
 
 Чтобы изменения вступили в силу нужно залогиниться по-новой.
-
-
 
 ## [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)
 
@@ -1250,49 +1249,6 @@ $ rm -rf ~/.config/google-chrome
 
 # Справка по командам и т.д.
 
-## [TLDR](https://github.com/tldr-pages/tldr)
-
-```bash
-npm i tldr -g
-```
-
-Получаем краткую справку по команде:
-
-```bash
-$ tldr nvm
-✔ Page not found. Updating cache...
-✔ Creating index...
-
-  nvm
-
-  Install, uninstall or switch between Node.js versions.
-  Supports version numbers like "0.12" or "v4.2", and labels like "stable", "system", etc.
-  Homepage: https://github.com/creationix/nvm.
-
-  - Install a specific version of Node.js:
-    nvm install node_version
-
-  - Use a specific version of Node.js in the current shell:
-    nvm use node_version
-
-  - Set the default Node.js version:
-    nvm alias default node_version
-
-  - List all available Node.js versions and highlight the default one:
-    nvm list
-
-  - Uninstall a given Node.js version:
-    nvm uninstall node_version
-
-  - Launch the REPL of a specific version of Node.js:
-    nvm run node_version --version
-
-  - Execute a script in a specific version of Node.js:
-    nvm exec node_version node app.js
-
-
-```
-
 ## [Cheat.sh](https://github.com/chubin/cheat.sh)
 
 Ищет на stackoverflow и других ресурсах справку по командам и языкам программирования.
@@ -1340,6 +1296,64 @@ $ cht.sh go create file
 os.OpenFile(name, os.O_RDONLY|os.O_CREATE, 0666)
 
 // [JimB] [so/q/35558787] [cc by-sa 3.0]
+```
+
+## [Marker](https://github.com/pindexis/marker)
+
+Установка:
+
+```bash
+$ git clone --depth=1 https://github.com/pindexis/marker ~/.marker && ~/.marker/install.py
+```
+
+* Ctrl-space: search for commands that match the current written string in the command-line.
+* Ctrl-k (or marker mark): Bookmark a command.
+* Ctrl-t: place the cursor at the next placeholder, identified by '{{anything}}'
+* marker remove: remove a bookmark
+
+## [TLDR](https://github.com/tldr-pages/tldr)
+
+Этим я пользовался до cht.sh.
+
+```bash
+$ npm i tldr -g
+```
+
+Получаем краткую справку по команде:
+
+```bash
+$ tldr nvm
+✔ Page not found. Updating cache...
+✔ Creating index...
+
+  nvm
+
+  Install, uninstall or switch between Node.js versions.
+  Supports version numbers like "0.12" or "v4.2", and labels like "stable", "system", etc.
+  Homepage: https://github.com/creationix/nvm.
+
+  - Install a specific version of Node.js:
+    nvm install node_version
+
+  - Use a specific version of Node.js in the current shell:
+    nvm use node_version
+
+  - Set the default Node.js version:
+    nvm alias default node_version
+
+  - List all available Node.js versions and highlight the default one:
+    nvm list
+
+  - Uninstall a given Node.js version:
+    nvm uninstall node_version
+
+  - Launch the REPL of a specific version of Node.js:
+    nvm run node_version --version
+
+  - Execute a script in a specific version of Node.js:
+    nvm exec node_version node app.js
+
+
 ```
 
 # Шпаргалка по командам Shell
