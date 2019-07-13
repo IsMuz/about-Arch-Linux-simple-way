@@ -36,7 +36,7 @@
    1. [Темы Oh My Zsh!](#темы-oh-my-zsh)
       1. [Jovial](#jovial)
       1. [Powerlevel10k](#powerlevel10k)
-      1. [Подробнее про ZSH](#подробнее-про-zsh)
+   1. [Подробнее про ZSH](#подробнее-про-zsh)
 1. [Разноцветный cat](#разноцветный-cat)
 1. [Цветовые схемы для терминала](#цветовые-схемы-для-терминала)
 1. [Блокируем сайты с рекламой через hosts](#блокируем-сайты-с-рекламой-через-hosts)
@@ -46,6 +46,9 @@
 1. [Настройка Visual Code](#настройка-visual-code)
 1. [Гибернация](#гибернация)
 1. [RAID](#raid)
+1. [LVM](#lvm)
+   1. [Изменение размера логического раздела](#изменение-размера-логического-раздела)
+   1. [Переименование логических разделов](#переименование-логических-разделов)
 1. [Установка и настройка Postgres](#установка-и-настройка-postgres)
 1. [Работаем с github через ssh](#работаем-с-github-через-ssh)
 1. [Tor Service](#tor-service)
@@ -684,7 +687,7 @@ echo 'source ~/.purepower' >>! ~/.zshrc
 
 ![image](https://user-images.githubusercontent.com/12753171/60625968-d72c1d00-9dd8-11e9-902a-a0ecbe2279b1.png)
 
-### Подробнее про ZSH
+## Подробнее про ZSH
 
 * [Приемы при работе с ZSH](http://zzapper.co.uk/zshtips.html).
 
@@ -913,6 +916,23 @@ HOOKS=(base udev autodetect modconf block lvm2 dmraid filesystems keyboard fsck)
 sudo mkinitcpio -p linux
 ```
 
+# LVM
+
+## Изменение размера логического раздела
+
+```bash
+# Ключ -r выполняет resizefs
+$ lvresize -r -L +10G /dev/linux/home
+```
+
+## Переименование логических разделов
+
+```bash
+$ sudo lvrename <oldname> <newname>
+```
+
+После нужно отредактировать `/etc/fstab`, изменив пути до разделов.
+
 # Установка и настройка Postgres
 
 ```bash
@@ -955,14 +975,14 @@ Created directory '/home/sergey/.ssh'.
 ...
 ```
 
-В [настройках](https://github.com/settings/keys) нужно добавить сгенерированный ключ, скопировав содержимое pub-файла (для примера - codedumps_rsa.pub), который лежит в `~/.ssh`.
+В [настройках](https://github.com/settings/keys) нужно добавить сгенерированный ключ, скопировав содержимое pub-файла (для примера - github_rsa.pub), который лежит в `~/.ssh`.
 
 Если уже есть проекты, которые были ранее склонированы по https, то нужно изменить `.git/config` проекта. :
 
 ```
 ...
 [remote "origin"]
-	url = git@github.com:codedumps/pgrpc.git
+url = git@github.com:<username>/<project>.git
 ...
 ```
 
