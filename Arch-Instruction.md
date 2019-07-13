@@ -4,6 +4,8 @@
 
 ***Arch Linux*** ‒ это один из немногих дистрибутивов Linux, использующих модель роллинг-релизов. Это означает, что в нем доступны самые последние версии пакетов. Это одновременно является его как преимуществом так и недостатком. Пересесть на него меня заставила необходимость: мое компьютерное железо (процессор ryzen 5 2600 и видеоадаптер rx 590) оказались не совместимы с версией Linux Kernel младше 4.20.
 
+![image](https://user-images.githubusercontent.com/12753171/61165815-cbe19b80-a514-11e9-9a11-6f854a50b93a.png)
+
 ## Создание образа
 
 Качаем образ с сайта и записываем его с помощью команды:
@@ -400,7 +402,7 @@ mkinitcpio -p linux
 
 Шрифты надо кидать в `/usr/share/fonts` либо в `~/.fonts` или в `~/.local/share/fonts`. После выполняем:
 
-```zsh
+```bash
 $ fc-cache -f -v
 
 # Чтобы проверить установлен ли шрифт
@@ -548,7 +550,7 @@ yay -S powerline-fonts
 
 Ставим must-have плагины:
 
-```zsh
+```bash
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -594,19 +596,19 @@ $ curl -sSL git.io/jovial | sudo bash -s $USER
 
 Это красивая тема для ZSH.
 
-```zsh
+```bash
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 ```
 
 `~/.zshrc`:
 
-```zsh
+```bash
 ZSH_THEME=powerlevel10k/powerlevel10k
 ```
 
 Изменим prompt:
 
-```zsh
+```bash
 cd && curl -fsSLO https://raw.githubusercontent.com/romkatv/dotfiles-public/master/.purepower
 echo 'source ~/.purepower' >>! ~/.zshrc
 ```
@@ -664,14 +666,14 @@ yay -S asdf-vm
 
 В `~/.zshrc` (после compinit) добавляем строки:
 
-```zsh
+```bash
 . /opt/asdf-vm/asdf.sh
 . /opt/asdf-vm/completions/asdf.bash
 ```
 
 В `~/.zprofile`:
 
-```zsh
+```bash
 export PATH=/opt/asdf-vm/bin:$PATH
 ```
 
@@ -1231,7 +1233,7 @@ $ tldr nvm
 
 ```bash
 curl https://cht.sh/:cht.sh | sudo tee /usr/local/bin/cht.sh
-chmod +x /usr/local/bin/cht.sh
+sudo chmod +x /usr/local/bin/cht.sh
 
 # Так же требуются пакеты xsel и rlwrap
 yay -S xsel rlwrap
@@ -1239,7 +1241,7 @@ yay -S xsel rlwrap
 
 Использование:
 
-```
+```bash
 # Интерактивный режим
 $ cht.sh --shell <language>
 $ cht.sh --shell bash
@@ -1353,6 +1355,110 @@ x=${x:-default}
 # Экспорт глобальной переменной
 export VAR=42
 
+# Генерация строк с помощью Brace expansion
+$ echo a{d,c,b}e
+ade ace abe
+
+# Массивы
+
+arr=(Hello World)
+
+echo ${arr[0]} ${arr[1]}
+
+${arr[*]} # Все записи в массиве
+${!arr[*]} # Все индексы в массиве
+${#arr[*]} # Количество записей в массиве
+${#arr[0]} # Длина первой записи (нумерация с нуля)
+
+array=(one two three four [5]=five)
+
+echo "Array size: ${#array[*]}"  # Выводим размер массива
+
+echo "Array items:" # Выводим записи массива
+for item in ${array[*]}
+do
+  printf "   %s\n" $item
+done
+
+echo "Array indexes:" # Выводим индексы массива
+for index in ${!array[*]}
+do
+  printf "   %d\n" $index
+done
+
+echo "Array items and indexes:" # Выводим записи массива с их индексами
+for index in ${!array[*]}
+do
+  printf "%4d: %s\n" $index ${array[$index]}
+done
+
+# Следующий пример покажет, как кавычки и конструкции без кавычек возвращают строки (особенно важно, когда в этих строках есть пробелы):
+
+array=("first item" "second item" "third" "item")
+
+echo "Number of items in original array: ${#array[*]}"
+for ix in ${!array[*]}
+do
+  printf "   %s\n" "${array[$ix]}"
+done
+echo
+
+arr=(${array[*]})
+echo "After unquoted expansion: ${#arr[*]}"
+for ix in ${!arr[*]}
+do
+  printf "   %s\n" "${arr[$ix]}"
+done
+echo
+
+arr=("${array[*]}")
+echo "After * quoted expansion: ${#arr[*]}"
+for ix in ${!arr[*]}
+do
+  printf "   %s\n" "${arr[$ix]}"
+done
+echo
+
+arr=("${array[@]}")
+echo "After @ quoted expansion: ${#arr[*]}"
+for ix in ${!arr[*]}
+do
+  printf "   %s\n" "${arr[$ix]}"
+done
+
+# Циклы
+
+for i in $(seq 1 10);
+do
+  echo $i
+done
+
+for ((i = 0 ; i < max ; i++ ))
+do
+  echo $i
+done
+
+for i in {0..10}
+do
+  echo $i
+done
+
+for w in word1 word2 word3
+do
+  doSomething($w)
+done
+
+i=0
+while (( ++i <= num )); do
+  printf 'counter is at %d\n' "$i"
+done
+
+i=1
+while [ "$i" -le "$num" ]; do
+  printf 'counter is at %d\n' "$i"
+  i=$(( i + 1 ))
+done
+
 # Условия
 
 if [ "$seconds" -eq 0 ]; then
@@ -1447,100 +1553,6 @@ case $VAR in
   *) ... ;;
 esac
 
-# Циклы
-
-for i in $(seq 1 10);
-do
-  echo $i
-done
-
-for ((i = 0 ; i < max ; i++ )); do echo "$i"; done
-
-for i in {1..10} ; do ... ; done
-
-for w in word1 word2 word3
-do
-  doSomething($w)
-done
-
-i=0
-while (( ++i <= num )); do
-  printf 'counter is at %d\n' "$i"
-done
-
-i=1
-while [ "$i" -le "$num" ]; do
-  printf 'counter is at %d\n' "$i"
-  i=$(( i + 1 ))
-done
-
-# Массивы
-
-arr=(Hello World)
-
-echo ${arr[0]} ${arr[1]}
-
-${arr[*]} # Все записи в массиве
-${!arr[*]} # Все индексы в массиве
-${#arr[*]} # Количество записей в массиве
-${#arr[0]} # Длина первой записи (нумерация с нуля)
-
-array=(one two three four [5]=five)
-
-echo "Array size: ${#array[*]}"  # Выводим размер массива
-
-echo "Array items:" # Выводим записи массива
-for item in ${array[*]}
-do
-  printf "   %s\n" $item
-done
-
-echo "Array indexes:" # Выводим индексы массива
-for index in ${!array[*]}
-do
-  printf "   %d\n" $index
-done
-
-echo "Array items and indexes:" # Выводим записи массива с их индексами
-for index in ${!array[*]}
-do
-  printf "%4d: %s\n" $index ${array[$index]}
-done
-
-# Следующий пример покажет, как кавычки и конструкции без кавычек возвращают строки (особенно важно, когда в этих строках есть пробелы):
-
-array=("first item" "second item" "third" "item")
-
-echo "Number of items in original array: ${#array[*]}"
-for ix in ${!array[*]}
-do
-  printf "   %s\n" "${array[$ix]}"
-done
-echo
-
-arr=(${array[*]})
-echo "After unquoted expansion: ${#arr[*]}"
-for ix in ${!arr[*]}
-do
-  printf "   %s\n" "${arr[$ix]}"
-done
-echo
-
-arr=("${array[*]}")
-echo "After * quoted expansion: ${#arr[*]}"
-for ix in ${!arr[*]}
-do
-  printf "   %s\n" "${arr[$ix]}"
-done
-echo
-
-arr=("${array[@]}")
-echo "After @ quoted expansion: ${#arr[*]}"
-for ix in ${!arr[*]}
-do
-  printf "   %s\n" "${arr[$ix]}"
-done
-
 # Объявление функции
 foo() {
   # Аргументы функции
@@ -1570,7 +1582,7 @@ echo "Today is $(date). A fine day."
 # Направить stdout одной программы в stdin другой
 command1 | command2
 
-# ПЕренаправление и stout и stderr
+# Перенаправление stdout и stderr
 command1 |& command2
 
 # Создать либо перезаписать файл, добавив строку
@@ -1924,7 +1936,7 @@ $ git add .
 # Закоммитить изменения (сделать описание)
 $ git commit -m "Тест"
 
-# Добавляет модифицированные файлы (новые не добавляет) и делает коммит
+# Если не были добавлены новые файлы, а лишь производились изменения в уже добавленных, то можно использовать только одну команду
 $ git commit -am "Тест"
 
 # Обновить репозиторий на сервере
