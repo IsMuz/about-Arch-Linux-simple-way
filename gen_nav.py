@@ -23,4 +23,4 @@ for header in headers:
   uri = re.sub(r'[^\w\s]', '', uri)
   # Заменяем пробелы на «-»
   uri = uri.replace(' ', '-')
-  print('  ' * (depth - 1) + f'1. [{name}](#{uri})')
+  print('   ' * (depth - 1) + f'1. [{name}](#{uri})')
