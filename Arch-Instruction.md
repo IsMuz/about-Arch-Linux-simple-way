@@ -483,7 +483,7 @@ export PATH=/path/to/bin:$PATH
 mkdir ~/bin
 echo 'export PATH=$HOME/bin:$PATH' >> ~/.zprofile
 # or
-echo 'export PATH=$HOME/bin:$PATH' >> ~/.zhrc
+echo 'export PATH=$HOME/bin:$PATH' >> ~/.zshrc
 ```
 
 Теперь самописные скрипты можно кидать в `~/bin`, так они будут доступны только для текущего пользователя.
@@ -586,7 +586,7 @@ source $ZSH/oh-my-zsh.sh
 
 ```bash
 # Сначала сохраняем копию zhsrc, потому как jovial изменить оригинальеный файл
-$ cp ~/.zshrc ~/.zhrc.bak
+$ cp ~/.zshrc ~/.zshrc.bak
 $ curl -sSL git.io/jovial | sudo bash -s $USER
 ```
 
@@ -735,6 +735,8 @@ sqlite
 * [Документация](https://asdf-vm.com/#/core-manage-asdf-vm).
 
 # Использование [NVM](https://github.com/nvm-sh/nvm)
+
+> ⚠️ Использование [asdf-vm](#asdf-vm) предпочительнее.
 
 Устанавливаем последнюю версию Node.js:
 
