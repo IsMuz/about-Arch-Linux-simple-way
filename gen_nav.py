@@ -20,7 +20,8 @@ for header in headers:
   name = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', name)
   uri = name.lower()
   # Вырезаем все не буквенно-цифровые символы
-  uri = re.sub(r'[^\w\s]', '', uri)
+  # «-» то же не унжно вырезать
+  uri = re.sub(r'[^\w\s-]', '', uri)
   # Заменяем пробелы на «-»
   uri = uri.replace(' ', '-')
   print('   ' * (depth - 1) + f'1. [{name}](#{uri})')
