@@ -1559,6 +1559,11 @@ do
   doSomething($w)
 done
 
+# А вот это zsh не умеет!
+for filename in *.sh
+  echo "$filename"
+end
+
 i=0
 while (( ++i <= num )); do
   printf 'counter is at %d\n' "$i"
