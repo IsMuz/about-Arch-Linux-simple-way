@@ -1,7 +1,8 @@
-# Оглавление
+
+<!-- nav --># Оглавление
 
 1. [Установка Arch Linux](#установка-arch-linux)
-   1. [Небольшое предисловие](#небольшое-предисловие)
+   1. [Arch Linux](#arch-linux)
    1. [Создание образа](#создание-образа)
    1. [Изменяем приоритет загрузки в BIOS/UEFI](#изменяем-приоритет-загрузки-в-biosuefi)
    1. [Настройка сети](#настройка-сети)
@@ -39,7 +40,6 @@
 1. [Цветовые схемы для терминала](#цветовые-схемы-для-терминала)
 1. [Блокируем сайты с рекламой через hosts](#блокируем-сайты-с-рекламой-через-hosts)
 1. [asdf-vm](#asdf-vm)
-   1. [Установка:](#установка)
    1. [Установка asdf через Git](#установка-asdf-через-git)
    1. [Установка asdf через AUR](#установка-asdf-через-aur)
    1. [Удаление asd](#удаление-asd)
@@ -71,11 +71,11 @@
    1. [Cheat.sh](#cheatsh)
    1. [Marker](#marker)
    1. [TLDR](#tldr)
-1. [Шпаргалка по командам Shell](#шпаргалка-по-командам-shell)
+1. [Шпаргалка по командам Shell](#шпаргалка-по-командам-shell)<!-- /nav -->
 
 # Установка Arch Linux
 
-## Небольшое предисловие
+## Arch Linux
 
 ***Arch Linux*** ‒ это один из немногих дистрибутивов Linux, использующих модель роллинг-релизов. Это означает, что в нем доступны самые последние версии пакетов. Это одновременно является его как преимуществом так и недостатком. Пересесть на него меня заставила необходимость: мое компьютерное железо (процессор ryzen 5 2600 и видеоадаптер rx 590) оказались не совместимы с версией Linux Kernel младше 4.20.
 
@@ -717,8 +717,6 @@ wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sud
 
 # [asdf-vm](https://github.com/asdf-vm/asdf)
 
-## Установка:
-
 ## Установка asdf через Git
 
 ```bash
@@ -1303,6 +1301,9 @@ $ cht.sh go create file
 os.OpenFile(name, os.O_RDONLY|os.O_CREATE, 0666)
 
 // [JimB] [so/q/35558787] [cc by-sa 3.0]
+
+# Небольшой туториал по языку
+$ cht.sh python :learn
 ```
 
 ## [Marker](https://github.com/pindexis/marker)
@@ -2194,3 +2195,4 @@ $ htop
 * [Inode](https://ru.wikipedia.org/wiki/Inode);
 * [Управление разделами LVM](https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/s1-disk-storage-lvm.html);
 * [Часто используемые команды Git](https://carolinegabriel.com/used-git-commands-copy-paste-format/).
+ используемые команды Git](https://carolinegabriel.com/used-git-commands-copy-paste-format/).
