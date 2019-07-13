@@ -255,13 +255,7 @@ reboot
 
 ---
 
-# Настройка
-
-## Введение
-
-Тут описана настройка системы для использования ее в веб-разработке.
-
-## Пакетные менеджеры
+# Пакетные менеджеры
 
 Пакетным менеджером по-умолчанию для Arch Linux является pacman. Для подсветки вывода pacman в `/etc/pacman.conf` нужно раскомментировать `Color`. Пользовательским репозиторием является [AUR](https://aur.archlinux.org/). Пакеты из него можно использовать только на свой страх и риск. Чтобы не собирать пакеты из него ручками можно поставить yay:
 
@@ -283,7 +277,7 @@ makepkg -si
 
 * [Сравнеие пакетных менеджеров](https://wiki.archlinux.org/index.php/AUR_helpers_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9)).
 
-## Нужные пакеты
+# Нужные пакеты
 
 Это список необходимых для меня пакетов:
 
@@ -348,6 +342,8 @@ yay -Sy linux-headers \ # нужны для компиляции некотор�
 yay -Rns epiphany
 ```
 
+# Gnome
+
 ## Масштабировавние 150% как в Windows
 
 По-умолчанию в Gnome масштабирование кратно 100. Чтобы добавить варианты масштабирования 125% и 150% нужно выполнить в терминале:
@@ -362,7 +358,27 @@ gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffe
 gsettings reset org.gnome.mutter experimental-features
 ```
 
-## Заменяем ядро на стабильное
+## Расширения для Gnome
+
+Устанавливаем [расширение](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=ru) для Chrome.
+
+![image](https://user-images.githubusercontent.com/41215002/53135292-b979bc00-358b-11e9-95df-7a540bc7b6f0.png)
+
+Управление расширениями осуществляется через Tweaks.
+
+![image](https://user-images.githubusercontent.com/41215002/53135669-25a8ef80-358d-11e9-9d5b-5024729dc550.png)
+
+Расширения для установки:
+
+
+| Название <img width="450"> | Описание <img width="450"> |
+| -- | -- |
+| [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/). | Выезжающий Dash - панель с избранными приложениями |
+| [Desktop Icons](https://extensions.gnome.org/extension/1465/desktop-icons/) | Иконки на рабочем столе |
+| [ShellTile](https://extensions.gnome.org/extension/657/shelltile/) | Тайловый менеджер |
+| [Log Out Button](https://extensions.gnome.org/extension/1143/logout-button/) | Добавляет кнопку, которая выполняет выход из системы |
+
+# Заменяем ядро на стабильное
 
 Если надоело, что что-то ломается почти после каждого обновления ядра, запускаем терминал и выполняем:
 
@@ -372,7 +388,7 @@ yay -R linux linux-headers
 mkinitcpio -p linux
 ```
 
-## Пользовательские сочетания клавиш
+# Пользовательские сочетания клавиш
 
 В Settings → Devices → Keyboard добавляем сочетания клавиш:
 * `Ctrl + Alt + T` для запуска терминала (`gnome-terminal`);
@@ -380,7 +396,7 @@ mkinitcpio -p linux
 
 ![image](https://user-images.githubusercontent.com/41215002/53122203-1adb6400-3567-11e9-919c-a031dce832e5.png)
 
-## Шрифты
+# Шрифты
 
 Шрифты надо кидать в `/usr/share/fonts` либо в `~/.fonts` или в `~/.local/share/fonts`. После выполняем:
 
@@ -398,13 +414,13 @@ $ fc-list | grep "<name-of-font>"
 * [Powrline Fonts](https://github.com/powerline/fonts);
 * [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts).
 
-## Запуск исполняемых файлов по двойному клику
+# Запуск исполняемых файлов по двойному клику
 
 Заставляем Nautilus выполнять исполняемые файлы вместо открытия их в текстовом редакторе. Нужно нажать на три точки, а потом выбрать Preferences:
 
 ![image](https://user-images.githubusercontent.com/41215002/53286773-8bab9780-3784-11e9-8e41-44edba435356.png)
 
-## Шаблоны файлов
+# Шаблоны файлов
 
 Чтобы в Nautilus в контекстном меню отображался пункт `New Document`, нужно в `~/Templaytes` создать шаблоны файлов:
 
@@ -412,7 +428,7 @@ $ fc-list | grep "<name-of-font>"
 touch ~/Templates/{Empty\ Document,Text\ Document.txt,README.md,pyfile.py}
 ```
 
-## Права
+# Права
 
 4 - Чтение (r)
 2 - Запись (w)
@@ -449,7 +465,7 @@ d         | rwx      | r-x    | r-x
 
 * [Права доступа к файлам и каталогам](https://www.linuxcenter.ru/lib/books/kostromin/gl_04_05.phtml)
 
-## Добавляем путь в PATH
+# Добавляем путь в PATH
 
 * Bash Shell: `~.bash_profile`, `~/.bashrc` or `~/.profile`
 * Korn Shell: `~/.kshrc` or `~/.profile`
@@ -459,7 +475,7 @@ d         | rwx      | r-x    | r-x
 export PATH=/path/to/bin:$PATH
 ```
 
-## bin в домашнем каталоге
+# bin в домашнем каталоге
 
 ```bash
 mkdir ~/bin
@@ -496,29 +512,9 @@ $ hello $USER
 Hello, sergey!
 ```
 
-## Расширения для Gnome
+# ZSH
 
-Устанавливаем [расширение](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=ru) для Chrome.
-
-![image](https://user-images.githubusercontent.com/41215002/53135292-b979bc00-358b-11e9-95df-7a540bc7b6f0.png)
-
-Управление расширениями осуществляется через Tweaks.
-
-![image](https://user-images.githubusercontent.com/41215002/53135669-25a8ef80-358d-11e9-9d5b-5024729dc550.png)
-
-Расширения для установки:
-
-
-| Название <img width="450"> | Описание <img width="450"> |
-| -- | -- |
-| [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/). | Выезжающий Dash - панель с избранными приложениями |
-| [Desktop Icons](https://extensions.gnome.org/extension/1465/desktop-icons/) | Иконки на рабочем столе |
-| [ShellTile](https://extensions.gnome.org/extension/657/shelltile/) | Тайловый менеджер |
-| [Log Out Button](https://extensions.gnome.org/extension/1143/logout-button/) | Добавляет кнопку, которая выполняет выход из системы |
-
-## ZSH
-
-### Установка
+## Установка
 
 ```bash
 $ yay -S zsh
@@ -534,7 +530,7 @@ $ chsh -s $(which zsh)
 
 
 
-### [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)
+## [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)
 
 Установка:
 
@@ -582,7 +578,7 @@ source $ZSH/oh-my-zsh.sh
 * [Встроенные темы](https://github.com/robbyrussell/oh-my-zsh/wiki/Themes);
 * [Сторонние темы](https://github.com/robbyrussell/oh-my-zsh/wiki/External-themes).
 
-Из сторонних тем наиболее симпатична [jovial](https://github.com/zthxxx/jovial). 
+Из сторонних тем наиболее симпатична [jovial](https://github.com/zthxxx/jovial).
 
 ```bash
 # Сначала сохраняем копию zhsrc, потому как jovial изменить оригинальеный файл
@@ -590,7 +586,7 @@ $ cp ~/.zshrc ~/.zhrc.bak
 $ curl -sSL git.io/jovial | sudo bash -s $USER
 ```
 
-### [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
+## [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
 Это красивая тема для ZSH.
 
@@ -613,16 +609,16 @@ echo 'source ~/.purepower' >>! ~/.zshrc
 
 ![image](https://user-images.githubusercontent.com/12753171/60625968-d72c1d00-9dd8-11e9-902a-a0ecbe2279b1.png)
 
-### Ссылки
+## Ссылки
 
 * [Приемы при работе с ZSH](http://zzapper.co.uk/zshtips.html).
 
-## cat с цветной подсветкой
+# cat с цветной подсветкой
 
 * [ccat](https://github.com/jingweno/ccat);
 * [lolcat](https://github.com/busyloop/lolcat).
 
-## [Цветовые схемы для терминала](https://github.com/Mayccoll/Gogh)
+# [Цветовые схемы для терминала](https://github.com/Mayccoll/Gogh)
 
 ```bash
 # Интерактивная установка
@@ -635,17 +631,17 @@ dconf reset -f /org/gnome/terminal/legacy/profiles:/
 
 * [Обзор тем](https://mayccoll.github.io/Gogh/).
 
-## Блокируем сайты с рекламой через hosts
+# Блокируем сайты с рекламой через hosts
 
 ```bash
 wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
 ```
 
-## [asdf-vm](https://github.com/asdf-vm/asdf)
+# [asdf-vm](https://github.com/asdf-vm/asdf)
 
-### Установка:
+## Установка:
 
-#### Git
+## Git
 
 ```bash
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
@@ -656,7 +652,7 @@ echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.zshrc
 echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
 ```
 
-#### AUR
+## AUR
 
 ```bash
 yay -S asdf-vm
@@ -677,13 +673,13 @@ export PATH=/opt/asdf-vm/bin:$PATH
 
 Эту строку можно и в `~/.zshrc`.
 
-### Удаление
+## Удаление
 
 ```bash
 rm -rf ~/.asdf/ ~/.tool-versions
 ```
 
-### Примеры
+## Примеры
 
 ```bash
 $ asdf plugin-add python
@@ -708,7 +704,7 @@ $ which node
 /home/sergey/.asdf/shims/node
 $ which npm
 /home/sergey/.asdf/shims/npm
-$ asdf list                
+$ asdf list
 golang
   1.12
 nodejs
@@ -728,11 +724,11 @@ sqlite
 
 После установки через pip пакетов, которые добавляют команды, чтобы те были доступны, нужно всегда выполнять `asdf reshim python`.
 
-### Ссылки
+## Ссылки
 
 * [Документация](https://asdf-vm.com/#/core-manage-asdf-vm).
 
-## Использование [NVM](https://github.com/nvm-sh/nvm)
+# Использование [NVM](https://github.com/nvm-sh/nvm)
 
 Устанавливаем последнюю версию Node.js:
 
@@ -740,50 +736,7 @@ sqlite
 nvm install node
 ```
 
-## [TLDR](https://github.com/tldr-pages/tldr)
-
-```bash
-npm i tldr -g
-```
-
-Получаем краткую справку по команде:
-
-```bash
-$ tldr nvm
-✔ Page not found. Updating cache...
-✔ Creating index...
-
-  nvm
-
-  Install, uninstall or switch between Node.js versions.
-  Supports version numbers like "0.12" or "v4.2", and labels like "stable", "system", etc.
-  Homepage: https://github.com/creationix/nvm.
-
-  - Install a specific version of Node.js:
-    nvm install node_version
-
-  - Use a specific version of Node.js in the current shell:
-    nvm use node_version
-
-  - Set the default Node.js version:
-    nvm alias default node_version
-
-  - List all available Node.js versions and highlight the default one:
-    nvm list
-
-  - Uninstall a given Node.js version:
-    nvm uninstall node_version
-
-  - Launch the REPL of a specific version of Node.js:
-    nvm run node_version --version
-
-  - Execute a script in a specific version of Node.js:
-    nvm exec node_version node app.js
-
-
-```
-
-## Настройка Docker
+# Настройка Docker
 
 ```bash
 sudo systemctl start docker
@@ -801,7 +754,7 @@ docker run hello-world
 
 [Ссылка](https://docs.docker.com/install/linux/linux-postinstall/).
 
-## Настройка Visual Code
+# Настройка Visual Code
 
 ```json
 {
@@ -822,7 +775,7 @@ docker run hello-world
 }
 ```
 
-## Гибернация
+# Гибернация
 
 Режим гибернациии от режима сна отличается тем, что в первом случае содержимое оперативной памяти сохраняется на жесткий диск и питание полностью отключается, во втором - питание подается только на оперативку. Чем хороша гибернация? - Например, мы работаем в Linux, вошли в режим гибернации, а затем загрузились в Windows и играем. Когда мы в следующий раз загрузимся в Linux, то увидим все то, что было перед выключением. Прекрасно?! Но часто ли такое нужно?
 
@@ -863,7 +816,7 @@ systemctl hibernate
 ![image](https://user-images.githubusercontent.com/41215002/53138121-3f9b0000-3596-11e9-84c9-5e1277f80b31.png)
 ![image](https://user-images.githubusercontent.com/41215002/53138158-622d1900-3596-11e9-8a53-515e39382b03.png)
 
-## RAID
+# RAID
 
 В Linux RAID на аппаратном уровне называют FakeRAID. Для работы с FakeRAID  используется пакет dmraid.
 
@@ -885,7 +838,7 @@ HOOKS=(base udev autodetect modconf block lvm2 dmraid filesystems keyboard fsck)
 sudo mkinitcpio -p linux
 ```
 
-## Установка и настройка Postgres
+# Установка и настройка Postgres
 
 ```bash
 [sergey@sergey-pc ~]$ sudo pacman -S postgresql
@@ -915,7 +868,7 @@ Type "help" for help.
 sergey=>
 ```
 
-## Работаем с github через ssh
+# Работаем с github через ssh
 
 Генерация нового ключа:
 
@@ -949,7 +902,7 @@ git config user.email "buymethadone@gmail.com"
 git config user.name "codedumps"
 ```
 
-## Tor Service
+# Tor Service
 
 Включаем Tor:
 
@@ -967,19 +920,19 @@ $ torify curl http://httpbin.org/ip
 }
 ```
 
-## Emoji
+# Emoji
 
 ```yay
 yay -S ttf-emojione
 ```
 
-## Блокировка рекламных сайтов
+# Блокировка рекламных сайтов
 
 ```bash
 wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
 ```
 
-## Редактирование DConf
+# Редактирование DConf
 
 DConf хранит профили терминала в `~/.config/dconf/user`, в формате GVDB [пруф](https://en.wikipedia.org/wiki/Dconf).
 
@@ -1221,9 +1174,54 @@ $ rm -rf ~/.config/google-chrome
 
 Теперь остается только перезапустить Chrome.
 
-# [Cheat.sh](https://github.com/chubin/cheat.sh)
+# Справка по командам и т.д.
 
-Ищет на stackoverflow и других ресурсах справку по языкам программирования
+## [TLDR](https://github.com/tldr-pages/tldr)
+
+```bash
+npm i tldr -g
+```
+
+Получаем краткую справку по команде:
+
+```bash
+$ tldr nvm
+✔ Page not found. Updating cache...
+✔ Creating index...
+
+  nvm
+
+  Install, uninstall or switch between Node.js versions.
+  Supports version numbers like "0.12" or "v4.2", and labels like "stable", "system", etc.
+  Homepage: https://github.com/creationix/nvm.
+
+  - Install a specific version of Node.js:
+    nvm install node_version
+
+  - Use a specific version of Node.js in the current shell:
+    nvm use node_version
+
+  - Set the default Node.js version:
+    nvm alias default node_version
+
+  - List all available Node.js versions and highlight the default one:
+    nvm list
+
+  - Uninstall a given Node.js version:
+    nvm uninstall node_version
+
+  - Launch the REPL of a specific version of Node.js:
+    nvm run node_version --version
+
+  - Execute a script in a specific version of Node.js:
+    nvm exec node_version node app.js
+
+
+```
+
+## [Cheat.sh](https://github.com/chubin/cheat.sh)
+
+Ищет на stackoverflow и других ресурсах справку по командам и языкам программирования.
 
 Установка:
 
@@ -1232,7 +1230,7 @@ curl https://cht.sh/:cht.sh | sudo tee /usr/local/bin/cht.sh
 chmod +x /usr/local/bin/cht.sh
 
 # Так же требуются пакеты xsel и rlwrap
-yay -S xsel lwrap
+yay -S xsel rlwrap
 ```
 
 Использование:
@@ -1240,11 +1238,11 @@ yay -S xsel lwrap
 ```
 # Интерактивный режим
 $ cht.sh --shell <language>
-$ cht.sh --shell bash        
+$ cht.sh --shell bash
 type 'help' for the cht.sh shell help
 cht.sh/bash> for
 # shell - Bash 'for' loop syntax?
-# 
+#
 # Replace
 
 for (($i=0...
@@ -1259,7 +1257,7 @@ cht.sh/bash>
 $ cht.sh go create file
 /*
  * go - Create an empty text file
- * 
+ *
  * Don't try to check the existence first, since you then have a race if
  * the file is created at the same time. You can open the file with the
  * O_CREATE flag to create it if it doesn't exist:
@@ -1436,8 +1434,7 @@ man [
 # Строка слева всегда имя переменной
 x=42; [[ "x" -eq "42" ]] || echo fail
 
-Fuchisaka Mitsumochi, [11.07.19 18:39]
-выражение слева всегда переменная
+# выражение слева всегда переменная
 
 case $VAR in
   foo) ... ;;
@@ -1645,7 +1642,7 @@ $ yay -Y --gendb
 
 # Ошибки с удалением зависимостей
 
-$ yay -Rns gnome-extra                               
+$ yay -Rns gnome-extra
 checking dependencies...
 error: failed to prepare transaction (could not satisfy dependencies)
 :: nautilus: removing nautilus-sendto breaks dependency 'nautilus-sendto'
@@ -1713,13 +1710,20 @@ $ mv <src> <dst>
 # Копирование файлов
 $ cp <src> <dst>
 
+# Копировать каталог и все вложенные файлы
+$ cp -r <src> <dst>
+
 # Полный путь до файла
 $ realpath example.txt
 /home/username/example.txt
 
 # Листинг каталога
 $ ls
-$ tldr ls 
+$ tldr ls
+
+# Вывести информацию о владельце и группе файла
+$ ls -ld /path/to/file
+$ stat /path/to/file
 
 # Вывести все вложенные файлы
 $ ls -R <path>
@@ -1910,7 +1914,7 @@ $ git add .
 # Закоммитить изменения (сделать описание)
 $ git commit -m "Тест"
 
-# Добавляет модифицированные файлы (новые не добавляет) и делает коммит 
+# Добавляет модифицированные файлы (новые не добавляет) и делает коммит
 $ git commit -am "Тест"
 
 # Обновить репозиторий на сервере
