@@ -7,8 +7,12 @@
   - [Arch Linux](#Arch-Linux)
   - [Создание образа](#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0)
   - [Изменяем приоритет загрузки в BIOS/UEFI](#%D0%98%D0%B7%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC-%D0%BF%D1%80%D0%B8%D0%BE%D1%80%D0%B8%D1%82%D0%B5%D1%82-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8-%D0%B2-BIOSUEFI)
+  - [Начало установки](#%D0%9D%D0%B0%D1%87%D0%B0%D0%BB%D0%BE-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B8)
   - [Настройка сети](#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D1%81%D0%B5%D1%82%D0%B8)
+- [Выбор файловой системы](#%D0%92%D1%8B%D0%B1%D0%BE%D1%80-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D0%BE%D0%B9-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B)
   - [Размечаем диск](#%D0%A0%D0%B0%D0%B7%D0%BC%D0%B5%D1%87%D0%B0%D0%B5%D0%BC-%D0%B4%D0%B8%D1%81%D0%BA)
+  - [Вариант 1: LVM](#%D0%92%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82-1-LVM)
+  - [Вариант 2: Btrfs](#%D0%92%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82-2-Btrfs)
   - [Устанавливаем ядро](#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%B0%D0%B2%D0%BB%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC-%D1%8F%D0%B4%D1%80%D0%BE)
   - [Генерируем fstab](#%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D1%80%D1%83%D0%B5%D0%BC-fstab)
   - [arch-chroot](#arch-chroot)
@@ -18,6 +22,7 @@
   - [Ставим пакеты](#%D0%A1%D1%82%D0%B0%D0%B2%D0%B8%D0%BC-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B)
   - [Пользователи](#%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D0%B8)
   - [Установка grub](#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-grub)
+  - [Ставим Gnome](#%D0%A1%D1%82%D0%B0%D0%B2%D0%B8%D0%BC-Gnome)
   - [Завершение установки](#%D0%97%D0%B0%D0%B2%D0%B5%D1%80%D1%88%D0%B5%D0%BD%D0%B8%D0%B5-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B8)
 - [Пакетные менеджеры](#%D0%9F%D0%B0%D0%BA%D0%B5%D1%82%D0%BD%D1%8B%D0%B5-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D1%8B)
 - [Нужные пакеты](#%D0%9D%D1%83%D0%B6%D0%BD%D1%8B%D0%B5-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B)
@@ -42,7 +47,7 @@
   - [Подробнее про ZSH](#%D0%9F%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE-ZSH)
 - [Разноцветный cat](#%D0%A0%D0%B0%D0%B7%D0%BD%D0%BE%D1%86%D0%B2%D0%B5%D1%82%D0%BD%D1%8B%D0%B9-cat)
 - [Цветовые схемы для терминала](#%D0%A6%D0%B2%D0%B5%D1%82%D0%BE%D0%B2%D1%8B%D0%B5-%D1%81%D1%85%D0%B5%D0%BC%D1%8B-%D0%B4%D0%BB%D1%8F-%D1%82%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%B0%D0%BB%D0%B0)
-- [Бекап](#%D0%91%D0%B5%D0%BA%D0%B0%D0%BF)
+- [Бекап системы](#%D0%91%D0%B5%D0%BA%D0%B0%D0%BF-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B)
 - [Блокируем сайты с рекламой через hosts](#%D0%91%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D1%83%D0%B5%D0%BC-%D1%81%D0%B0%D0%B9%D1%82%D1%8B-%D1%81-%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BE%D0%B9-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-hosts)
 - [asdf-vm](#asdf-vm)
 - [NVM](#NVM)
@@ -60,6 +65,7 @@
 - [Редактирование DConf](#%D0%A0%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-DConf)
 - [Менеджер паролей pass](#%D0%9C%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80-%D0%BF%D0%B0%D1%80%D0%BE%D0%BB%D0%B5%D0%B9-pass)
 - [Частые проблемы](#%D0%A7%D0%B0%D1%81%D1%82%D1%8B%D0%B5-%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D1%8B)
+  - [Случайно нажали Ctrl + Alt + F* и экран стал темным](#%D0%A1%D0%BB%D1%83%D1%87%D0%B0%D0%B9%D0%BD%D0%BE-%D0%BD%D0%B0%D0%B6%D0%B0%D0%BB%D0%B8-Ctrl--Alt--F-%D0%B8-%D1%8D%D0%BA%D1%80%D0%B0%D0%BD-%D1%81%D1%82%D0%B0%D0%BB-%D1%82%D0%B5%D0%BC%D0%BD%D1%8B%D0%BC)
   - [Что делать, если каталоги открываются в VSCode?](#%D0%A7%D1%82%D0%BE-%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D0%B5%D1%81%D0%BB%D0%B8-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%B8-%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D0%B2%D0%B0%D1%8E%D1%82%D1%81%D1%8F-%D0%B2-VSCode)
   - [Enter password to unlock your login keyring](#Enter-password-to-unlock-your-login-keyring)
 - [Справка по командам и т.д.](#%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0-%D0%BF%D0%BE-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%D0%BC-%D0%B8-%D1%82%D0%B4)
@@ -96,7 +102,7 @@ $ sudo dd if=/path/to/iso of=/dev/sdX bs=8M status=progress; sync
 
 Где `sdX` &ndash; имя нашего USB устройства. Перегружаемся после удачного завершения операции.
 
-В Windows для создания загрузочной флешки можно использовать [Rufus](https://rufus.ie/). При этом образ лучше записывать в dd режиме.
+В Windows для создания загрузочной флешки можно использовать [Rufus](https://rufus.ie/).
 
 ![image](https://user-images.githubusercontent.com/41215002/53678080-21867b80-3ccb-11e9-87a8-a4d028153a53.png)
 ![image](https://user-images.githubusercontent.com/41215002/53678082-2a774d00-3ccb-11e9-8a32-41f20d3dfd3c.png)
@@ -104,6 +110,16 @@ $ sudo dd if=/path/to/iso of=/dev/sdX bs=8M status=progress; sync
 ## Изменяем приоритет загрузки в BIOS/UEFI
 
 При загрузке системы нажимаем F2 или Del (зависит от производителя материнской платы). Во вкладке BIOS в приоритете загрузки делаем первым наше USB-устройство. Нажимаем F10 и сохраняем настройки.
+
+## Начало установки
+
+Инструкцию по установке Arch Linux можно посмотреть так:
+
+```bash
+less ~/install.txt
+```
+
+Данна инструкция основана на ней.
 
 ## Настройка сети
 
@@ -115,6 +131,14 @@ wifi-menu
 ```
 
 Следует отметить, что не все usb wifi адаптеры гараниторованно поддерживаются. Например, у меня не захотел работать dexp wfa 301, а вот с tp-link все ок.
+
+# Выбор файловой системы
+
+Самыми удобными являются три варианта: LVM+ext4 либо Btrfs, либо Btrfs под LVM.
+
+Теперь нужно разметить раздел по LVM. Касательно LVM: единственное удобство в нем для меня – это возможность динамически менять размер разделов. Самая частая проблема, которая у меня была раньше – это то, что я не угадывал размер для корня. Мы можем добавлять в группу другие разделы (не обязательно на одном устройстве) и устройства. Нет ограничений как для обычных разделов, когда не возможно расширить раздел за счет предыдущего, нам вообще об этом не нужно заботиться. В LVM у нас есть группы разделов и логическите разделы. У логических разделов свои файловые системы. Увеличение размера логического раздела в отличии от уменьшения размонтирования не требует. resize2fs в LVM работает заметно быстрее.
+
+Файловая система Btrfs может размещаться на одном и более устройствах/разделах. Устройства и разделы можно как добавлять так и удалять после создания. У нас тут нет групп и логических разделов со своими файловыми системами. У нас есть только подразделы с динамическим размером, что удобно. Так же мы можем ограничить размер подраздела.
 
 ## Размечаем диск
 
@@ -130,35 +154,23 @@ fdisk -l
 fdisk /dev/nvme0n1
 ```
 
-Теперь нужно разметить раздел по LVM. Касательно LVM: единственное удобство в нем для меня – это возможность динамически менять размер разделов. Самая частая проблема, которая у меня была раньше – это то, что я не угадывал размер для корня. Когда в нем кончалось место, я с установочной флешки через gparted пытался отщепнуть от виндового раздела кусок (а у меня разделы всегда шли так: recovery, efi, reserved, windows, root, home), из этого куска создавал временный раздел, копировал в него файлы с хомяка, удалял хомяка, изменял размер корневого, опять создавал хомяка и из временного раздела копировал в него файлы, потом удалял временный раздел, расширял виндовый, правил `/etc/fstab`… А с LVM я могу просто выполнить пару команд: ужать хомяка, расширить корневой, причем. Увеличение размера логического раздела в отличии от уменьшения размонтирования не требует. Но эксперты могут возразить: «Хомяк на отдельном разделе не нужен!» — Да, если хочешь потерять все данные при переустановке. + resize2fs работает на порядки быстрее!!!
-
 В меню fdisk вводим `n` для создания нового раздела, порядковый номер раздела, потом начальное и конечные смещения. При задании конечного смещения можно отрицательное значение, например, `-10G`, так мы оставим свободными 10 Гб в конце диска. Для записи изменений на жесткий диск вводим `w` и выходим - `q`.
 
-Создадим группу:
+## Вариант 1: LVM
 
 ```bash
-vgcreate lvm /dev/nvme0n1p5
-```
-
-Теперь создадим в ней логические разделы:
-
-```bash
+# Создадим группу
+vgcreate linux /dev/nvme0n1p5
+# Теперь создадим в ней логические разделы:
 lvcreate -L 30G linux -n root
 lvcreate -L 20G linux -n home
 # Можно для раздела отдать все оставшееся место
 lvcreate -L +100%FREE linux -n home
 mkfs.ext4 /dev/linux/root
 mkfs.ext4 /dev/linux/home
-```
-
-## Устанавливаем ядро
-
-```bash
 mount /dev/linux/root /mnt
 mkdir /mnt/home
 mount /dev/linux/home /mnt/home
-mkdir -p /mnt/boot/efi
-mount /dev/nvme0n1p2 /mnt/boot/efi
 # Создаем файл подкачки. Не нужно верить дурачкам: он нужен всегда. Без него система будет лагать
 fallocate -l 2G /mnt/swapfile
 # Если хотим использовать гибернацию, то файл подкачки должен быть равен размеру оперативной памяти
@@ -166,7 +178,38 @@ fallocate -l 2G /mnt/swapfile
 chmod 600 /mnt/swapfile
 mkswap /mnt/swapfile
 swapon /mnt/swapfile
-# Устанавливаем ядро системы
+mkdir -p /mnt/boot/efi
+mount /dev/nvme0n1p2 /mnt/boot/efi
+```
+
+## Вариант 2: Btrfs
+
+```bash
+mount /dev/nvme0n1p5 /mnt
+btrfs subvolume create /mnt/@root
+btrfs subvolume create /mnt/@home
+umount /mnt
+mount -o noatime,compress=lzo,space_cache,subvol=@root /dev/nvme0n1p5 /mnt
+mkdir /mnt/home
+mount -o noatime,compress=lzo,space_cache,subvol=@home /dev/nvme0n1p5 /mnt/home
+# Файл подкачки нужно создавать так
+# И что очень важно: поддержка файл подкачки в Btrfs возможна только с версией ядра linux 5.0.0
+truncate -s 0 /mnt/swapfile
+chattr +C /mnt/swapfile
+btrfs property set /mnt/swapfile compression none
+# fallocate -l 2G /mnt/swapfile
+# С fallocate могут возникнуть проблемы
+dd if=/dev/zero of=/mnt/swapfile count=2000 bs=1M
+chmod 600 /mnt/swapfile
+mkswap /mnt/swapfile
+swapon /mnt/swapfile
+mkdir -p /mnt/boot/efi
+mount /dev/nvme0n1p2 /mnt/boot/efi
+```
+
+## Устанавливаем ядро
+
+```bash
 pacstrap /mnt base base-devel
 ```
 
@@ -177,6 +220,12 @@ genfstab /mnt >> /mnt/etc/fstab
 ```
 
 ## arch-chroot
+
+```bash
+arch-chroot /mnt
+```
+
+При использовании LVM нужно выполнить чуть больше действий:
 
 ```bash
 # Предотвращаем ошибки lvm:
@@ -236,15 +285,13 @@ nano /etc/hosts
 
 ## Initramfs
 
-Если пропустить этот шаг, то система не станет грузиться с lvm.
-
-Нам нужно отредактировать `/etc/mkinitcpio.conf` и модифицировать список HOOKS, добавив `lvm2` **ДО ЗНАЧЕНИЯ** `filesystems`:
+При использовании LVM нужно отредактировать `/etc/mkinitcpio.conf` и модифицировать список HOOKS, добавив `lvm2` **ДО ЗНАЧЕНИЯ** `filesystems`:
 
 ```
 HOOKS=(base udev autodetect modconf block lvm2 filesystems keyboard fsck)
 ```
 
-Генерируем:
+Генерация (обязательный шаг даже, если не используется LVM):
 
 ```bash
 mkinitcpio -p linux
@@ -255,7 +302,7 @@ mkinitcpio -p linux
 Эти пакеты понадобятся далее:
 
 ```bash
-pacman -S sudo grub efibootmgr ntfs-3g os-prober alsa-utils xf86-video-ati gnome
+pacman -S sudo grub efibootmgr ntfs-3g os-prober alsa-utils xf86-video-ati
 ```
 xf86-video-ati – свободный драйвер для видеокарт AMD. xorg и xorg-server отдельно ставить не нужно, так как эти пакеты есть в зависимостях.
 
@@ -312,12 +359,21 @@ GRUB_TIMEOUT=-1
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-## Завершение установки
-
-Включаем gdm для экрана логина и MetworkManager для автоматического подключения к сети:
+## Ставим Gnome
 
 ```bash
+pacman -S gnome
+# Включаем Gnome Display Manager
 systemctl enable gdm
+```
+
+Вместо Gnome можно попробовать тайловый менеджер [i3](#i3).
+
+## Завершение установки
+
+Включаем NetworkManager для автоматического подключения к сети:
+
+```bash
 systemctl enable NetworkManager
 ```
 
@@ -543,7 +599,6 @@ gsettings reset org.gnome.mutter experimental-features
 ![image](https://user-images.githubusercontent.com/41215002/53135669-25a8ef80-358d-11e9-9d5b-5024729dc550.png)
 
 Расширения для установки:
-
 
 | Название <img width="450"> | Описание <img width="450"> |
 | -- | -- |
@@ -776,32 +831,21 @@ dconf reset -f /org/gnome/terminal/legacy/profiles:/
 
 * [Обзор тем](https://mayccoll.github.io/Gogh/).
 
-# Бекап
+# Бекап системы
+
+Предполагается, что бекап мы будем делать с установочной флешки.
 
 ```bash
-# Делаем дамп
-$ cd /
-$ tar -cvpzf backup.tar.gz --exclude=/backup.tar.gz --one-file-system /
+mkdir /mnt/{backup,root}
+mount /path/to/backup /mnt/backup
+mount /path/to/root /mnt/root
 
-# Исключаем ситемные каталоги
-$ tar -cvpzf backup.tar.gz \
---exclude=/backup.tar.gz \
---exclude=/proc \
---exclude=/tmp \
---exclude=/mnt \
---exclude=/dev \
---exclude=/sys \
---exclude=/run \
---exclude=/media \
---exclude=/var/log \
---exclude=/var/cache/apt/archives \
---exclude=/usr/src/linux-headers* \
---exclude=/home/*/.gvfs \
---exclude=/home/*/.cache \
---exclude=/home/*/.local/share/Trash /
+# Делаем бекап
+cd /mnt/root
+tar -cvpzf /mnt/backup/root.tar.gz .
 
-# Восстановление дампа
-$ sudo tar -xvpzf /path/to/backup.tar.gz -C /media/whatever --numeric-owner
+# Извлечение бекапа
+tar -xzpvf /mnt/backup/root.tar.gz -C /mnt/root
 ```
 
 Ссылки:
@@ -1294,6 +1338,10 @@ removed '/home/sergey/.password-store/example.com.gpg'
 * [Устаревшее расширение для Chrome](https://github.com/browserpass/browserpass-legacy).
 
 # Частые проблемы
+
+## Случайно нажали Ctrl + Alt + F* и экран стал темным
+
+Это переключение между виртуальными терминалами. с 1-6 текстовые, остальные ‒ графические. В gdm `Ctrl+Alt+F1` ‒ логин в систему, `Ctrl+Alt+F2` ‒ рабочий стол. В lightdm переключиться на рабочий стол можно нажатием `Ctrl+Alt+F7`.
 
 ## Что делать, если каталоги открываются в VSCode?
 
