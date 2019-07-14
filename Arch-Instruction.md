@@ -2151,6 +2151,9 @@ $ netstat -plantu
 # Все запущенные сервера на хосте
 $ netstat -lnt
 
+# Скачать файл в каталог
+$ wget -P $ZSH_CUSTOM/themes https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme
+
 # ==============================================================================
 #
 # Шрифты
