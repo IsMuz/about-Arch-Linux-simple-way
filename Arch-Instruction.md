@@ -771,7 +771,8 @@ source $ZSH/oh-my-zsh.sh
 Для темы Agnoster настройках терминала выбираем шрифт `Source Code Pro Regular`, чтобы отображались стрелочки.
 
 * [Встроенные темы](https://github.com/robbyrussell/oh-my-zsh/wiki/Themes);
-* [Сторонние темы](https://github.com/robbyrussell/oh-my-zsh/wiki/External-themes).
+* [Сторонние темы](https://github.com/robbyrussell/oh-my-zsh/wiki/External-themes);
+* [Так же можно поискать на Github'е](https://github.com/search?o=desc&q=oh+my+zsh+theme&s=stars&type=Repositories).
 
 ## Темы Oh My Zsh!
 
