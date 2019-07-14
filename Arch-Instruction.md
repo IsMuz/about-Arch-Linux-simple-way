@@ -301,9 +301,9 @@ mkinitcpio -p linux
 Эти пакеты понадобятся далее:
 
 ```bash
-pacman -S sudo grub efibootmgr ntfs-3g os-prober alsa-utils xf86-video-ati
+pacman -S sudo grub efibootmgr ntfs-3g os-prober alsa-utils xf86-video-ati xorg xorg-server
 ```
-xf86-video-ati – свободный драйвер для видеокарт AMD. xorg и xorg-server отдельно ставить не нужно, так как эти пакеты есть в зависимостях.
+xf86-video-ati – свободный драйвер для видеокарт AMD. xorg и xorg-server можно не ставить, они являются зависимостями пакета gnome.
 
 ## Пользователи
 
