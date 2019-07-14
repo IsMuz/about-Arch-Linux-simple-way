@@ -192,7 +192,7 @@ mount -o noatime,compress=lzo,space_cache,subvol=@root /dev/nvme0n1p5 /mnt
 mkdir /mnt/home
 mount -o noatime,compress=lzo,space_cache,subvol=@home /dev/nvme0n1p5 /mnt/home
 # Файл подкачки нужно создавать так
-# И что очень важно: поддержка файл подкачки в Btrfs возможна только с версией ядра linux 5.0.0
+# И что очень важно: поддержка файлов подкачки в Btrfs доступна в версией ядра linux, начниная с 5.0.0
 truncate -s 0 /mnt/swapfile
 chattr +C /mnt/swapfile
 btrfs property set /mnt/swapfile compression none
