@@ -2,77 +2,78 @@
 <!-- nav -->
 # Table of Contents
 
-1. [Установка Arch Linux](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-arch-linux)
-   1. [Arch Linux](#arch-linux)
-   1. [Создание образа](#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0)
-   1. [Изменяем приоритет загрузки в BIOS/UEFI](#%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC-%D0%BF%D1%80%D0%B8%D0%BE%D1%80%D0%B8%D1%82%D0%B5%D1%82-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8-%D0%B2-biosuefi)
-   1. [Настройка сети](#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D1%81%D0%B5%D1%82%D0%B8)
-   1. [Размечаем диск](#%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%87%D0%B0%D0%B5%D0%BC-%D0%B4%D0%B8%D1%81%D0%BA)
-   1. [Устанавливаем ядро](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%B0%D0%B2%D0%BB%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC-%D1%8F%D0%B4%D1%80%D0%BE)
-   1. [Генерируем fstab](#%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D1%80%D1%83%D0%B5%D0%BC-fstab)
-   1. [arch-chroot](#arch-chroot)
-   1. [Настраиваем дату и локаль](#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%B0%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC-%D0%B4%D0%B0%D1%82%D1%83-%D0%B8-%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C)
-   1. [Прописываем хосты](#%D0%BF%D1%80%D0%BE%D0%BF%D0%B8%D1%81%D1%8B%D0%B2%D0%B0%D0%B5%D0%BC-%D1%85%D0%BE%D1%81%D1%82%D1%8B)
-   1. [Initramfs](#initramfs)
-   1. [Ставим пакеты](#%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BC-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B)
-   1. [Пользователи](#%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D0%B8)
-   1. [Установка grub](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-grub)
-   1. [Завершение установки](#%D0%B7%D0%B0%D0%B2%D0%B5%D1%80%D1%88%D0%B5%D0%BD%D0%B8%D0%B5-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B8)
-1. [Пакетные менеджеры](#%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BD%D1%8B%D0%B5-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D1%8B)
-1. [Нужные пакеты](#%D0%BD%D1%83%D0%B6%D0%BD%D1%8B%D0%B5-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B)
-1. [Заменяем ядро на стабильное](#%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC-%D1%8F%D0%B4%D1%80%D0%BE-%D0%BD%D0%B0-%D1%81%D1%82%D0%B0%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5)
-1. [Права](#%D0%BF%D1%80%D0%B0%D0%B2%D0%B0)
-1. [Добавляем путь в PATH](#%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC-%D0%BF%D1%83%D1%82%D1%8C-%D0%B2-path)
-1. [bin в домашнем каталоге](#bin-%D0%B2-%D0%B4%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D0%B5%D0%BC-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%B5)
-1. [Масштабировавние 150% как в Windows](#%D0%BC%D0%B0%D1%81%D1%88%D1%82%D0%B0%D0%B1%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%B2%D0%BD%D0%B8%D0%B5-150-%D0%BA%D0%B0%D0%BA-%D0%B2-windows)
-1. [Расширения для Gnome](#%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B4%D0%BB%D1%8F-gnome)
-1. [Пользовательские сочетания клавиш](#%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5-%D1%81%D0%BE%D1%87%D0%B5%D1%82%D0%B0%D0%BD%D0%B8%D1%8F-%D0%BA%D0%BB%D0%B0%D0%B2%D0%B8%D1%88)
-1. [Шрифты](#%D1%88%D1%80%D0%B8%D1%84%D1%82%D1%8B)
-1. [Запуск исполняемых файлов по двойному клику в Nautilus](#%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D0%BD%D1%8F%D0%B5%D0%BC%D1%8B%D1%85-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2-%D0%BF%D0%BE-%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%BE%D0%BC%D1%83-%D0%BA%D0%BB%D0%B8%D0%BA%D1%83-%D0%B2-nautilus)
-1. [Шаблоны файлов](#%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2)
-1. [ZSH](#zsh)
-   1. [Установка ZSH](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-zsh)
-   1. [Oh My Zsh](#oh-my-zsh)
-   1. [Темы Oh My Zsh!](#%D1%82%D0%B5%D0%BC%D1%8B-oh-my-zsh)
-      1. [Jovial](#jovial)
-      1. [Powerlevel10k](#powerlevel10k)
-   1. [Подробнее про ZSH](#%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE-zsh)
-1. [Разноцветный cat](#%D1%80%D0%B0%D0%B7%D0%BD%D0%BE%D1%86%D0%B2%D0%B5%D1%82%D0%BD%D1%8B%D0%B9-cat)
-1. [Цветовые схемы для терминала](#%D1%86%D0%B2%D0%B5%D1%82%D0%BE%D0%B2%D1%8B%D0%B5-%D1%81%D1%85%D0%B5%D0%BC%D1%8B-%D0%B4%D0%BB%D1%8F-%D1%82%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%B0%D0%BB%D0%B0)
-1. [Блокируем сайты с рекламой через hosts](#%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D1%83%D0%B5%D0%BC-%D1%81%D0%B0%D0%B9%D1%82%D1%8B-%D1%81-%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BE%D0%B9-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-hosts)
-1. [asdf-vm](#asdf-vm)
-1. [NVM](#nvm)
-1. [Настройка Docker](#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-docker)
-1. [Настройка Visual Code](#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-visual-code)
-1. [Гибернация](#%D0%B3%D0%B8%D0%B1%D0%B5%D1%80%D0%BD%D0%B0%D1%86%D0%B8%D1%8F)
-1. [RAID](#raid)
-1. [LVM](#lvm)
-   1. [Изменение размера логического раздела](#%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80%D0%B0-%D0%BB%D0%BE%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE-%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B0)
-   1. [Переименование логических разделов](#%D0%BF%D0%B5%D1%80%D0%B5%D0%B8%D0%BC%D0%B5%D0%BD%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BB%D0%BE%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D1%85-%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%BE%D0%B2)
-1. [Установка и настройка Postgres](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-postgres)
-1. [Работаем с github через ssh](#%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC-%D1%81-github-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-ssh)
-1. [Tor Service](#tor-service)
-1. [Emoji](#emoji)
-1. [Спецсимволы](#%D1%81%D0%BF%D0%B5%D1%86%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D1%8B)
-1. [Блокировка рекламных сайтов](#%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0-%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BD%D1%8B%D1%85-%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2)
-1. [Редактирование DConf](#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-dconf)
-1. [Менеджер паролей pass](#%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80-%D0%BF%D0%B0%D1%80%D0%BE%D0%BB%D0%B5%D0%B9-pass)
-1. [i3](#i3)
-   1. [Описание](#%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5)
-   1. [Установка и настройка i3](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-i3)
-   1. [XTerm](#xterm)
-   1. [Termite: горячие клавиши](#termite-%D0%B3%D0%BE%D1%80%D1%8F%D1%87%D0%B8%D0%B5-%D0%BA%D0%BB%D0%B0%D0%B2%D0%B8%D1%88%D0%B8)
-   1. [Цветовые схемы Termite](#%D1%86%D0%B2%D0%B5%D1%82%D0%BE%D0%B2%D1%8B%D0%B5-%D1%81%D1%85%D0%B5%D0%BC%D1%8B-termite)
-   1. [Заставка lockscreen](#%D0%B7%D0%B0%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0-lockscreen)
-   1. [Сохранение/восстановление рабочего пространства](#%D1%81%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%D0%B2%D0%BE%D1%81%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B3%D0%BE-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%B0)
-1. [Частые проблемы](#%D1%87%D0%B0%D1%81%D1%82%D1%8B%D0%B5-%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D1%8B)
-   1. [Что делать, если каталоги открываются в VSCode?](#%D1%87%D1%82%D0%BE-%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D0%B5%D1%81%D0%BB%D0%B8-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%B8-%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D0%B2%D0%B0%D1%8E%D1%82%D1%81%D1%8F-%D0%B2-vscode)
-   1. [Enter password to unlock your login keyring](#enter-password-to-unlock-your-login-keyring)
-1. [Справка по командам и т.д.](#%D1%81%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0-%D0%BF%D0%BE-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%D0%BC-%D0%B8-%D1%82%D0%B4)
-   1. [Cheat.sh](#cheatsh)
-   1. [Marker](#marker)
-   1. [TLDR](#tldr)
-1. [Шпаргалка по командам Shell](#%D1%88%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0-%D0%BF%D0%BE-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%D0%BC-shell)
+- [Table of Contents](#Table-of-Contents)
+- [Установка Arch Linux](#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-Arch-Linux)
+  - [Arch Linux](#Arch-Linux)
+  - [Создание образа](#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0)
+  - [Изменяем приоритет загрузки в BIOS/UEFI](#%D0%98%D0%B7%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC-%D0%BF%D1%80%D0%B8%D0%BE%D1%80%D0%B8%D1%82%D0%B5%D1%82-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8-%D0%B2-BIOSUEFI)
+  - [Настройка сети](#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D1%81%D0%B5%D1%82%D0%B8)
+  - [Размечаем диск](#%D0%A0%D0%B0%D0%B7%D0%BC%D0%B5%D1%87%D0%B0%D0%B5%D0%BC-%D0%B4%D0%B8%D1%81%D0%BA)
+  - [Устанавливаем ядро](#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%B0%D0%B2%D0%BB%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC-%D1%8F%D0%B4%D1%80%D0%BE)
+  - [Генерируем fstab](#%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D1%80%D1%83%D0%B5%D0%BC-fstab)
+  - [arch-chroot](#arch-chroot)
+  - [Настраиваем дату и локаль](#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%B0%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC-%D0%B4%D0%B0%D1%82%D1%83-%D0%B8-%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C)
+  - [Прописываем хосты](#%D0%9F%D1%80%D0%BE%D0%BF%D0%B8%D1%81%D1%8B%D0%B2%D0%B0%D0%B5%D0%BC-%D1%85%D0%BE%D1%81%D1%82%D1%8B)
+  - [Initramfs](#Initramfs)
+  - [Ставим пакеты](#%D0%A1%D1%82%D0%B0%D0%B2%D0%B8%D0%BC-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B)
+  - [Пользователи](#%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D0%B8)
+  - [Установка grub](#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-grub)
+  - [Завершение установки](#%D0%97%D0%B0%D0%B2%D0%B5%D1%80%D1%88%D0%B5%D0%BD%D0%B8%D0%B5-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B8)
+- [Пакетные менеджеры](#%D0%9F%D0%B0%D0%BA%D0%B5%D1%82%D0%BD%D1%8B%D0%B5-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D1%8B)
+- [Нужные пакеты](#%D0%9D%D1%83%D0%B6%D0%BD%D1%8B%D0%B5-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B)
+- [Заменяем ядро на стабильное](#%D0%97%D0%B0%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC-%D1%8F%D0%B4%D1%80%D0%BE-%D0%BD%D0%B0-%D1%81%D1%82%D0%B0%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5)
+- [Права](#%D0%9F%D1%80%D0%B0%D0%B2%D0%B0)
+- [Добавляем путь в PATH](#%D0%94%D0%BE%D0%B1%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC-%D0%BF%D1%83%D1%82%D1%8C-%D0%B2-PATH)
+- [bin в домашнем каталоге](#bin-%D0%B2-%D0%B4%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D0%B5%D0%BC-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%B5)
+- [Масштабировавние 150% как в Windows](#%D0%9C%D0%B0%D1%81%D1%88%D1%82%D0%B0%D0%B1%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%B2%D0%BD%D0%B8%D0%B5-150-%D0%BA%D0%B0%D0%BA-%D0%B2-Windows)
+- [Расширения для Gnome](#%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B4%D0%BB%D1%8F-Gnome)
+- [Пользовательские сочетания клавиш](#%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5-%D1%81%D0%BE%D1%87%D0%B5%D1%82%D0%B0%D0%BD%D0%B8%D1%8F-%D0%BA%D0%BB%D0%B0%D0%B2%D0%B8%D1%88)
+- [Шрифты](#%D0%A8%D1%80%D0%B8%D1%84%D1%82%D1%8B)
+- [Запуск исполняемых файлов по двойному клику в Nautilus](#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D0%BD%D1%8F%D0%B5%D0%BC%D1%8B%D1%85-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2-%D0%BF%D0%BE-%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%BE%D0%BC%D1%83-%D0%BA%D0%BB%D0%B8%D0%BA%D1%83-%D0%B2-Nautilus)
+- [Шаблоны файлов](#%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2)
+- [Гибернация](#%D0%93%D0%B8%D0%B1%D0%B5%D1%80%D0%BD%D0%B0%D1%86%D0%B8%D1%8F)
+- [RAID](#RAID)
+- [ZSH](#ZSH)
+  - [Установка ZSH](#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-ZSH)
+  - [Oh My Zsh](#Oh-My-Zsh)
+  - [Темы Oh My Zsh!](#%D0%A2%D0%B5%D0%BC%D1%8B-Oh-My-Zsh)
+    - [Jovial](#Jovial)
+    - [Powerlevel10k](#Powerlevel10k)
+  - [Подробнее про ZSH](#%D0%9F%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE-ZSH)
+- [Разноцветный cat](#%D0%A0%D0%B0%D0%B7%D0%BD%D0%BE%D1%86%D0%B2%D0%B5%D1%82%D0%BD%D1%8B%D0%B9-cat)
+- [Цветовые схемы для терминала](#%D0%A6%D0%B2%D0%B5%D1%82%D0%BE%D0%B2%D1%8B%D0%B5-%D1%81%D1%85%D0%B5%D0%BC%D1%8B-%D0%B4%D0%BB%D1%8F-%D1%82%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%B0%D0%BB%D0%B0)
+- [Бекап](#%D0%91%D0%B5%D0%BA%D0%B0%D0%BF)
+- [Блокируем сайты с рекламой через hosts](#%D0%91%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D1%83%D0%B5%D0%BC-%D1%81%D0%B0%D0%B9%D1%82%D1%8B-%D1%81-%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BE%D0%B9-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-hosts)
+- [asdf-vm](#asdf-vm)
+- [NVM](#NVM)
+- [Настройка Docker](#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-Docker)
+- [Настройка Visual Code](#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-Visual-Code)
+- [LVM](#LVM)
+- [Установка и настройка Postgres](#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-Postgres)
+- [Мониторинг процессов](#%D0%9C%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2)
+- [Git](#Git)
+- [Работаем с github через ssh](#%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC-%D1%81-github-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-ssh)
+- [Tor Service](#Tor-Service)
+- [Emoji](#Emoji)
+- [Спецсимволы](#%D0%A1%D0%BF%D0%B5%D1%86%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D1%8B)
+- [Блокировка рекламных сайтов](#%D0%91%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0-%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BD%D1%8B%D1%85-%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2)
+- [Редактирование DConf](#%D0%A0%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-DConf)
+- [Менеджер паролей pass](#%D0%9C%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80-%D0%BF%D0%B0%D1%80%D0%BE%D0%BB%D0%B5%D0%B9-pass)
+- [Частые проблемы](#%D0%A7%D0%B0%D1%81%D1%82%D1%8B%D0%B5-%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D1%8B)
+  - [Что делать, если каталоги открываются в VSCode?](#%D0%A7%D1%82%D0%BE-%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D0%B5%D1%81%D0%BB%D0%B8-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%B8-%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D0%B2%D0%B0%D1%8E%D1%82%D1%81%D1%8F-%D0%B2-VSCode)
+  - [Enter password to unlock your login keyring](#Enter-password-to-unlock-your-login-keyring)
+- [Справка по командам и т.д.](#%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0-%D0%BF%D0%BE-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%D0%BC-%D0%B8-%D1%82%D0%B4)
+  - [Cheat.sh](#Cheatsh)
+  - [Marker](#Marker)
+  - [TLDR](#TLDR)
+- [Шпаргалка по командам Shell](#%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0-%D0%BF%D0%BE-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%D0%BC-Shell)
+- [i3: Введение](#i3-%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5)
+- [i3: Установка и настройка](#i3-%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0)
+- [XTerm](#XTerm)
+- [Termite: горячие клавиши](#Termite-%D0%B3%D0%BE%D1%80%D1%8F%D1%87%D0%B8%D0%B5-%D0%BA%D0%BB%D0%B0%D0%B2%D0%B8%D1%88%D0%B8)
+- [Termite: цветовые схемы](#Termite-%D1%86%D0%B2%D0%B5%D1%82%D0%BE%D0%B2%D1%8B%D0%B5-%D1%81%D1%85%D0%B5%D0%BC%D1%8B)
+- [i3: заставка lockscreen](#i3-%D0%B7%D0%B0%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0-lockscreen)
+- [i3: сохранение/восстановление рабочего пространства](#i3-%D1%81%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%D0%B2%D0%BE%D1%81%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B3%D0%BE-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%B0)
 <!-- /nav -->
 
 # Установка Arch Linux
@@ -129,7 +130,7 @@ fdisk -l
 fdisk /dev/nvme0n1
 ```
 
-Теперь нужно разметить раздел по LVM. Касательно LVM: единственное удобство в нем для меня – это возможность динамически менять размер разделов. Самая частая проблема, которая у меня была раньше – это то, что я не угадывал размер для корня. Когда в нем кончалось место, я с установочной флешки через gparted пытался отщепнуть от виндового раздела кусок (а у меня разделы всегда шли так: recovery, efi, reserved, windows, root, home), из этого куска создавал временный раздел, копировал в него файлы с хомяка, удалял хомяка, изменял размер корневого, опять создавал хомяка и из временного раздела копировал в него файлы, потом удалял временный раздел, расширял виндовый, правил `/etc/fstab`… А с LVM я могу просто выполнить пару команд: ужать хомяка, расширить корневой, причем. Увеличение размера логического раздела в отличии от уменьшения размонтирования не требует. Но эксперты могут возразить: «Хомяк на отдельном разделе не нужен!» — Да, если хочешь потерять все данные при переустановке.
+Теперь нужно разметить раздел по LVM. Касательно LVM: единственное удобство в нем для меня – это возможность динамически менять размер разделов. Самая частая проблема, которая у меня была раньше – это то, что я не угадывал размер для корня. Когда в нем кончалось место, я с установочной флешки через gparted пытался отщепнуть от виндового раздела кусок (а у меня разделы всегда шли так: recovery, efi, reserved, windows, root, home), из этого куска создавал временный раздел, копировал в него файлы с хомяка, удалял хомяка, изменял размер корневого, опять создавал хомяка и из временного раздела копировал в него файлы, потом удалял временный раздел, расширял виндовый, правил `/etc/fstab`… А с LVM я могу просто выполнить пару команд: ужать хомяка, расширить корневой, причем. Увеличение размера логического раздела в отличии от уменьшения размонтирования не требует. Но эксперты могут возразить: «Хомяк на отдельном разделе не нужен!» — Да, если хочешь потерять все данные при переустановке. + resize2fs работает на порядки быстрее!!!
 
 В меню fdisk вводим `n` для создания нового раздела, порядковый номер раздела, потом начальное и конечные смещения. При задании конечного смещения можно отрицательное значение, например, `-10G`, так мы оставим свободными 10 Гб в конце диска. Для записи изменений на жесткий диск вводим `w` и выходим - `q`.
 
@@ -591,6 +592,69 @@ $ fc-list | grep "<name-of-font>"
 touch ~/Templates/{Empty\ Document,Text\ Document.txt,README.md,pyfile.py}
 ```
 
+# Гибернация
+
+Режим гибернациии от режима сна отличается тем, что в первом случае содержимое оперативной памяти сохраняется на жесткий диск и питание полностью отключается, во втором - питание подается только на оперативку. Чем хороша гибернация? - Например, мы работаем в Linux, вошли в режим гибернации, а затем загрузились в Windows и играем. Когда мы в следующий раз загрузимся в Linux, то увидим все то, что было перед выключением. Прекрасно?! Но часто ли такое нужно?
+
+При переходе в режим гибернации делается дамп памяти на диск, причем всей, а не только используемой, так что размер файла подкачки должен быть не меньше количества оперативки. Про гибернацию лучше почитать [здесь](https://help.ubuntu.ru/wiki/%D1%81%D0%BF%D1%8F%D1%89%D0%B8%D0%B9_%D1%80%D0%B5%D0%B6%D0%B8%D0%BC).
+
+Режим гибернации по-умолчанию отключен. Чтобы его включить для начала нужно узнать UUID раздела, где расположен своп, а так же смещение своп-файла относительно начала раздела:
+
+```bash
+$ lsblk `df /swapfile | awk '/^\/dev/ {print $1}'` -no UUID
+217df373-d154-4f2e-9497-fcac21709729
+$ sudo filefrag -v /swapfile | awk 'NR == 4 {print $5}' | cut -d ':' -f 1
+1423360
+```
+
+![screenshot from 2019-02-23 02-12-34](https://user-images.githubusercontent.com/41215002/53276552-8f053b80-3710-11e9-9770-5dd5e733f70a.png)
+
+В `/etc/default/grub` прописать:
+
+```config
+GRUB_CMDLINE_LINUX_DEFAULT="quiet resume=UUID=217df373-d154-4f2e-9497-fcac21709729 resume_offset=1423360"
+```
+
+Теперь нужно обновить grub и сгенерировать initramfs:
+
+```bash
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+sudo mkinitcpio -p linux
+```
+
+Сам переход в режим гибернации выглядит так:
+
+```bash
+systemctl hibernate
+```
+
+Чтобы появилась кнопка для перехода в режим гибернации ставим [расширение](https://extensions.gnome.org/extension/755/hibernate-status-button/).
+
+![image](https://user-images.githubusercontent.com/41215002/53138121-3f9b0000-3596-11e9-84c9-5e1277f80b31.png)
+![image](https://user-images.githubusercontent.com/41215002/53138158-622d1900-3596-11e9-8a53-515e39382b03.png)
+
+# RAID
+
+В Linux RAID на аппаратном уровне называют FakeRAID. Для работы с FakeRAID  используется пакет dmraid.
+
+Редактируем конфиг mkinitcpio:
+
+```bash
+sudo nano /etc/mkinitcpio.conf
+```
+
+В хуки добавляем dmraid:
+
+```conf
+HOOKS=(base udev autodetect modconf block lvm2 dmraid filesystems keyboard fsck)
+```
+
+И генерируем mkinitcpio:
+
+```bash
+sudo mkinitcpio -p linux
+```
+
 # ZSH
 
 ## Установка ZSH
@@ -712,6 +776,38 @@ dconf reset -f /org/gnome/terminal/legacy/profiles:/
 
 * [Обзор тем](https://mayccoll.github.io/Gogh/).
 
+# Бекап
+
+```bash
+# Делаем дамп
+$ cd /
+$ tar -cvpzf backup.tar.gz --exclude=/backup.tar.gz --one-file-system /
+
+# Исключаем ситемные каталоги
+$ tar -cvpzf backup.tar.gz \
+--exclude=/backup.tar.gz \
+--exclude=/proc \
+--exclude=/tmp \
+--exclude=/mnt \
+--exclude=/dev \
+--exclude=/sys \
+--exclude=/run \
+--exclude=/media \
+--exclude=/var/log \
+--exclude=/var/cache/apt/archives \
+--exclude=/usr/src/linux-headers* \
+--exclude=/home/*/.gvfs \
+--exclude=/home/*/.cache \
+--exclude=/home/*/.local/share/Trash /
+
+# Восстановление дампа
+$ sudo tar -xvpzf /path/to/backup.tar.gz -C /media/whatever --numeric-owner
+```
+
+Ссылки:
+
+* [Делаем бекап системы с помощью tar](https://help.ubuntu.com/community/BackupYourSystem/TAR).
+
 # Блокируем сайты с рекламой через hosts
 
 ```bash
@@ -820,8 +916,9 @@ nvm install node
 # Настройка Docker
 
 ```bash
-sudo systemctl start docker
-sudo systemctl enable docker
+$ yay -S docker
+$ sudo systemctl start docker
+$ sudo systemctl enable docker
 # sudo groupadd docker
 # groupadd: group 'docker' already exists
 sudo usermod -aG docker $USER
@@ -830,7 +927,7 @@ sudo usermod -aG docker $USER
 Нужно выйти и войти в систему, а потом проверить:
 
 ```bash
-docker run hello-world
+$ docker run hello-world
 ```
 
 [Ссылка](https://docs.docker.com/install/linux/linux-postinstall/).
@@ -856,79 +953,35 @@ docker run hello-world
 }
 ```
 
-# Гибернация
-
-Режим гибернациии от режима сна отличается тем, что в первом случае содержимое оперативной памяти сохраняется на жесткий диск и питание полностью отключается, во втором - питание подается только на оперативку. Чем хороша гибернация? - Например, мы работаем в Linux, вошли в режим гибернации, а затем загрузились в Windows и играем. Когда мы в следующий раз загрузимся в Linux, то увидим все то, что было перед выключением. Прекрасно?! Но часто ли такое нужно?
-
-При переходе в режим гибернации делается дамп памяти на диск, причем всей, а не только используемой, так что размер файла подкачки должен быть не меньше количества оперативки. Про гибернацию лучше почитать [здесь](https://help.ubuntu.ru/wiki/%D1%81%D0%BF%D1%8F%D1%89%D0%B8%D0%B9_%D1%80%D0%B5%D0%B6%D0%B8%D0%BC).
-
-Режим гибернации по-умолчанию отключен. Чтобы его включить для начала нужно узнать UUID раздела, где расположен своп, а так же смещение своп-файла относительно начала раздела:
-
-```bash
-$ lsblk `df /swapfile | awk '/^\/dev/ {print $1}'` -no UUID
-217df373-d154-4f2e-9497-fcac21709729
-$ sudo filefrag -v /swapfile | awk 'NR == 4 {print $5}' | cut -d ':' -f 1
-1423360
-```
-
-![screenshot from 2019-02-23 02-12-34](https://user-images.githubusercontent.com/41215002/53276552-8f053b80-3710-11e9-9770-5dd5e733f70a.png)
-
-В `/etc/default/grub` прописать:
-
-```config
-GRUB_CMDLINE_LINUX_DEFAULT="quiet resume=UUID=217df373-d154-4f2e-9497-fcac21709729 resume_offset=1423360"
-```
-
-Теперь нужно обновить grub и сгенерировать initramfs:
-
-```bash
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-sudo mkinitcpio -p linux
-```
-
-Сам переход в режим гибернации выглядит так:
-
-```bash
-systemctl hibernate
-```
-
-Чтобы появилась кнопка для перехода в режим гибернации ставим [расширение](https://extensions.gnome.org/extension/755/hibernate-status-button/).
-
-![image](https://user-images.githubusercontent.com/41215002/53138121-3f9b0000-3596-11e9-84c9-5e1277f80b31.png)
-![image](https://user-images.githubusercontent.com/41215002/53138158-622d1900-3596-11e9-8a53-515e39382b03.png)
-
-# RAID
-
-В Linux RAID на аппаратном уровне называют FakeRAID. Для работы с FakeRAID  используется пакет dmraid.
-
-Редактируем конфиг mkinitcpio:
-
-```bash
-sudo nano /etc/mkinitcpio.conf
-```
-
-В хуки добавляем dmraid:
-
-```conf
-HOOKS=(base udev autodetect modconf block lvm2 dmraid filesystems keyboard fsck)
-```
-
-И генерируем mkinitcpio:
-
-```bash
-sudo mkinitcpio -p linux
-```
-
 # LVM
 
-## Изменение размера логического раздела
+Список логических разделов LVM:
+
+```bash
+$ sudo lvscan
+  ACTIVE            '/dev/linux/root' [40.00 GiB] inherit
+  ACTIVE            '/dev/linux/home' [20.00 GiB] inherit
+```
+
+Изменение размера логического раздела:
 
 ```bash
 # Ключ -r выполняет resizefs
 $ lvresize -r -L +10G /dev/linux/home
+
+# Аналогично двум командам:
+
+# Увеличиваем размер логического раздела
+$ sudo lvresize -L +10GB /dev/mapper/linux-home
+
+# После lvresize нужно обязательно изменить размер файловой системы
+$ sudo resize2fs /dev/mapper/linux-home
+
+# Делает то же самое, что и две команды выше
+$ sudo lvresize -r -L +10GB /dev/mapper/linux-root
 ```
 
-## Переименование логических разделов
+Переименование логического раздела:
 
 ```bash
 $ sudo lvrename <oldname> <newname>
@@ -968,6 +1021,115 @@ psql (11.1)
 Type "help" for help.
 
 sergey=>
+
+# Дамп базы схемы БД
+$ pg_dump -d db -f /tmp/dump.sql
+# Загрузка дампа
+$ psql db < /tmp/dump.sql
+```
+
+# Мониторинг процессов
+
+```bash
+# Замена стандартному top
+$ yay -S htop
+$ htop
+```
+
+# Git
+
+```bash
+# Установка
+$ yay -S git
+
+# Глобальные настройки
+$ git config --global user.name <yourname>
+$ git config --global user.email <email>
+
+# Сменить ветку
+$ git checkout <branchname>
+
+# Создать ветку и переключится на нее
+$ git checkout -b <branchname>
+
+# Объединить текущую ветку с branchname
+$ git merge <branchname>
+
+# Добавить изменения (все файлы в каталоге и вложеннхы)
+$ git add .
+
+# Закоммитить изменения (сделать описание)
+$ git commit -m "Тест"
+
+# Если не были добавлены новые файлы, а лишь производились изменения в уже добавленных, то можно использовать только одну команду
+$ git commit -am "Тест"
+
+# Обновить репозиторий на сервере
+$ git push
+
+# Выгрузить изменения с сервера (тоже самое, что git fetch + git merge)
+$ git pull
+
+# Копировать репозиторий
+$ git clone https://github.com/someuser/repo.git [<assigneddirectory>]
+
+# Посмотреть историю
+$ git log --graph --oneline --decorate --all
+
+# Посмотреть отличия по сравнения с предыдущей версией
+$ git diff 871d36b [<filename>]
+
+# Сохранить изменения
+$ git stash [save "my stash message here"]
+
+# Удалить stach и применить его
+$ git stash pop [stash@{1}]
+
+# Список stash
+$ git stash list
+
+# Посмотреть что там лежит
+$ git stash show stash@{0}
+
+$ git stash apply
+$ git stash drop stash@{2}
+$ git stash clear
+
+# List all the tags:
+
+$ git tag
+
+# Search tags for a particular pattern:
+
+$ git tag -l <tag-pattern>
+
+# Show a tag data:
+
+$ git show <tag-name>
+
+# Create a Lightweight Tag:
+
+$ git tag <tag-name>
+
+# Create an Annotated Tag:
+
+$ git tag -a <tag-name> -m <tag-message>
+
+# Create a tag for a specific commit:
+
+$ git tag -a <tag-name> <commit-checksome>
+
+# Push a specific tag to remote:
+
+$ git push origin <tag-name>
+
+# Push all the tags to remote:
+
+$ git push origin --tags
+
+# Checkout a specific to local:
+
+$ git checkout -b <branch-name> <tag-name>
 ```
 
 # Работаем с github через ssh
@@ -975,9 +1137,9 @@ sergey=>
 Генерация нового ключа:
 
 ```bash
-$ ssh-keygen -t rsa -b 4096 -C "buymethadone@gmail.com"
+$ ssh-keygen -t rsa -b 4096 -C "<email>"
 Generating public/private rsa key pair.
-Enter file in which to save the key (/home/sergey/.ssh/id_rsa): /home/sergey/.ssh/codedumps_rsa
+Enter file in which to save the key (/home/sergey/.ssh/id_rsa): /home/sergey/.ssh/github_rsa
 Created directory '/home/sergey/.ssh'.
 ...
 ```
@@ -1000,8 +1162,8 @@ url = git@github.com:<username>/<project>.git
 Для проекта можно указать локальные email и имя:
 
 ```bash
-git config user.email "buymethadone@gmail.com"
-git config user.name "codedumps"
+git config user.email <email>
+git config user.name <name>
 ```
 
 # Tor Service
@@ -1130,185 +1292,6 @@ removed '/home/sergey/.password-store/example.com.gpg'
 * [Pass — утилита для хранения паролей в Linux](http://www.spy-soft.net/linux-xranenie-parolej/);
 * [Приложение для Android](https://github.com/zeapo/Android-Password-Store);
 * [Устаревшее расширение для Chrome](https://github.com/browserpass/browserpass-legacy).
-
----
-
-# i3
-
-## Описание
-
-***i3*** &ndash; это тайловый оконный менеджер для Linux. Тут настройки под меня.
-
-## Установка и настройка i3
-
-```bash
-$ yay -S awesome-terminal-fonts bumblebee-status compton fonts-powerline dmenu i3-gaps i3lock-fancy-git lxappearance nitrogen rofi scrot termite xclip
-$ sudo nano /usr/share/xsessions/i3-custom.desktop
-[Desktop Entry]
-Name=i3 custom
-Exec=/usr/local/bin/i3-custom
-Type=Application
-$ sudo nano /usr/local/bin/i3-custom
-#!/bin/bash
-mkdir -p ~/.config/i3/logs
-export TERMINAL=termite
-exec i3 -V >> ~/.config/i3/logs/$(date +'%F-%T').log 2>&1
-$ sudo chmod +x /usr/local/bin/i3-custom
-$ i3-config-wizard
-$ cp /etc/xdg/termite/config ~/.config/termite/config
-$ nano ~/.config/termite/config
-[options]
-# ...
-font pango:Inconsolata, Font Awesome 10
-# ...
-[colors]
-# ...
-# 20% background transparency (requires a compositor)
-background = rgba(63, 63, 63, 0.8)
-$ cp /etc/xdg/compton.conf ~/.config
-$ nano ~/.config/i3/config
-# ...
-font pango:Droid Sans 10
-# ...
-# Заменяем все Mod1 на $m и создаем переменную выше вызовов bindsym
-set $m Mod1
-
-# lockscreen
-bindsym Ctrl+$m+l exec i3lock
-
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
-
-# Touchpad controls
-bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
-
-# Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-
-# rofi
-bindsym $m+t exec "rofi -combi-modi window,drun -show combi"
-
-# захватывает весь экран и копирует в буфер обмена
-bindsym --release Print exec "scrot /tmp/%F_%T_$wx$h.png -e 'xclip -selection c -t image/png < $f && rm $f'"
-# захватывает область экрана и копирует в буфер обмена
-bindsym --release Shift+Print exec "scrot -s /tmp/%F_%T_$wx$h.png -e 'xclip -selection c -t image/png < $f && rm $f'"
-# ...
-bar {
-  set $disk_format "{path}: {used}/{size}"
-  status_command bumblebee-status -m nic disk:root disk:home cpu memory sensors pulseaudio datetime layout pacman -p root.left-click="nautilus /" root.format=$disk_format home.path=/home home.left-click="nautilus /home" home.format=$disk_format -t solarized-powerline
-  position top
-}
-# ...
-# отступы между окнами
-gaps outer -10
-gaps inner 20
-
-floating_minimum_size 75 x 50
-floating_maximum_size -1 x -1
-# Убрать рамки у окон:
-# 1)
-# new_window pixel 0
-# 2)
-# for_window [class="^.*"] border none
-# force floating for all new windows
-# for_window [class=".*"] floating enable
-for_window [class="Nautilus" instance="file_progress"] floating enable
-for_window [class="^Telegram"] floating enable, resize set 800 600
-# Всплывающие окна браузера
-for_window [window_role="pop-up"] floating enable
-# no_focus [window_role="pop-up"]
-# прозрачность терминала
-exec --no-startup-id compton --config ~/.config/compton.conf
-# смена расскладки
-exec --no-startup-id setxkbmap -model pc105 -layout us,ru -option grp:ctrl_shift_toggle
-# восстановление заставки рабочего стола
-exec --no-startup-id nitrogen --restore
-```
-
-Нужно выйти из сессии и выбрать в Display Manager сессию `i3 custom`.
-
-**LXAppearance**  используется для изменения значков, шрифта по-умолчанию в приложениях.
-
-**Nitrogen**  позволяет менять обои.
-
-Для изменения оформления i3 &ndash; служит [i3-style](https://github.com/acrisci/i3-style):
-
-```bash
-$ yay -S i3-style
-$ i3-style archlinux -o ~/.config/i3/config --reload
-```
-
-## XTerm
-
-Вместо `Ctrl+Shift+V`  нужно использовать `Shift+Ins`, а вместо `Ctrl+Shift+C` &ndash; `Ctrl+C`. Права кнопка мыши копировать, клик по колесику &ndash; вставить.
-
-## Termite: горячие клавиши
-
-| Сочетание <img width=450> | Значение <img width=450> |
-| -- | -- |
-| `ctrl-shift-x` | activate url hints mode |
-| `ctrl-shift-r` | reload configuration file |
-| `ctrl-shift-c` | copy to CLIPBOARD |
-| `ctrl-shift-v` | paste from CLIPBOARD |
-| `ctrl-shift-u` | unicode input (standard GTK binding) |
-| `ctrl-shift-e` | emoji (standard GTK binding) |
-| `ctrl-tab` | start scrollback completion |
-| `ctrl-shift-space` | start selection mode |
-| `ctrl-shift-t` | open terminal in the current directory [1]_ |
-| `ctrl-shift-up` | scroll up a line |
-| `ctrl-shift-down` | scroll down a line |
-| `shift-pageup` | scroll up a page |
-| `shift-pagedown` | scroll down a page |
-| `ctrl-shift-l` | reset and clear |
-| `ctrl-+` | increase font size |
-| `ctrl--` | decrease font size |
-| `ctrl-=` | reset font size to default |
-
-[Отсюда](https://github.com/thestinger/termite#keybindings).
-
-## Цветовые схемы Termite
-
-```bash
-$ curl https://raw.githubusercontent.com/khamer/base16-termite/master/themes/base16-nord.config >> ~/.config/termite/config
-$ nano ~/.config/termite/config
-# 4-ое значение отвечает за прозрачность (1 - непрозрачно, 0 - абсолютная прозрачность)
-background          = rgba(40, 44, 52, 0.8)
-```
-
-## Заставка lockscreen
-
-```bash
-$ yay -S i3lock-fancy-git
-$ nano ~/.config/i3/config
-# параметр -B делает фоном lockscreen скриншот экрана с размытием
-bindsym Ctrl+$m+l exec i3lock-fancy -gpf Ubuntu -- scrot -z
-```
-
-[Репозиторий](https://github.com/khamer/base16-termite).
-
-## Сохранение/восстановление рабочего пространства
-
-```bash
-# Сохранение
-i3-save-tree --workspace 1 > ~/.i3/workspace-1.json
-# Восстановление
-i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
-```
-
-Требует установки зависимостей.
-
-[Документация](https://i3wm.org/docs/layout-saving.html).
-
----
 
 # Частые проблемы
 
@@ -1936,8 +1919,18 @@ LOWERCASE
 # Список разделов
 $ sudo fdisk -l
 
+$ sudo mkdir /mnt/usb{1..3}
+$ sudo chmod 777 /mnt/usb{1..3}
 # Монтировать устройство
-$ mount /dev/linux/root /mnt
+$ sudo mount /dev/sdb1 /mnt/usb1
+
+# Размонтируем устройство
+$ sudo umount /dev/sdb1
+# или
+$ sudo umount /mnt/usb1
+
+# Сменить владельца и группу для файла
+$ sudo chown $USER:$USER /path/to/file
 
 # В Linux все файлы. Регулярные файлы ‒ обычные файлы, каталоги ‒ это файлы содержащие список файлов и т.д.
 
@@ -2064,20 +2057,6 @@ $ ccat ./file
 # Вывести файлы в каталоге, отсортировав их по времени до доступа
 $ ls -ltu <path>
 
-# Увеличиваем размер логического раздела
-$ sudo lvresize -L +10GB /dev/mapper/linux-root
-
-# После lvresize нужно обязательно изменить размер файловой системы
-$ sudo resize2fs /dev/mapper/linux-root
-
-# Делает то же самое, что и две команды выше
-$ sudo lvresize -r -L +10GB /dev/mapper/linux-root
-
-# Список логических разделов LVM
-$ sudo lvscan
-  ACTIVE            '/dev/linux/root' [40.00 GiB] inherit
-  ACTIVE            '/dev/linux/home' [20.00 GiB] inherit
-
 # Изменить размер каталога /tmp
 $ mount -o remount,size=4G /tmp/
 
@@ -2158,100 +2137,6 @@ $ xclip -o -sel clip
 $ file="test.docx"
 $ base64 -w 0 $file  | xclip -selection clipboard
 
-# ==============================================================================
-#
-# Git
-#
-# ==============================================================================
-
-# Первоначальная настройка (без флага --global локального проекта)
-$ git config --global user.name <yourname>
-$ git config --global user.email <email>
-
-# Сменить ветку
-$ git checkout <branchname>
-
-# Создать ветку и переключится на нее
-$ git checkout -b <branchname>
-
-# Объединить текущую ветку с branchname
-$ git merge <branchname>
-
-# Добавить изменения (все файлы в каталоге и вложеннхы)
-$ git add .
-
-# Закоммитить изменения (сделать описание)
-$ git commit -m "Тест"
-
-# Если не были добавлены новые файлы, а лишь производились изменения в уже добавленных, то можно использовать только одну команду
-$ git commit -am "Тест"
-
-# Обновить репозиторий на сервере
-$ git push
-
-# Выгрузить изменения с сервера (тоже самое, что git fetch + git merge)
-$ git pull
-
-# Копировать репозиторий
-$ git clone https://github.com/someuser/repo.git [<assigneddirectory>]
-
-# Посмотреть историю
-$ git log --graph --oneline --decorate --all
-
-# Посмотреть отличия по сравнения с предыдущей версией
-$ git diff 871d36b [<filename>]
-
-# Сохранить изменения
-$ git stash [save "my stash message here"]
-
-# Удалить stach и применить его
-$ git stash pop [stash@{1}]
-
-# Список stash
-$ git stash list
-
-# Посмотреть что там лежит
-$ git stash show stash@{0}
-
-$ git stash apply
-$ git stash drop stash@{2}
-$ git stash clear
-
-# List all the tags:
-
-$ git tag
-
-# Search tags for a particular pattern:
-
-$ git tag -l <tag-pattern>
-
-# Show a tag data:
-
-$ git show <tag-name>
-
-# Create a Lightweight Tag:
-
-$ git tag <tag-name>
-
-# Create an Annotated Tag:
-
-$ git tag -a <tag-name> -m <tag-message>
-
-# Create a tag for a specific commit:
-
-$ git tag -a <tag-name> <commit-checksome>
-
-# Push a specific tag to remote:
-
-$ git push origin <tag-name>
-
-# Push all the tags to remote:
-
-$ git push origin --tags
-
-# Checkout a specific to local:
-
-$ git checkout -b <branch-name> <tag-name>
 
 # ==============================================================================
 #
@@ -2321,12 +2206,6 @@ $ gnome-terminal --geometry 135x45
 $ tldr cat
 $ tldr --search create file
 
-# Сделать дам базы
-$ pg_dump -d test -f /tmp/schema.sql
-
-# Мониторинг процессов
-$ yay -S htop
-$ htop
 ```
 
 Ссылки:
@@ -2337,3 +2216,178 @@ $ htop
 * [Inode](https://ru.wikipedia.org/wiki/Inode);
 * [Управление разделами LVM](https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/s1-disk-storage-lvm.html);
 * [Часто используемые команды Git](https://carolinegabriel.com/used-git-commands-copy-paste-format/).
+
+---
+
+# i3: Введение
+
+***i3*** &ndash; это тайловый оконный менеджер для Linux. Тут настройки под меня.
+
+# i3: Установка и настройка
+
+```bash
+$ yay -S awesome-terminal-fonts bumblebee-status compton fonts-powerline dmenu i3-gaps i3lock-fancy-git lxappearance nitrogen rofi scrot termite xclip
+$ sudo nano /usr/share/xsessions/i3-custom.desktop
+[Desktop Entry]
+Name=i3 custom
+Exec=/usr/local/bin/i3-custom
+Type=Application
+$ sudo nano /usr/local/bin/i3-custom
+#!/bin/bash
+mkdir -p ~/.config/i3/logs
+export TERMINAL=termite
+exec i3 -V >> ~/.config/i3/logs/$(date +'%F-%T').log 2>&1
+$ sudo chmod +x /usr/local/bin/i3-custom
+$ i3-config-wizard
+$ cp /etc/xdg/termite/config ~/.config/termite/config
+$ nano ~/.config/termite/config
+[options]
+# ...
+font pango:Inconsolata, Font Awesome 10
+# ...
+[colors]
+# ...
+# 20% background transparency (requires a compositor)
+background = rgba(63, 63, 63, 0.8)
+$ cp /etc/xdg/compton.conf ~/.config
+$ nano ~/.config/i3/config
+# ...
+font pango:Droid Sans 10
+# ...
+# Заменяем все Mod1 на $m и создаем переменную выше вызовов bindsym
+set $m Mod1
+
+# lockscreen
+bindsym Ctrl+$m+l exec i3lock
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# rofi
+bindsym $m+t exec "rofi -combi-modi window,drun -show combi"
+
+# захватывает весь экран и копирует в буфер обмена
+bindsym --release Print exec "scrot /tmp/%F_%T_$wx$h.png -e 'xclip -selection c -t image/png < $f && rm $f'"
+# захватывает область экрана и копирует в буфер обмена
+bindsym --release Shift+Print exec "scrot -s /tmp/%F_%T_$wx$h.png -e 'xclip -selection c -t image/png < $f && rm $f'"
+# ...
+bar {
+  set $disk_format "{path}: {used}/{size}"
+  status_command bumblebee-status -m nic disk:root disk:home cpu memory sensors pulseaudio datetime layout pacman -p root.left-click="nautilus /" root.format=$disk_format home.path=/home home.left-click="nautilus /home" home.format=$disk_format -t solarized-powerline
+  position top
+}
+# ...
+# отступы между окнами
+gaps outer -10
+gaps inner 20
+
+floating_minimum_size 75 x 50
+floating_maximum_size -1 x -1
+# Убрать рамки у окон:
+# 1)
+# new_window pixel 0
+# 2)
+# for_window [class="^.*"] border none
+# force floating for all new windows
+# for_window [class=".*"] floating enable
+for_window [class="Nautilus" instance="file_progress"] floating enable
+for_window [class="^Telegram"] floating enable, resize set 800 600
+# Всплывающие окна браузера
+for_window [window_role="pop-up"] floating enable
+# no_focus [window_role="pop-up"]
+# прозрачность терминала
+exec --no-startup-id compton --config ~/.config/compton.conf
+# смена расскладки
+exec --no-startup-id setxkbmap -model pc105 -layout us,ru -option grp:ctrl_shift_toggle
+# восстановление заставки рабочего стола
+exec --no-startup-id nitrogen --restore
+```
+
+Нужно выйти из сессии и выбрать в Display Manager сессию `i3 custom`.
+
+**LXAppearance**  используется для изменения значков, шрифта по-умолчанию в приложениях.
+
+**Nitrogen**  позволяет менять обои.
+
+Для изменения оформления i3 &ndash; служит [i3-style](https://github.com/acrisci/i3-style):
+
+```bash
+$ yay -S i3-style
+$ i3-style archlinux -o ~/.config/i3/config --reload
+```
+
+# XTerm
+
+Вместо `Ctrl+Shift+V`  нужно использовать `Shift+Ins`, а вместо `Ctrl+Shift+C` &ndash; `Ctrl+C`. Права кнопка мыши копировать, клик по колесику &ndash; вставить.
+
+# Termite: горячие клавиши
+
+| Сочетание <img width=450> | Значение <img width=450> |
+| -- | -- |
+| `ctrl-shift-x` | activate url hints mode |
+| `ctrl-shift-r` | reload configuration file |
+| `ctrl-shift-c` | copy to CLIPBOARD |
+| `ctrl-shift-v` | paste from CLIPBOARD |
+| `ctrl-shift-u` | unicode input (standard GTK binding) |
+| `ctrl-shift-e` | emoji (standard GTK binding) |
+| `ctrl-tab` | start scrollback completion |
+| `ctrl-shift-space` | start selection mode |
+| `ctrl-shift-t` | open terminal in the current directory [1]_ |
+| `ctrl-shift-up` | scroll up a line |
+| `ctrl-shift-down` | scroll down a line |
+| `shift-pageup` | scroll up a page |
+| `shift-pagedown` | scroll down a page |
+| `ctrl-shift-l` | reset and clear |
+| `ctrl-+` | increase font size |
+| `ctrl--` | decrease font size |
+| `ctrl-=` | reset font size to default |
+
+[Отсюда](https://github.com/thestinger/termite#keybindings).
+
+# Termite: цветовые схемы
+
+```bash
+$ curl https://raw.githubusercontent.com/khamer/base16-termite/master/themes/base16-nord.config >> ~/.config/termite/config
+$ nano ~/.config/termite/config
+# 4-ое значение отвечает за прозрачность (1 - непрозрачно, 0 - абсолютная прозрачность)
+background          = rgba(40, 44, 52, 0.8)
+```
+
+# i3: заставка lockscreen
+
+```bash
+$ yay -S i3lock-fancy-git
+$ nano ~/.config/i3/config
+# параметр -B делает фоном lockscreen скриншот экрана с размытием
+bindsym Ctrl+$m+l exec i3lock-fancy -gpf Ubuntu -- scrot -z
+```
+
+[Репозиторий](https://github.com/khamer/base16-termite).
+
+# i3: сохранение/восстановление рабочего пространства
+
+```bash
+# Сохранение
+i3-save-tree --workspace 1 > ~/.i3/workspace-1.json
+# Восстановление
+i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
+```
+
+Требует установки зависимостей.
+
+[Документация](https://i3wm.org/docs/layout-saving.html).
