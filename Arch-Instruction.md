@@ -615,15 +615,34 @@ gsettings reset org.gnome.mutter experimental-features
 
 ![image](https://user-images.githubusercontent.com/41215002/53122203-1adb6400-3567-11e9-919c-a031dce832e5.png)
 
-# Шрифты
-
-Шрифты надо кидать в `/usr/share/fonts` либо в `~/.fonts` или в `~/.local/share/fonts`. После выполняем:
+# Монтируем Windows разделы
 
 ```bash
+$ sudo mkdir /mnt/c
+```
+
+Редактируем `/etc/fstab`: 
+
+```conf
+/dev/nvme0n1p4 /mnt/c ntfs-3g rw,user,fmask=0111,dmask=0000 0 0
+```
+
+# Шрифты
+
+Шрифты надо кидать в `/usr/share/fonts` либо в `~/.fonts` или в `~/.local/share/fonts`.
+
+```bash
+# Обновить шрифты
 $ fc-cache -f -v
 
 # Чтобы проверить установлен ли шрифт
 $ fc-list | grep "<name-of-font>"
+```
+
+Шарим Windows шрифты:
+
+```bash
+$ sudo ln -sf /mnt/c/Windows/Fonts /usr/share/fonts/WindowsFonts
 ```
 
 ![screenshot from 2019-02-20 23-17-46](https://user-images.githubusercontent.com/41215002/53122109-da7be600-3566-11e9-9de7-06582f3d6a53.png)
@@ -1976,8 +1995,7 @@ LOWERCASE
 # Список разделов
 $ sudo fdisk -l
 
-$ sudo mkdir /mnt/usb{1..3}
-$ sudo chmod 777 /mnt/usb{1..3}
+$ sudo mkdir /mnt/usb1
 # Монтировать устройство
 $ sudo mount /dev/sdb1 /mnt/usb1
 
