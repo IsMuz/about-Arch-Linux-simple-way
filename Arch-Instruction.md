@@ -843,7 +843,7 @@ mount /path/to/root /mnt/root
 cd /mnt/root
 tar -cvpzf /mnt/backup/root.tar.gz .
 
-# Извлечение бекапа
+# Извлекаем бекапа
 tar -xzpvf /mnt/backup/root.tar.gz -C /mnt/root
 ```
 
