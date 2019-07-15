@@ -33,6 +33,7 @@
 - [Масштабировавние 150% как в Windows](#%D0%9C%D0%B0%D1%81%D1%88%D1%82%D0%B0%D0%B1%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%B2%D0%BD%D0%B8%D0%B5-150-%D0%BA%D0%B0%D0%BA-%D0%B2-Windows)
 - [Расширения для Gnome](#%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B4%D0%BB%D1%8F-Gnome)
 - [Пользовательские сочетания клавиш](#%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5-%D1%81%D0%BE%D1%87%D0%B5%D1%82%D0%B0%D0%BD%D0%B8%D1%8F-%D0%BA%D0%BB%D0%B0%D0%B2%D0%B8%D1%88)
+- [Монтируем Windows разделы](#%D0%9C%D0%BE%D0%BD%D1%82%D0%B8%D1%80%D1%83%D0%B5%D0%BC-Windows-%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D1%8B)
 - [Шрифты](#%D0%A8%D1%80%D0%B8%D1%84%D1%82%D1%8B)
 - [Запуск исполняемых файлов по двойному клику в Nautilus](#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D0%BD%D1%8F%D0%B5%D0%BC%D1%8B%D1%85-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2-%D0%BF%D0%BE-%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%BE%D0%BC%D1%83-%D0%BA%D0%BB%D0%B8%D0%BA%D1%83-%D0%B2-Nautilus)
 - [Шаблоны файлов](#%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2)
@@ -55,6 +56,7 @@
 - [Настройка Docker](#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-Docker)
 - [Настройка Visual Code](#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-Visual-Code)
 - [LVM](#LVM)
+- [Btrfs](#Btrfs)
 - [Установка и настройка Postgres](#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-Postgres)
 - [Мониторинг процессов](#%D0%9C%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2)
 - [Git](#Git)
@@ -186,10 +188,10 @@ mount /dev/nvme0n1p2 /mnt/boot/efi
 
 ```bash
 mount /dev/nvme0n1p5 /mnt
-btrfs subvolume create /mnt/@root
+btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@home
 umount /mnt
-mount -o noatime,compress=lzo,space_cache,subvol=@root /dev/nvme0n1p5 /mnt
+mount -o noatime,compress=lzo,space_cache,subvol=@ /dev/nvme0n1p5 /mnt
 mkdir /mnt/home
 mount -o noatime,compress=lzo,space_cache,subvol=@home /dev/nvme0n1p5 /mnt/home
 # Файл подкачки нужно создавать так
@@ -621,7 +623,7 @@ gsettings reset org.gnome.mutter experimental-features
 $ sudo mkdir /mnt/c
 ```
 
-Редактируем `/etc/fstab`: 
+Редактируем `/etc/fstab`:
 
 ```conf
 /dev/nvme0n1p4 /mnt/c ntfs-3g rw,user,fmask=0111,dmask=0000 0 0
@@ -1068,11 +1070,14 @@ $ sudo grub-mkconfig -o /boot/grub/grub.cfg
 # Btrfs
 
 ```bash
-$ sudo btrfs subvol list -a /
-[sudo] password for sergey: 
-ID 257 gen 831 top level 5 path <FS_TREE>/@root
+# $ sudo btrfs subvolume list -a /
+# $ sudo btrfs subvol list -a /
+$ sudo btrfs sub list -a /
+ID 257 gen 831 top level 5 path <FS_TREE>/@
 ID 258 gen 831 top level 5 path <FS_TREE>/@home
 
+# Переименование subvolume
+$ mv /mnt/@oldname /mnt/@newname
 ```
 
 # Установка и настройка Postgres
