@@ -26,18 +26,22 @@
 1. [Пакетные менеджеры](#%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BD%D1%8B%D0%B5-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D1%8B)
 1. [Нужные пакеты](#%D0%BD%D1%83%D0%B6%D0%BD%D1%8B%D0%B5-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B)
 1. [Заменяем ядро на стабильное](#%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC-%D1%8F%D0%B4%D1%80%D0%BE-%D0%BD%D0%B0-%D1%81%D1%82%D0%B0%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5)
-1. [Права](#%D0%BF%D1%80%D0%B0%D0%B2%D0%B0)
-1. [Добавляем путь в PATH](#%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC-%D0%BF%D1%83%D1%82%D1%8C-%D0%B2-path)
-1. [bin в домашнем каталоге](#bin-%D0%B2-%D0%B4%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D0%B5%D0%BC-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%B5)
 1. [Масштабировавние 150% как в Windows](#%D0%BC%D0%B0%D1%81%D1%88%D1%82%D0%B0%D0%B1%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%B2%D0%BD%D0%B8%D0%B5-150-%D0%BA%D0%B0%D0%BA-%D0%B2-windows)
 1. [Расширения для Gnome](#%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B4%D0%BB%D1%8F-gnome)
 1. [Пользовательские сочетания клавиш](#%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5-%D1%81%D0%BE%D1%87%D0%B5%D1%82%D0%B0%D0%BD%D0%B8%D1%8F-%D0%BA%D0%BB%D0%B0%D0%B2%D0%B8%D1%88)
-1. [Монтируем Windows разделы](#%D0%BC%D0%BE%D0%BD%D1%82%D0%B8%D1%80%D1%83%D0%B5%D0%BC-windows-%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D1%8B)
-1. [Шрифты](#%D1%88%D1%80%D0%B8%D1%84%D1%82%D1%8B)
 1. [Запуск исполняемых файлов по двойному клику в Nautilus](#%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D0%BD%D1%8F%D0%B5%D0%BC%D1%8B%D1%85-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2-%D0%BF%D0%BE-%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%BE%D0%BC%D1%83-%D0%BA%D0%BB%D0%B8%D0%BA%D1%83-%D0%B2-nautilus)
 1. [Шаблоны файлов](#%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2)
 1. [Гибернация](#%D0%B3%D0%B8%D0%B1%D0%B5%D1%80%D0%BD%D0%B0%D1%86%D0%B8%D1%8F)
 1. [RAID](#raid)
+1. [Права](#%D0%BF%D1%80%D0%B0%D0%B2%D0%B0)
+1. [Добавляем путь в PATH](#%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC-%D0%BF%D1%83%D1%82%D1%8C-%D0%B2-path)
+1. [bin в домашнем каталоге](#bin-%D0%B2-%D0%B4%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D0%B5%D0%BC-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%B5)
+1. [Монтируем Windows разделы](#%D0%BC%D0%BE%D0%BD%D1%82%D0%B8%D1%80%D1%83%D0%B5%D0%BC-windows-%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D1%8B)
+1. [Шрифты](#%D1%88%D1%80%D0%B8%D1%84%D1%82%D1%8B)
+1. [Emoji](#emoji)
+1. [Спецсимволы](#%D1%81%D0%BF%D0%B5%D1%86%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D1%8B)
+1. [Блокировка рекламных сайтов](#%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0-%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BD%D1%8B%D1%85-%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2)
+1. [Редактирование DConf](#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-dconf)
 1. [ZSH](#zsh)
    1. [Установка ZSH](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-zsh)
    1. [Oh My Zsh](#oh-my-zsh)
@@ -57,16 +61,13 @@
 1. [LVM](#lvm)
 1. [Btrfs](#btrfs)
 1. [Snapper](#snapper)
+1. [Timeshift](#timeshift)
 1. [Установка и настройка Postgres](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-postgres)
 1. [Мониторинг процессов](#%D0%BC%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2)
 1. [systemd](#systemd)
 1. [Git](#git)
 1. [Работаем с github через ssh](#%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC-%D1%81-github-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-ssh)
 1. [Tor Service](#tor-service)
-1. [Emoji](#emoji)
-1. [Спецсимволы](#%D1%81%D0%BF%D0%B5%D1%86%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D1%8B)
-1. [Блокировка рекламных сайтов](#%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0-%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BD%D1%8B%D1%85-%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2)
-1. [Редактирование DConf](#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-dconf)
 1. [Менеджер паролей pass](#%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80-%D0%BF%D0%B0%D1%80%D0%BE%D0%BB%D0%B5%D0%B9-pass)
 1. [Частые проблемы](#%D1%87%D0%B0%D1%81%D1%82%D1%8B%D0%B5-%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D1%8B)
    1. [Grub Rescue](#grub-rescue)
@@ -518,6 +519,124 @@ yay -R linux linux-headers
 mkinitcpio -p linux
 ```
 
+# Масштабировавние 150% как в Windows
+
+По-умолчанию в Gnome масштабирование кратно 100. Чтобы добавить варианты масштабирования 125% и 150% нужно выполнить в терминале:
+
+```bash
+gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
+```
+
+Отключение:
+
+```
+gsettings reset org.gnome.mutter experimental-features
+```
+
+# Расширения для Gnome
+
+Устанавливаем [расширение](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=ru) для Chrome.
+
+![image](https://user-images.githubusercontent.com/41215002/53135292-b979bc00-358b-11e9-95df-7a540bc7b6f0.png)
+
+Управление расширениями осуществляется через Tweaks.
+
+![image](https://user-images.githubusercontent.com/41215002/53135669-25a8ef80-358d-11e9-9d5b-5024729dc550.png)
+
+Расширения для установки:
+
+| Название <img width="450"> | Описание <img width="450"> |
+| -- | -- |
+| [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/). | Выезжающий Dash - панель с избранными приложениями |
+| [Desktop Icons](https://extensions.gnome.org/extension/1465/desktop-icons/) | Иконки на рабочем столе |
+| [ShellTile](https://extensions.gnome.org/extension/657/shelltile/) | Тайловый менеджер |
+| [Log Out Button](https://extensions.gnome.org/extension/1143/logout-button/) | Добавляет кнопку, которая выполняет выход из системы |
+
+# Пользовательские сочетания клавиш
+
+В Settings → Devices → Keyboard добавляем сочетания клавиш:
+* `Ctrl + Alt + T` для запуска терминала (`gnome-terminal`);
+* `Ctrl + Alt + V`  для запуска Visual Code (`code`).
+
+![image](https://user-images.githubusercontent.com/41215002/53122203-1adb6400-3567-11e9-919c-a031dce832e5.png)
+
+# Запуск исполняемых файлов по двойному клику в Nautilus
+
+Заставляем Nautilus выполнять исполняемые файлы вместо открытия их в текстовом редакторе. Нужно нажать на три точки, а потом выбрать Preferences:
+
+![image](https://user-images.githubusercontent.com/41215002/53286773-8bab9780-3784-11e9-8e41-44edba435356.png)
+
+# Шаблоны файлов
+
+Чтобы в Nautilus в контекстном меню отображался пункт `New Document`, нужно в `~/Templaytes` создать шаблоны файлов:
+
+```bash
+touch ~/Templates/{Empty\ Document,Text\ Document.txt,README.md,pyfile.py}
+```
+
+# Гибернация
+
+Режим гибернациии от режима сна отличается тем, что в первом случае содержимое оперативной памяти сохраняется на жесткий диск и питание полностью отключается, во втором - питание подается только на оперативку. Чем хороша гибернация? - Например, мы работаем в Linux, вошли в режим гибернации, а затем загрузились в Windows и играем. Когда мы в следующий раз загрузимся в Linux, то увидим все то, что было перед выключением. Прекрасно?! Но часто ли такое нужно?
+
+При переходе в режим гибернации делается дамп памяти на диск, причем всей, а не только используемой, так что размер файла подкачки должен быть не меньше количества оперативки. Про гибернацию лучше почитать [здесь](https://help.ubuntu.ru/wiki/%D1%81%D0%BF%D1%8F%D1%89%D0%B8%D0%B9_%D1%80%D0%B5%D0%B6%D0%B8%D0%BC).
+
+Режим гибернации по-умолчанию отключен. Чтобы его включить для начала нужно узнать UUID раздела, где расположен своп, а так же смещение своп-файла относительно начала раздела:
+
+```bash
+$ lsblk `df /swapfile | awk '/^\/dev/ {print $1}'` -no UUID
+217df373-d154-4f2e-9497-fcac21709729
+$ sudo filefrag -v /swapfile | awk 'NR == 4 {print $5}' | cut -d ':' -f 1
+1423360
+```
+
+![screenshot from 2019-02-23 02-12-34](https://user-images.githubusercontent.com/41215002/53276552-8f053b80-3710-11e9-9770-5dd5e733f70a.png)
+
+В `/etc/default/grub` прописать:
+
+```config
+GRUB_CMDLINE_LINUX_DEFAULT="quiet resume=UUID=217df373-d154-4f2e-9497-fcac21709729 resume_offset=1423360"
+```
+
+Теперь нужно обновить grub и сгенерировать initramfs:
+
+```bash
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+sudo mkinitcpio -p linux
+```
+
+Сам переход в режим гибернации выглядит так:
+
+```bash
+systemctl hibernate
+```
+
+Чтобы появилась кнопка для перехода в режим гибернации ставим [расширение](https://extensions.gnome.org/extension/755/hibernate-status-button/).
+
+![image](https://user-images.githubusercontent.com/41215002/53138121-3f9b0000-3596-11e9-84c9-5e1277f80b31.png)
+![image](https://user-images.githubusercontent.com/41215002/53138158-622d1900-3596-11e9-8a53-515e39382b03.png)
+
+# RAID
+
+В Linux RAID на аппаратном уровне называют FakeRAID. Для работы с FakeRAID  используется пакет dmraid.
+
+Редактируем конфиг mkinitcpio:
+
+```bash
+sudo nano /etc/mkinitcpio.conf
+```
+
+В хуки добавляем dmraid:
+
+```conf
+HOOKS=(base udev autodetect modconf block lvm2 dmraid filesystems keyboard fsck)
+```
+
+И генерируем mkinitcpio:
+
+```bash
+sudo mkinitcpio -p linux
+```
+
 # Права
 
 4 - Чтение (r)
@@ -602,47 +721,6 @@ $ hello $USER
 Hello, sergey!
 ```
 
-# Масштабировавние 150% как в Windows
-
-По-умолчанию в Gnome масштабирование кратно 100. Чтобы добавить варианты масштабирования 125% и 150% нужно выполнить в терминале:
-
-```bash
-gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
-```
-
-Отключение:
-
-```
-gsettings reset org.gnome.mutter experimental-features
-```
-
-# Расширения для Gnome
-
-Устанавливаем [расширение](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=ru) для Chrome.
-
-![image](https://user-images.githubusercontent.com/41215002/53135292-b979bc00-358b-11e9-95df-7a540bc7b6f0.png)
-
-Управление расширениями осуществляется через Tweaks.
-
-![image](https://user-images.githubusercontent.com/41215002/53135669-25a8ef80-358d-11e9-9d5b-5024729dc550.png)
-
-Расширения для установки:
-
-| Название <img width="450"> | Описание <img width="450"> |
-| -- | -- |
-| [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/). | Выезжающий Dash - панель с избранными приложениями |
-| [Desktop Icons](https://extensions.gnome.org/extension/1465/desktop-icons/) | Иконки на рабочем столе |
-| [ShellTile](https://extensions.gnome.org/extension/657/shelltile/) | Тайловый менеджер |
-| [Log Out Button](https://extensions.gnome.org/extension/1143/logout-button/) | Добавляет кнопку, которая выполняет выход из системы |
-
-# Пользовательские сочетания клавиш
-
-В Settings → Devices → Keyboard добавляем сочетания клавиш:
-* `Ctrl + Alt + T` для запуска терминала (`gnome-terminal`);
-* `Ctrl + Alt + V`  для запуска Visual Code (`code`).
-
-![image](https://user-images.githubusercontent.com/41215002/53122203-1adb6400-3567-11e9-919c-a031dce832e5.png)
-
 # Монтируем Windows разделы
 
 ```bash
@@ -680,81 +758,46 @@ $ sudo ln -sf /mnt/c/Windows/Fonts /usr/share/fonts/WindowsFonts
 * [Powrline Fonts](https://github.com/powerline/fonts);
 * [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts).
 
-# Запуск исполняемых файлов по двойному клику в Nautilus
+# Emoji
 
-Заставляем Nautilus выполнять исполняемые файлы вместо открытия их в текстовом редакторе. Нужно нажать на три точки, а потом выбрать Preferences:
+```yay
+yay -S ttf-emojione
+```
 
-![image](https://user-images.githubusercontent.com/41215002/53286773-8bab9780-3784-11e9-8e41-44edba435356.png)
+# Спецсимволы
 
-# Шаблоны файлов
+Для вставки специальных символов в Gnome применяется сочетание клавиш `Ctrl+Shift+U`, далее вводим 4-х значный код символа.
 
-Чтобы в Nautilus в контекстном меню отображался пункт `New Document`, нужно в `~/Templaytes` создать шаблоны файлов:
+| Символ | Unicode  |
+| -- | -- |
+| « | 00ab |
+| » | 00bb |
+| © | 00a9 |
+| ™ | 2122 |
+| § | 00a7 |
+| – | 2013 |
+| € | 20ac |
+| ₽ | 20bd |
+| → | 2192 |
+| λ | 03bb |
+
+# Блокировка рекламных сайтов
 
 ```bash
-touch ~/Templates/{Empty\ Document,Text\ Document.txt,README.md,pyfile.py}
+wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
 ```
 
-# Гибернация
+# Редактирование DConf
 
-Режим гибернациии от режима сна отличается тем, что в первом случае содержимое оперативной памяти сохраняется на жесткий диск и питание полностью отключается, во втором - питание подается только на оперативку. Чем хороша гибернация? - Например, мы работаем в Linux, вошли в режим гибернации, а затем загрузились в Windows и играем. Когда мы в следующий раз загрузимся в Linux, то увидим все то, что было перед выключением. Прекрасно?! Но часто ли такое нужно?
+DConf хранит профили терминала в `~/.config/dconf/user`, в формате GVDB [пруф](https://en.wikipedia.org/wiki/Dconf).
 
-При переходе в режим гибернации делается дамп памяти на диск, причем всей, а не только используемой, так что размер файла подкачки должен быть не меньше количества оперативки. Про гибернацию лучше почитать [здесь](https://help.ubuntu.ru/wiki/%D1%81%D0%BF%D1%8F%D1%89%D0%B8%D0%B9_%D1%80%D0%B5%D0%B6%D0%B8%D0%BC).
-
-Режим гибернации по-умолчанию отключен. Чтобы его включить для начала нужно узнать UUID раздела, где расположен своп, а так же смещение своп-файла относительно начала раздела:
+![image](https://user-images.githubusercontent.com/12753171/60671500-ba3c2c00-9e62-11e9-9f70-79b1bd9aed19.png)
 
 ```bash
-$ lsblk `df /swapfile | awk '/^\/dev/ {print $1}'` -no UUID
-217df373-d154-4f2e-9497-fcac21709729
-$ sudo filefrag -v /swapfile | awk 'NR == 4 {print $5}' | cut -d ':' -f 1
-1423360
-```
-
-![screenshot from 2019-02-23 02-12-34](https://user-images.githubusercontent.com/41215002/53276552-8f053b80-3710-11e9-9770-5dd5e733f70a.png)
-
-В `/etc/default/grub` прописать:
-
-```config
-GRUB_CMDLINE_LINUX_DEFAULT="quiet resume=UUID=217df373-d154-4f2e-9497-fcac21709729 resume_offset=1423360"
-```
-
-Теперь нужно обновить grub и сгенерировать initramfs:
-
-```bash
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-sudo mkinitcpio -p linux
-```
-
-Сам переход в режим гибернации выглядит так:
-
-```bash
-systemctl hibernate
-```
-
-Чтобы появилась кнопка для перехода в режим гибернации ставим [расширение](https://extensions.gnome.org/extension/755/hibernate-status-button/).
-
-![image](https://user-images.githubusercontent.com/41215002/53138121-3f9b0000-3596-11e9-84c9-5e1277f80b31.png)
-![image](https://user-images.githubusercontent.com/41215002/53138158-622d1900-3596-11e9-8a53-515e39382b03.png)
-
-# RAID
-
-В Linux RAID на аппаратном уровне называют FakeRAID. Для работы с FakeRAID  используется пакет dmraid.
-
-Редактируем конфиг mkinitcpio:
-
-```bash
-sudo nano /etc/mkinitcpio.conf
-```
-
-В хуки добавляем dmraid:
-
-```conf
-HOOKS=(base udev autodetect modconf block lvm2 dmraid filesystems keyboard fsck)
-```
-
-И генерируем mkinitcpio:
-
-```bash
-sudo mkinitcpio -p linux
+# Делаем дамп
+$ dconf dump / > /tmp/dconf
+# Редактируем и загружаем
+$ dconf load / < /tmp/dconf
 ```
 
 # ZSH
@@ -1331,12 +1374,21 @@ $ tail -f /var/log/snapper.log
 GUI:
 
 ```bash
+# Не работает
 $ yay -S snapper-gui-git
 ```
 
 Ссылки:
 
 * [Snapper](https://wiki.archlinux.org/index.php/Snapper).
+
+# Timeshift
+
+Программа для управления бекапами. Работает с Btrfs и в rsync-режиме (полный дамп).
+
+```bash
+$ yay -S timeshift
+```
 
 # Установка и настройка Postgres
 
@@ -1571,48 +1623,6 @@ $ torify curl http://httpbin.org/ip
 {
   "origin": "173.244.209.5, 173.244.209.5"
 }
-```
-
-# Emoji
-
-```yay
-yay -S ttf-emojione
-```
-
-# Спецсимволы
-
-Для вставки специальных символов в Gnome применяется сочетание клавиш `Ctrl+Shift+U`, далее вводим 4-х значный код символа.
-
-| Символ | Unicode  |
-| -- | -- |
-| « | 00ab |
-| » | 00bb |
-| © | 00a9 |
-| ™ | 2122 |
-| § | 00a7 |
-| – | 2013 |
-| € | 20ac |
-| ₽ | 20bd |
-| → | 2192 |
-| λ | 03bb |
-
-# Блокировка рекламных сайтов
-
-```bash
-wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
-```
-
-# Редактирование DConf
-
-DConf хранит профили терминала в `~/.config/dconf/user`, в формате GVDB [пруф](https://en.wikipedia.org/wiki/Dconf).
-
-![image](https://user-images.githubusercontent.com/12753171/60671500-ba3c2c00-9e62-11e9-9f70-79b1bd9aed19.png)
-
-```bash
-# Делаем дамп
-$ dconf dump / > /tmp/dconf
-# Редактируем и загружаем
-$ dconf load / < /tmp/dconf
 ```
 
 # Менеджер паролей pass
