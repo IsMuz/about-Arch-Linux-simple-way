@@ -2,88 +2,87 @@
 <!-- nav -->
 # Table of Contents
 
-- [Table of Contents](#Table-of-Contents)
-- [Установка Arch Linux](#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-Arch-Linux)
-  - [Arch Linux](#Arch-Linux)
-  - [Создание образа](#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0)
-  - [Изменяем приоритет загрузки в BIOS/UEFI](#%D0%98%D0%B7%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC-%D0%BF%D1%80%D0%B8%D0%BE%D1%80%D0%B8%D1%82%D0%B5%D1%82-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8-%D0%B2-BIOSUEFI)
-  - [Начало установки](#%D0%9D%D0%B0%D1%87%D0%B0%D0%BB%D0%BE-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B8)
-  - [Настройка сети](#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D1%81%D0%B5%D1%82%D0%B8)
-  - [Выбор файловой системы](#%D0%92%D1%8B%D0%B1%D0%BE%D1%80-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D0%BE%D0%B9-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B)
-  - [Размечаем диск](#%D0%A0%D0%B0%D0%B7%D0%BC%D0%B5%D1%87%D0%B0%D0%B5%D0%BC-%D0%B4%D0%B8%D1%81%D0%BA)
-  - [Вариант 1: LVM](#%D0%92%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82-1-LVM)
-  - [Вариант 2: Btrfs](#%D0%92%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82-2-Btrfs)
-  - [Устанавливаем ядро](#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%B0%D0%B2%D0%BB%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC-%D1%8F%D0%B4%D1%80%D0%BE)
-  - [Генерируем fstab](#%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D1%80%D1%83%D0%B5%D0%BC-fstab)
-  - [arch-chroot](#arch-chroot)
-  - [Настраиваем дату и локаль](#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%B0%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC-%D0%B4%D0%B0%D1%82%D1%83-%D0%B8-%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C)
-  - [Прописываем хосты](#%D0%9F%D1%80%D0%BE%D0%BF%D0%B8%D1%81%D1%8B%D0%B2%D0%B0%D0%B5%D0%BC-%D1%85%D0%BE%D1%81%D1%82%D1%8B)
-  - [Initramfs](#Initramfs)
-  - [Ставим пакеты](#%D0%A1%D1%82%D0%B0%D0%B2%D0%B8%D0%BC-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B)
-  - [Пользователи](#%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D0%B8)
-  - [Установка grub](#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-grub)
-  - [Ставим Gnome](#%D0%A1%D1%82%D0%B0%D0%B2%D0%B8%D0%BC-Gnome)
-  - [Завершение установки](#%D0%97%D0%B0%D0%B2%D0%B5%D1%80%D1%88%D0%B5%D0%BD%D0%B8%D0%B5-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B8)
-- [Пакетные менеджеры](#%D0%9F%D0%B0%D0%BA%D0%B5%D1%82%D0%BD%D1%8B%D0%B5-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D1%8B)
-- [Нужные пакеты](#%D0%9D%D1%83%D0%B6%D0%BD%D1%8B%D0%B5-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B)
-- [Заменяем ядро на стабильное](#%D0%97%D0%B0%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC-%D1%8F%D0%B4%D1%80%D0%BE-%D0%BD%D0%B0-%D1%81%D1%82%D0%B0%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5)
-- [Права](#%D0%9F%D1%80%D0%B0%D0%B2%D0%B0)
-- [Добавляем путь в PATH](#%D0%94%D0%BE%D0%B1%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC-%D0%BF%D1%83%D1%82%D1%8C-%D0%B2-PATH)
-- [bin в домашнем каталоге](#bin-%D0%B2-%D0%B4%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D0%B5%D0%BC-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%B5)
-- [Масштабировавние 150% как в Windows](#%D0%9C%D0%B0%D1%81%D1%88%D1%82%D0%B0%D0%B1%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%B2%D0%BD%D0%B8%D0%B5-150-%D0%BA%D0%B0%D0%BA-%D0%B2-Windows)
-- [Расширения для Gnome](#%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B4%D0%BB%D1%8F-Gnome)
-- [Пользовательские сочетания клавиш](#%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5-%D1%81%D0%BE%D1%87%D0%B5%D1%82%D0%B0%D0%BD%D0%B8%D1%8F-%D0%BA%D0%BB%D0%B0%D0%B2%D0%B8%D1%88)
-- [Монтируем Windows разделы](#%D0%9C%D0%BE%D0%BD%D1%82%D0%B8%D1%80%D1%83%D0%B5%D0%BC-Windows-%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D1%8B)
-- [Шрифты](#%D0%A8%D1%80%D0%B8%D1%84%D1%82%D1%8B)
-- [Запуск исполняемых файлов по двойному клику в Nautilus](#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D0%BD%D1%8F%D0%B5%D0%BC%D1%8B%D1%85-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2-%D0%BF%D0%BE-%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%BE%D0%BC%D1%83-%D0%BA%D0%BB%D0%B8%D0%BA%D1%83-%D0%B2-Nautilus)
-- [Шаблоны файлов](#%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2)
-- [Гибернация](#%D0%93%D0%B8%D0%B1%D0%B5%D1%80%D0%BD%D0%B0%D1%86%D0%B8%D1%8F)
-- [RAID](#RAID)
-- [ZSH](#ZSH)
-  - [Установка ZSH](#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-ZSH)
-  - [Oh My Zsh](#Oh-My-Zsh)
-  - [Темы Oh My Zsh!](#%D0%A2%D0%B5%D0%BC%D1%8B-Oh-My-Zsh)
-    - [Bullet Train for oh-my-zsh](#Bullet-Train-for-oh-my-zsh)
-    - [Jovial](#Jovial)
-    - [Powerlevel10k](#Powerlevel10k)
-  - [Подробнее про ZSH](#%D0%9F%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE-ZSH)
-- [Разноцветный cat](#%D0%A0%D0%B0%D0%B7%D0%BD%D0%BE%D1%86%D0%B2%D0%B5%D1%82%D0%BD%D1%8B%D0%B9-cat)
-- [Цветовые схемы для терминала](#%D0%A6%D0%B2%D0%B5%D1%82%D0%BE%D0%B2%D1%8B%D0%B5-%D1%81%D1%85%D0%B5%D0%BC%D1%8B-%D0%B4%D0%BB%D1%8F-%D1%82%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%B0%D0%BB%D0%B0)
-- [Бекап системы](#%D0%91%D0%B5%D0%BA%D0%B0%D0%BF-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B)
-- [Блокируем сайты с рекламой через hosts](#%D0%91%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D1%83%D0%B5%D0%BC-%D1%81%D0%B0%D0%B9%D1%82%D1%8B-%D1%81-%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BE%D0%B9-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-hosts)
-- [asdf-vm](#asdf-vm)
-- [NVM](#NVM)
-- [Настройка Docker](#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-Docker)
-- [Настройка Visual Code](#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-Visual-Code)
-- [LVM](#LVM)
-- [Btrfs](#Btrfs)
-- [Установка и настройка Postgres](#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-Postgres)
-- [Мониторинг процессов](#%D0%9C%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2)
-- [Git](#Git)
-- [Работаем с github через ssh](#%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC-%D1%81-github-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-ssh)
-- [Tor Service](#Tor-Service)
-- [Emoji](#Emoji)
-- [Спецсимволы](#%D0%A1%D0%BF%D0%B5%D1%86%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D1%8B)
-- [Блокировка рекламных сайтов](#%D0%91%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0-%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BD%D1%8B%D1%85-%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2)
-- [Редактирование DConf](#%D0%A0%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-DConf)
-- [Менеджер паролей pass](#%D0%9C%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80-%D0%BF%D0%B0%D1%80%D0%BE%D0%BB%D0%B5%D0%B9-pass)
-- [Частые проблемы](#%D0%A7%D0%B0%D1%81%D1%82%D1%8B%D0%B5-%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D1%8B)
-  - [Grub Rescue](#Grub-Rescue)
-  - [Случайно нажали Ctrl + Alt + F* и экран стал темным](#%D0%A1%D0%BB%D1%83%D1%87%D0%B0%D0%B9%D0%BD%D0%BE-%D0%BD%D0%B0%D0%B6%D0%B0%D0%BB%D0%B8-Ctrl--Alt--F-%D0%B8-%D1%8D%D0%BA%D1%80%D0%B0%D0%BD-%D1%81%D1%82%D0%B0%D0%BB-%D1%82%D0%B5%D0%BC%D0%BD%D1%8B%D0%BC)
-  - [Что делать, если каталоги открываются в VSCode?](#%D0%A7%D1%82%D0%BE-%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D0%B5%D1%81%D0%BB%D0%B8-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%B8-%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D0%B2%D0%B0%D1%8E%D1%82%D1%81%D1%8F-%D0%B2-VSCode)
-  - [Enter password to unlock your login keyring](#Enter-password-to-unlock-your-login-keyring)
-- [Справка по командам и т.д.](#%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0-%D0%BF%D0%BE-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%D0%BC-%D0%B8-%D1%82%D0%B4)
-  - [Cheat.sh](#Cheatsh)
-  - [Marker](#Marker)
-  - [TLDR](#TLDR)
-- [Шпаргалка по командам Shell](#%D0%A8%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0-%D0%BF%D0%BE-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%D0%BC-Shell)
-- [i3: Введение](#i3-%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5)
-- [i3: Установка и настройка](#i3-%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0)
-- [XTerm](#XTerm)
-- [Termite: горячие клавиши](#Termite-%D0%B3%D0%BE%D1%80%D1%8F%D1%87%D0%B8%D0%B5-%D0%BA%D0%BB%D0%B0%D0%B2%D0%B8%D1%88%D0%B8)
-- [Termite: цветовые схемы](#Termite-%D1%86%D0%B2%D0%B5%D1%82%D0%BE%D0%B2%D1%8B%D0%B5-%D1%81%D1%85%D0%B5%D0%BC%D1%8B)
-- [i3: заставка lockscreen](#i3-%D0%B7%D0%B0%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0-lockscreen)
-- [i3: сохранение/восстановление рабочего пространства](#i3-%D1%81%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%D0%B2%D0%BE%D1%81%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B3%D0%BE-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%B0)
+1. [Установка Arch Linux](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-arch-linux)
+   1. [Arch Linux](#arch-linux)
+   1. [Создание образа](#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0)
+   1. [Изменяем приоритет загрузки в BIOS/UEFI](#%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC-%D0%BF%D1%80%D0%B8%D0%BE%D1%80%D0%B8%D1%82%D0%B5%D1%82-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8-%D0%B2-biosuefi)
+   1. [Начало установки](#%D0%BD%D0%B0%D1%87%D0%B0%D0%BB%D0%BE-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B8)
+   1. [Настройка сети](#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D1%81%D0%B5%D1%82%D0%B8)
+   1. [Выбор файловой системы](#%D0%B2%D1%8B%D0%B1%D0%BE%D1%80-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D0%BE%D0%B9-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B)
+   1. [Размечаем диск](#%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%87%D0%B0%D0%B5%D0%BC-%D0%B4%D0%B8%D1%81%D0%BA)
+   1. [Вариант 1: LVM](#%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82-1-lvm)
+   1. [Вариант 2: Btrfs](#%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82-2-btrfs)
+   1. [Устанавливаем ядро](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%B0%D0%B2%D0%BB%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC-%D1%8F%D0%B4%D1%80%D0%BE)
+   1. [Генерируем fstab](#%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D1%80%D1%83%D0%B5%D0%BC-fstab)
+   1. [arch-chroot](#arch-chroot)
+   1. [Настраиваем дату и локаль](#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%B0%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC-%D0%B4%D0%B0%D1%82%D1%83-%D0%B8-%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C)
+   1. [Прописываем хосты](#%D0%BF%D1%80%D0%BE%D0%BF%D0%B8%D1%81%D1%8B%D0%B2%D0%B0%D0%B5%D0%BC-%D1%85%D0%BE%D1%81%D1%82%D1%8B)
+   1. [Initramfs](#initramfs)
+   1. [Ставим пакеты](#%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BC-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B)
+   1. [Пользователи](#%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D0%B8)
+   1. [Установка grub](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-grub)
+   1. [Ставим Gnome](#%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BC-gnome)
+   1. [Завершение установки](#%D0%B7%D0%B0%D0%B2%D0%B5%D1%80%D1%88%D0%B5%D0%BD%D0%B8%D0%B5-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B8)
+1. [Пакетные менеджеры](#%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BD%D1%8B%D0%B5-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D1%8B)
+1. [Нужные пакеты](#%D0%BD%D1%83%D0%B6%D0%BD%D1%8B%D0%B5-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B)
+1. [Заменяем ядро на стабильное](#%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC-%D1%8F%D0%B4%D1%80%D0%BE-%D0%BD%D0%B0-%D1%81%D1%82%D0%B0%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5)
+1. [Права](#%D0%BF%D1%80%D0%B0%D0%B2%D0%B0)
+1. [Добавляем путь в PATH](#%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC-%D0%BF%D1%83%D1%82%D1%8C-%D0%B2-path)
+1. [bin в домашнем каталоге](#bin-%D0%B2-%D0%B4%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D0%B5%D0%BC-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%B5)
+1. [Масштабировавние 150% как в Windows](#%D0%BC%D0%B0%D1%81%D1%88%D1%82%D0%B0%D0%B1%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%B2%D0%BD%D0%B8%D0%B5-150-%D0%BA%D0%B0%D0%BA-%D0%B2-windows)
+1. [Расширения для Gnome](#%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B4%D0%BB%D1%8F-gnome)
+1. [Пользовательские сочетания клавиш](#%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5-%D1%81%D0%BE%D1%87%D0%B5%D1%82%D0%B0%D0%BD%D0%B8%D1%8F-%D0%BA%D0%BB%D0%B0%D0%B2%D0%B8%D1%88)
+1. [Монтируем Windows разделы](#%D0%BC%D0%BE%D0%BD%D1%82%D0%B8%D1%80%D1%83%D0%B5%D0%BC-windows-%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D1%8B)
+1. [Шрифты](#%D1%88%D1%80%D0%B8%D1%84%D1%82%D1%8B)
+1. [Запуск исполняемых файлов по двойному клику в Nautilus](#%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D0%BD%D1%8F%D0%B5%D0%BC%D1%8B%D1%85-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2-%D0%BF%D0%BE-%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%BE%D0%BC%D1%83-%D0%BA%D0%BB%D0%B8%D0%BA%D1%83-%D0%B2-nautilus)
+1. [Шаблоны файлов](#%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2)
+1. [Гибернация](#%D0%B3%D0%B8%D0%B1%D0%B5%D1%80%D0%BD%D0%B0%D1%86%D0%B8%D1%8F)
+1. [RAID](#raid)
+1. [ZSH](#zsh)
+   1. [Установка ZSH](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-zsh)
+   1. [Oh My Zsh](#oh-my-zsh)
+   1. [Темы Oh My Zsh!](#%D1%82%D0%B5%D0%BC%D1%8B-oh-my-zsh)
+      1. [Bullet Train for oh-my-zsh](#bullet-train-for-oh-my-zsh)
+      1. [Jovial](#jovial)
+      1. [Powerlevel10k](#powerlevel10k)
+   1. [Подробнее про ZSH](#%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE-zsh)
+1. [Разноцветный cat](#%D1%80%D0%B0%D0%B7%D0%BD%D0%BE%D1%86%D0%B2%D0%B5%D1%82%D0%BD%D1%8B%D0%B9-cat)
+1. [Цветовые схемы для терминала](#%D1%86%D0%B2%D0%B5%D1%82%D0%BE%D0%B2%D1%8B%D0%B5-%D1%81%D1%85%D0%B5%D0%BC%D1%8B-%D0%B4%D0%BB%D1%8F-%D1%82%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%B0%D0%BB%D0%B0)
+1. [Бекап системы](#%D0%B1%D0%B5%D0%BA%D0%B0%D0%BF-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B)
+1. [Блокируем сайты с рекламой через hosts](#%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D1%83%D0%B5%D0%BC-%D1%81%D0%B0%D0%B9%D1%82%D1%8B-%D1%81-%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BE%D0%B9-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-hosts)
+1. [asdf-vm](#asdf-vm)
+1. [NVM](#nvm)
+1. [Настройка Docker](#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-docker)
+1. [Настройка Visual Code](#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-visual-code)
+1. [LVM](#lvm)
+1. [Btrfs](#btrfs)
+1. [Установка и настройка Postgres](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-postgres)
+1. [Мониторинг процессов](#%D0%BC%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2)
+1. [Git](#git)
+1. [Работаем с github через ssh](#%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC-%D1%81-github-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-ssh)
+1. [Tor Service](#tor-service)
+1. [Emoji](#emoji)
+1. [Спецсимволы](#%D1%81%D0%BF%D0%B5%D1%86%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D1%8B)
+1. [Блокировка рекламных сайтов](#%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0-%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BD%D1%8B%D1%85-%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2)
+1. [Редактирование DConf](#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-dconf)
+1. [Менеджер паролей pass](#%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80-%D0%BF%D0%B0%D1%80%D0%BE%D0%BB%D0%B5%D0%B9-pass)
+1. [Частые проблемы](#%D1%87%D0%B0%D1%81%D1%82%D1%8B%D0%B5-%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D1%8B)
+   1. [Grub Rescue](#grub-rescue)
+   1. [Случайно нажали Ctrl + Alt + F* и экран стал темным](#%D1%81%D0%BB%D1%83%D1%87%D0%B0%D0%B9%D0%BD%D0%BE-%D0%BD%D0%B0%D0%B6%D0%B0%D0%BB%D0%B8-ctrl--alt--f-%D0%B8-%D1%8D%D0%BA%D1%80%D0%B0%D0%BD-%D1%81%D1%82%D0%B0%D0%BB-%D1%82%D0%B5%D0%BC%D0%BD%D1%8B%D0%BC)
+   1. [Что делать, если каталоги открываются в VSCode?](#%D1%87%D1%82%D0%BE-%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D0%B5%D1%81%D0%BB%D0%B8-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%B8-%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D0%B2%D0%B0%D1%8E%D1%82%D1%81%D1%8F-%D0%B2-vscode)
+   1. [Enter password to unlock your login keyring](#enter-password-to-unlock-your-login-keyring)
+1. [Справка по командам и т.д.](#%D1%81%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B0-%D0%BF%D0%BE-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%D0%BC-%D0%B8-%D1%82%D0%B4)
+   1. [Cheat.sh](#cheatsh)
+   1. [Marker](#marker)
+   1. [TLDR](#tldr)
+1. [Шпаргалка по командам Shell](#%D1%88%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0-%D0%BF%D0%BE-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%D0%BC-shell)
+1. [i3: Введение](#i3-%D0%B2%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5)
+1. [i3: Установка и настройка](#i3-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0)
+1. [XTerm](#xterm)
+1. [Termite: горячие клавиши](#termite-%D0%B3%D0%BE%D1%80%D1%8F%D1%87%D0%B8%D0%B5-%D0%BA%D0%BB%D0%B0%D0%B2%D0%B8%D1%88%D0%B8)
+1. [Termite: цветовые схемы](#termite-%D1%86%D0%B2%D0%B5%D1%82%D0%BE%D0%B2%D1%8B%D0%B5-%D1%81%D1%85%D0%B5%D0%BC%D1%8B)
+1. [i3: заставка lockscreen](#i3-%D0%B7%D0%B0%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0-lockscreen)
+1. [i3: сохранение/восстановление рабочего пространства](#i3-%D1%81%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%D0%B2%D0%BE%D1%81%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B3%D0%BE-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%B0)
 <!-- /nav -->
 
 # Установка Arch Linux
@@ -122,7 +121,7 @@ $ sudo dd if=/path/to/iso of=/dev/sdX bs=8M status=progress; sync
 less ~/install.txt
 ```
 
-Небольшой лайфхак: во время установки можно переключаться между терминалами с помощью `Ctrl+Alt+F1..6`. Если мы нажмем `Ctrl+Alt+F2` откроется второй терминал (по-умолчанию мы работаем в первом) и потребуется ввести пароль `root`, во втором терминале мы можем открыть инструкцию и переодически подсматривать ее, переключаясь между терминалами.
+Небольшой лайфхак: во время установки можно переключаться между терминалами с помощью `Ctrl+Alt+F1..6`. Если мы нажмем `Ctrl+Alt+F2` откроется второй терминал (по-умолчанию мы работаем в первом) и потребуется ввести пароль `root`, во втором терминале мы можем открыть инструкцию и периодически подсматривать ее, переключаясь между терминалами.
 
 ## Настройка сети
 
@@ -156,6 +155,8 @@ rtt min/avg/max/mdev = 12.137/12.139/12.141/0.127 ms
 Теперь нужно разметить раздел по LVM. Касательно LVM: единственное удобство в нем для меня – это возможность динамически менять размер разделов. Самая частая проблема, которая у меня была раньше – это то, что я не угадывал размер для корня. Мы можем добавлять в группу другие разделы (не обязательно на одном устройстве) и устройства. Нет ограничений как для обычных разделов, когда не возможно расширить раздел за счет предыдущего, нам вообще об этом не нужно заботиться. В LVM у нас есть группы разделов и логическите разделы. У логических разделов свои файловые системы. Увеличение размера логического раздела в отличии от уменьшения размонтирования не требует. resize2fs в LVM работает заметно быстрее.
 
 Файловая система Btrfs может размещаться на одном и более устройствах/разделах. Устройства и разделы можно как добавлять так и удалять после создания. У нас тут нет групп и логических разделов со своими файловыми системами. У нас есть только подразделы с динамическим размером, что удобно. Так же мы можем ограничить размер подраздела.
+
+LVM и Btrfs имеют механизм снапшотов, которые позволяют сохранять состояние системы.
 
 ## Размечаем диск
 
@@ -1095,11 +1096,11 @@ $ sudo grub-mkconfig -o /boot/grub/grub.cfg
 # Btrfs
 
 ```bash
-# $ sudo btrfs subvolume list -a /
-# $ sudo btrfs subvol list -a /
+# $ btrfs subvolume, btrfs subvol и btrfs sub одно и тоже
 $ sudo btrfs sub list -a /
-ID 257 gen 831 top level 5 path <FS_TREE>/@
-ID 258 gen 831 top level 5 path <FS_TREE>/@home
+ID 257 gen 1317 top level 5 path <FS_TREE>/@
+ID 258 gen 1450 top level 5 path <FS_TREE>/@home
+ID 281 gen 1450 top level 5 path <FS_TREE>/@var
 
 # Переименование subvolume
 $ mv /mnt/@oldname /mnt/@newname
@@ -1109,6 +1110,33 @@ $ mv /mnt/@oldname /mnt/@newname
 # Если переименовали корневой раздел, то необходимо переустановить grub:
 #   $ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id="Arch Linux"
 #   $ grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+Про снапшоты. В Btrfs есть механизм, аналогичный git, поэтому снапшоты физически занимают мало места и могут быть созданы только на у. Они содержат только диффы. Как только мы создали снапшот, состояние системы зафиксировалось. Например у нас есть три файла: foo, bar, baz. Мы сделали снапшот, а потом удалили foo и baz, но пока существует снапшот эти файлы продолжат занимать место + если мы изменим bar, то и его первоначальная копия продолжит свое существование. Так что чтобы освободить место придется периодически удалять ненужные снапшоты.
+
+```bash
+# Создание снапшота
+$ sudo mkdir /.snapshots
+$ sudo chmod 750 /.snapshots
+
+$ sudo btrfs sub snap -r /home /.snapshots/@home_`date +%F-%s`
+Create a readonly snapshot of '/home' in '/.snapshots/@home_2019-07-15-1563181292'
+
+$ sudo btrfs sub list -a /
+ID 257 gen 1457 top level 5 path <FS_TREE>/@
+ID 258 gen 1458 top level 5 path <FS_TREE>/@home
+ID 281 gen 1458 top level 5 path <FS_TREE>/@var
+ID 283 gen 1458 top level 257 path <FS_TREE>/@/.snapshots/@home_2019-07-15-1563181292
+
+# Удаление снапшота аналогично удалению подраздела
+$ sudo btrfs sub del /.snapshots/@home_2019-07-15-1563181292
+Delete subvolume (no-commit): '/.snapshots/@home_2019-07-15-1563181292'
+
+# Смонтировать subvolume/снапшот по указанному пути
+$ sudo btrfs sub set-default <ID> /
+
+# Замена подраздела снапшотом
+$ mv /.snapshots/@home /@home
 ```
 
 # Установка и настройка Postgres
