@@ -2,7 +2,7 @@
 <!-- nav -->
 # Table of Contents
 
-1. [Установка Arch Linux рядом с Windows 10](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-arch-linux-%D1%80%D1%8F%D0%B4%D0%BE%D0%BC-%D1%81-windows-10)
+1. [Установка Arch Linux](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-arch-linux)
    1. [Arch Linux](#arch-linux)
    1. [Создание образа](#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0)
    1. [Изменяем приоритет загрузки в BIOS/UEFI](#%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC-%D0%BF%D1%80%D0%B8%D0%BE%D1%80%D0%B8%D1%82%D0%B5%D1%82-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8-%D0%B2-biosuefi)
@@ -67,6 +67,7 @@
 1. [Редактирование DConf](#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-dconf)
 1. [Менеджер паролей pass](#%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80-%D0%BF%D0%B0%D1%80%D0%BE%D0%BB%D0%B5%D0%B9-pass)
 1. [Частые проблемы](#%D1%87%D0%B0%D1%81%D1%82%D1%8B%D0%B5-%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D1%8B)
+   1. [Grub Rescue](#grub-rescue)
    1. [Случайно нажали Ctrl + Alt + F* и экран стал темным](#%D1%81%D0%BB%D1%83%D1%87%D0%B0%D0%B9%D0%BD%D0%BE-%D0%BD%D0%B0%D0%B6%D0%B0%D0%BB%D0%B8-ctrl--alt--f-%D0%B8-%D1%8D%D0%BA%D1%80%D0%B0%D0%BD-%D1%81%D1%82%D0%B0%D0%BB-%D1%82%D0%B5%D0%BC%D0%BD%D1%8B%D0%BC)
    1. [Что делать, если каталоги открываются в VSCode?](#%D1%87%D1%82%D0%BE-%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D0%B5%D1%81%D0%BB%D0%B8-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%B8-%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D0%B2%D0%B0%D1%8E%D1%82%D1%81%D1%8F-%D0%B2-vscode)
    1. [Enter password to unlock your login keyring](#enter-password-to-unlock-your-login-keyring)
@@ -84,7 +85,7 @@
 1. [i3: сохранение/восстановление рабочего пространства](#i3-%D1%81%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%D0%B2%D0%BE%D1%81%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B3%D0%BE-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%B0)
 <!-- /nav -->
 
-# Установка Arch Linux рядом с Windows 10
+# Установка Arch Linux
 
 ## Arch Linux
 
@@ -157,10 +158,18 @@ fdisk /dev/nvme0n1
 
 В меню fdisk вводим `n` для создания нового раздела, порядковый номер раздела, потом начальное и конечные смещения. При задании конечного смещения можно отрицательное значение, например, `-10G`, так мы оставим свободными 10 Гб в конце диска. Для записи изменений на жесткий диск вводим `w` и выходим - `q`.
 
+Если на диске не установлен Windows, то нужно выделить 300-1000 Мб под Efi раздел, и создам файловую систему FAT-32 на нем:
+
+```bash
+mkfs.fat -F32 /dev/nvme0n1p1
+```
+
+В дальнейших примерах предполагается, что у нас установлена Windows, которая занимает 4 раздела: recovery, efi, reserved, Windows. Поэтому в примерах новый раздел nvme0n1p**5**.
+
 ## Вариант 1: LVM
 
 ```bash
-# Создадим группу
+# Создадим группу на разделе без файловой системы
 vgcreate linux /dev/nvme0n1p5
 # Теперь создадим в ней логические разделы:
 lvcreate -L 30G linux -n root
@@ -884,7 +893,9 @@ tar -xzpvf /mnt/backup/root.tar.gz -C /mnt/root
 # Блокируем сайты с рекламой через hosts
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
+# Сохраняем копию оригинального файла
+$ cp /etc/hosts ~/Documents/hosts.bak
+$ wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
 ```
 
 # [asdf-vm](https://github.com/asdf-vm/asdf)
@@ -1077,6 +1088,12 @@ ID 258 gen 831 top level 5 path <FS_TREE>/@home
 
 # Переименование subvolume
 $ mv /mnt/@oldname /mnt/@newname
+
+# Далее редактируем /etc/fstab
+
+# Если переименовали корневой раздел, то необходимо переустановить grub:
+#   $ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id="Arch Linux"
+#   $ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 # Установка и настройка Postgres
@@ -1380,6 +1397,39 @@ removed '/home/sergey/.password-store/example.com.gpg'
 * [Устаревшее расширение для Chrome](https://github.com/browserpass/browserpass-legacy).
 
 # Частые проблемы
+
+## Grub Rescue
+
+Чаще всего эта ошибка происходит после переименования логических разделов LVM, подразделов Btrfs, переноса системы на новый раздел.
+
+```bash
+error: ... not found.
+Entering rescue mode...
+
+# Для начала нужно посмотреть все устройства и разделы
+grub rescue> ls
+(hd0) (hd1) (hd1,gpt1) (hd2) (hd2,gpt5) (hd2,gpt4) (hd2,gpt3) (hd2,gpt2) (hd2,gpt1) (hd3,gpt2) (hd3,gpt1) (hd4) (hd5)
+
+# Мы помним, что наша система находится на 5 разделе, так что тут гадать не нужно
+grub rescue> set prefix=(hd2,gpt5)/@/boot/grub
+grub rescue> set root=(hd2,gpt5)
+
+# Проверим
+grub rescue> ls /
+@/ @home
+
+# Да, это наш корневой раздел Linux
+# Теперь можно загрузиться в систему
+grub rescue> insmod normal
+grub rescue> normal
+```
+
+После загрузки системы нужно переустановить grub:
+
+```bash
+$ sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id="Arch Linux"
+$ sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
 
 ## Случайно нажали Ctrl + Alt + F* и экран стал темным
 
