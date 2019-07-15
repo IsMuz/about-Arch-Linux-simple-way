@@ -23,6 +23,7 @@
    1. [Установка grub](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-grub)
    1. [Ставим Gnome](#%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BC-gnome)
    1. [Завершение установки](#%D0%B7%D0%B0%D0%B2%D0%B5%D1%80%D1%88%D0%B5%D0%BD%D0%B8%D0%B5-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B8)
+1. [man & help](#man--help)
 1. [Пакетные менеджеры](#%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BD%D1%8B%D0%B5-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D1%8B)
 1. [Нужные пакеты](#%D0%BD%D1%83%D0%B6%D0%BD%D1%8B%D0%B5-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B)
 1. [Заменяем ядро на стабильное](#%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC-%D1%8F%D0%B4%D1%80%D0%BE-%D0%BD%D0%B0-%D1%81%D1%82%D0%B0%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5)
@@ -40,7 +41,7 @@
 1. [Шрифты](#%D1%88%D1%80%D0%B8%D1%84%D1%82%D1%8B)
 1. [Emoji](#emoji)
 1. [Спецсимволы](#%D1%81%D0%BF%D0%B5%D1%86%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D1%8B)
-1. [Блокировка рекламных сайтов](#%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0-%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BD%D1%8B%D1%85-%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2)
+1. [Блокируем сайты с рекламой через hosts](#%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D1%83%D0%B5%D0%BC-%D1%81%D0%B0%D0%B9%D1%82%D1%8B-%D1%81-%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BE%D0%B9-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-hosts)
 1. [Редактирование DConf](#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-dconf)
 1. [ZSH](#zsh)
    1. [Установка ZSH](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-zsh)
@@ -53,7 +54,6 @@
 1. [Разноцветный cat](#%D1%80%D0%B0%D0%B7%D0%BD%D0%BE%D1%86%D0%B2%D0%B5%D1%82%D0%BD%D1%8B%D0%B9-cat)
 1. [Цветовые схемы для терминала](#%D1%86%D0%B2%D0%B5%D1%82%D0%BE%D0%B2%D1%8B%D0%B5-%D1%81%D1%85%D0%B5%D0%BC%D1%8B-%D0%B4%D0%BB%D1%8F-%D1%82%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%B0%D0%BB%D0%B0)
 1. [Бекап системы](#%D0%B1%D0%B5%D0%BA%D0%B0%D0%BF-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B)
-1. [Блокируем сайты с рекламой через hosts](#%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D1%83%D0%B5%D0%BC-%D1%81%D0%B0%D0%B9%D1%82%D1%8B-%D1%81-%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BE%D0%B9-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-hosts)
 1. [asdf-vm](#asdf-vm)
 1. [NVM](#nvm)
 1. [Настройка Docker](#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-docker)
@@ -424,6 +424,46 @@ reboot
 
 ---
 
+# man & help
+
+```bash
+$ man [ <section> ] <page>
+
+# Section	Description
+# 1	General Commands
+# 2	System Calls
+# 3	Library functions, covering in particular the C standard library
+# 4	Special files (usually devices, those found in /dev) and drivers
+# 5	File formats and conventions
+# 6	Games and screensavers
+# 7	Miscellanea
+# 8	System administration commands and daemons
+
+# Узнать где хранятся страницы манулов можно так
+$ manpath
+/usr/local/man:/usr/local/share/man:/usr/share/man
+
+$ man -w printf
+/usr/share/man/man1/printf.1.gz
+
+# Поиск страниц по ключевому слову
+$ man -k printf
+
+# Смотрим все страницы
+$ man -f printf
+printf (1)           - format and print data
+printf (1p)          - write formatted output
+printf (3)           - formatted output conversion
+printf (3p)          - print formatted output
+
+# Выбираем конкретную
+$ man 1p printf
+
+# Краткая справка по функции
+$ command -h
+$ command --help
+```
+
 # Пакетные менеджеры
 
 Пакетным менеджером по-умолчанию для Arch Linux является pacman. Для подсветки вывода pacman в `/etc/pacman.conf` нужно раскомментировать `Color`. Пользовательским репозиторием является [AUR](https://aur.archlinux.org/). Пакеты из него можно использовать только на свой страх и риск. Чтобы не собирать пакеты из него ручками можно поставить yay:
@@ -764,6 +804,8 @@ $ sudo ln -sf /mnt/c/Windows/Fonts /usr/share/fonts/WindowsFonts
 yay -S ttf-emojione
 ```
 
+Я не совсем понимаю как отображаются emoji. В гномовских приложения они выглядят одинаково, а в сторонних, в том же VScode рендерятся по-другому.
+
 # Спецсимволы
 
 Для вставки специальных символов в Gnome применяется сочетание клавиш `Ctrl+Shift+U`, далее вводим 4-х значный код символа.
@@ -781,10 +823,12 @@ yay -S ttf-emojione
 | → | 2192 |
 | λ | 03bb |
 
-# Блокировка рекламных сайтов
+# Блокируем сайты с рекламой через hosts
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
+# Сохраняем копию оригинального файла
+$ cp /etc/hosts ~/Documents/hosts.bak
+$ wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
 ```
 
 # Редактирование DConf
@@ -950,14 +994,6 @@ tar -xzpvf /mnt/backup/root.tar.gz -C /mnt/root
 Ссылки:
 
 * [Делаем бекап системы с помощью tar](https://help.ubuntu.com/community/BackupYourSystem/TAR).
-
-# Блокируем сайты с рекламой через hosts
-
-```bash
-# Сохраняем копию оригинального файла
-$ cp /etc/hosts ~/Documents/hosts.bak
-$ wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
-```
 
 # [asdf-vm](https://github.com/asdf-vm/asdf)
 
@@ -1140,34 +1176,34 @@ $ sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # Btrfs
 
-```bash
-# $ btrfs subvolume, btrfs subvol и btrfs sub одно и тоже
-$ sudo btrfs sub list -a /
-ID 257 gen 1317 top level 5 path <FS_TREE>/@
-ID 258 gen 1450 top level 5 path <FS_TREE>/@home
-ID 281 gen 1450 top level 5 path <FS_TREE>/@var
-
-# Переименование subvolume
-$ mv /mnt/@oldname /mnt/@newname
-
-# Далее редактируем /etc/fstab
-
-# Если переименовали корневой раздел, то необходимо переустановить grub:
-#   $ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id="Arch Linux"
-#   $ grub-mkconfig -o /boot/grub/grub.cfg
-```
-
 Про снапшоты. В Btrfs есть механизм, аналогичный git, который позволяет фиксировать изменения снимками. Снапшоты хранят в себе только изменения между снимками, поэтому занимают мало места и по этой же причине не могут быть созданы вне текущей файловой системы. Они содержат только диффы. Как только мы создали снапшот, состояние системы зафиксировалось. Например у нас есть три файла: foo, bar, baz. Мы сделали снапшот, а потом удалили foo и baz, но пока существует снапшот эти файлы продолжат занимать место + если мы изменим bar, то и его первоначальная копия продолжит свое существование. Так что чтобы освободить место придется периодически удалять ненужные снапшоты.
 
+Обнаружил баг: из-за своп-файла не делались снапшоты корня.
+
 ```bash
+# Создать subvolume
+$ sudo btrfs sub create /path/to/@name
+
 # Создание снапшота
+# Снапшоты являются разновидностью полдазделов, потому с ними можно выполнять те же операции
 $ sudo mkdir /.snapshots
 $ sudo chmod 750 /.snapshots
 
+# Этой командой не получится создать снапшот на другой Btrfs (на флешке)
 $ sudo btrfs sub snap -r /home /.snapshots/@home_`date +%F-%s`
 Create a readonly snapshot of '/home' in '/.snapshots/@home_2019-07-15-1563181292'
 
-$ sudo btrfs sub list -a /
+# В другой Btrfs мы можем только воссаздать весь подраздел
+$ sudo btrfs send /@home | btrfs receive /mnt/backup/@home
+
+# Если точка назначения имеет отличную ФС от Btrfs
+$ sudo btrfs send -f /mnt/backup/home.bak /@home
+$ sudo btrfs receive -f /mnt/backup/home.bak /@home
+
+# Отправка снапшота на сервер с Btrfs через SSH
+$ btrfs send /my/snapshot-YYYY-MM-DD | ssh user@host btrfs receive /my/backups
+
+$ sudo btrfs sub li -a /
 ID 257 gen 1457 top level 5 path <FS_TREE>/@
 ID 258 gen 1458 top level 5 path <FS_TREE>/@home
 ID 281 gen 1458 top level 5 path <FS_TREE>/@var
@@ -1180,8 +1216,18 @@ Delete subvolume (no-commit): '/.snapshots/@home_2019-07-15-1563181292'
 # Смонтировать subvolume/снапшот по указанному пути
 $ sudo btrfs sub set-default <ID> /
 
-# Замена подраздела снапшотом
-$ mv /.snapshots/@home /@home
+# Восстановление данных
+
+# С сохранением снапшота
+$ cp -aR --reflink /.snapshots/@home_YYYY-MM-DD-ssssssssss /@home
+
+# С удалением снапшота
+# Таким же способом можно переименовывать подразделы/снапшоты
+$ mv /.snapshots/@home_YYYY-MM-DD-ssssssssss /@home
+
+# Можно так же добавлять новые разделы и устройства в уже существующую ФС
+# Можно так же сделатиь ограничения на размер подраздела, добавив его в группу и включив для него квоту
+$ man btrfs
 ```
 
 # [Snapper](https://github.com/openSUSE/snapper)
@@ -1189,13 +1235,22 @@ $ mv /.snapshots/@home /@home
 Snapper ‒ это утилита для управления снапшотами для LVM и Btrfs.
 
 ```bash
+# Установка
 $ yay -S snapper
 
+# Глобальные настройки
+$ sudo nano /etc/conf.d/snapper
+
+# Из этого шаблона генерируются другие конфиги
+# Тут мы увеличим время после которого снапшоты будут удаляться до 24 часов
+$ sudo sed -ri 's/MIN_AGE="[0-9]+"/MIN_AGE="86400"/g' /etc/snapper/config-templates/default
+
 # Создаем конфиги для каждого подраздела отдельно
-$ sudo snapper -c config  delete-config
 $ sudo snapper -c root create-config /
 $ sudo snapper -c home create-config /home
 $ sudo snapper -c var create-config /var
+
+# Сгенерированные шаблоны находятся в /etc/snapper/configs
 
 # Список конфигов
 $ sudo snapper list-configs
@@ -1204,6 +1259,8 @@ Config | Subvolume
 home   | /home
 root   | /
 var    | /var
+
+# Созданные конфиги меют такой адрес: /etc/snapper/configs/<config>
 
 # Список снапшотов для конфига
 $ snapper -c CONFIG list
@@ -1220,16 +1277,30 @@ $ snapper -c CONFIG delete snapshot_number
 # Удалить диапазон снапшотов
 $ snapper -c CONFIG delete snapshot_X-snapshot_Y
 
+# Включаем автоматическое создания снапшотов
+# Запускаем бекап через 5 минут после загрузки и далее каждые 24 часов
+$ sudo nano $(locate snapper-timeline.timer)
+...
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=24h
+...
+
+# Из-за того, что mlocate индексирует снапшоты, система может тормозить
+$ sudo nano /etc/updatedb.conf
+...
+PRUNENAMES = ".git .hg .svn .snapshots"
+...
+
+# Запускаем задание
+$ sudo systemctl enable snapper-timeline.timer
+Created symlink /etc/systemd/system/timers.target.wants/snapper-timeline.timer → /usr/lib/systemd/system/snapper-timeline.timer.
+
+# Просмотр логов
+$ tail -f /var/log/snapper.log
 ```
 
-Глобальные настройки настройки задаются здесь `/etc/conf.d/snapper`.
-
-Настройки для отдельных конфигов лежат в `/etc/snapper/configs`.
-
-```bash
-# Шаблон для конфига
-$ cat /etc/snapper/config-templates/default
-```
+Описание настроек:
 
 ```config
 ### SNAPPER-CONFIGS(5)# Filesystem Snapshot Management
@@ -1352,35 +1423,17 @@ EMPTY_PRE_POST_MIN_AGE=1800
         # Default value is "1800".
 ```
 
-Что mlocate не индексировал снапшоты, редактируем `/etc/updatedb.conf`:
-
-```config
-...
-PRUNENAMES = ".git .hg .svn .snapshots"
-...
-```
-
-```bash
-# Включаем автоматическое создания снапшотов
-$ sudo systemctl enable snapper-timeline.timer
-Created symlink /etc/systemd/system/timers.target.wants/snapper-timeline.timer → /usr/lib/systemd/system/snapper-timeline.timer.
-```
-
-```bash
-# Просмотр логов
-$ tail -f /var/log/snapper.log
-```
-
 GUI:
 
 ```bash
-# Не работает
+# Не запускается
 $ yay -S snapper-gui-git
 ```
 
 Ссылки:
 
-* [Snapper](https://wiki.archlinux.org/index.php/Snapper).
+* [Snapper](https://wiki.archlinux.org/index.php/Snapper);
+* [Systemd/Timers](https://wiki.archlinux.org/index.php/Systemd/Timers).
 
 # Timeshift
 
@@ -1456,6 +1509,8 @@ $ sudo systemctl start application.service
 $ sudo systemctl start application.service
 
 $ systemctl status nginx.service
+
+$ sudo systemctl is-enabled service
 ```
 
 Создание своего сервиса:
@@ -1476,6 +1531,10 @@ ExecStart=/usr/bin/env php /path/to/server.php
 [Install]
 WantedBy=multi-user.target
 ```
+
+Ссылки:
+
+* [Timers](https://wiki.archlinux.org/index.php/Systemd/Timers).
 
 # Git
 
@@ -2644,7 +2703,8 @@ $ tldr --search create file
 * [Файловая система Linux](https://opencentr.ru/article/fajlovaya-sistema-linux/);
 * [Inode](https://ru.wikipedia.org/wiki/Inode);
 * [Управление разделами LVM](https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/s1-disk-storage-lvm.html);
-* [Часто используемые команды Git](https://carolinegabriel.com/used-git-commands-copy-paste-format/).
+* [Часто используемые команды Git](https://carolinegabriel.com/used-git-commands-copy-paste-format/);
+* [Использование регулярных выражений](https://www.tutorialspoint.com/unix/unix-regular-expressions)
 
 ---
 
