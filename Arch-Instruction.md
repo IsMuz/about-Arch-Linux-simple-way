@@ -2070,6 +2070,11 @@ $ paste file1.txt file2.txt > fileresults.txt
 # Удалить файлы старше 5 дней
 $ find /path/to/files* -mtime +5 -exec rm {} \;
 
+# Удалить все шрифты соответствущие шаблону *powerline* без учета регистра
+# «{} \;» rm будет вызван множество раз
+# «{} +» добавляет агрументы к rm
+$ sudo find /usr/share/fonts -iname "*powerline*" -exec rm {} +
+
 # Поиск фала по имени в специальной базе
 $ locate -e login.keyring
 /home/sergey/.local/share/keyrings/login.keyring
