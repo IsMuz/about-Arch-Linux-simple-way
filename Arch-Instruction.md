@@ -1413,6 +1413,13 @@ grub rescue> ls
 
 # Мы помним, что наша система находится на 5 разделе, так что тут гадать не нужно
 grub rescue> set prefix=(hd2,gpt5)/@/boot/grub
+# «@» ‒ это имя подраздела Btrfs. Для обычного Ext4 раздела, команда будет выглядеть так:
+#
+#   set prefix=(hd2,gpt5)/boot/grub
+#
+# А для LVM:
+#
+#  set prefix=(lvm/arch-root)/boot/grub
 grub rescue> set root=(hd2,gpt5)
 
 # Проверим
