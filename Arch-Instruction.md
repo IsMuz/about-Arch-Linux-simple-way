@@ -56,8 +56,10 @@
 1. [Настройка Visual Code](#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-visual-code)
 1. [LVM](#lvm)
 1. [Btrfs](#btrfs)
+1. [Snapper](#snapper)
 1. [Установка и настройка Postgres](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-postgres)
 1. [Мониторинг процессов](#%D0%BC%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2)
+1. [systemd](#systemd)
 1. [Git](#git)
 1. [Работаем с github через ssh](#%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC-%D1%81-github-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-ssh)
 1. [Tor Service](#tor-service)
@@ -1139,6 +1141,193 @@ $ sudo btrfs sub set-default <ID> /
 $ mv /.snapshots/@home /@home
 ```
 
+# [Snapper](https://github.com/openSUSE/snapper)
+
+Snapper ‒ это утилита для управления снапшотами для LVM и Btrfs.
+
+```bash
+$ yay -S snapper
+
+# Создаем конфиги для каждого подраздела отдельно
+$ sudo snapper -c config  delete-config
+$ sudo snapper -c root create-config /
+$ sudo snapper -c home create-config /home
+$ sudo snapper -c var create-config /var
+
+# Список конфигов
+$ sudo snapper list-configs
+Config | Subvolume
+-------+----------
+home   | /home
+root   | /
+var    | /var
+
+# Список снапшотов для конфига
+$ snapper -c CONFIG list
+
+# Удаление конфига
+$ sudo snapper -c CONFIG delete-config
+
+# Создать новый снапшот
+$ snapper -c CONFIG snapshot
+
+# Удалить снапшот
+$ snapper -c CONFIG delete snapshot_number
+
+# Удалить диапазон снапшотов
+$ snapper -c CONFIG delete snapshot_X-snapshot_Y
+
+```
+
+Глобальные настройки настройки задаются здесь `/etc/conf.d/snapper`.
+
+Настройки для отдельных конфигов лежат в `/etc/snapper/configs`.
+
+```bash
+# Шаблон для конфига
+$ cat /etc/snapper/config-templates/default
+```
+
+```config
+### SNAPPER-CONFIGS(5)# Filesystem Snapshot Management
+### Boolean values must be "yes" or "no".
+
+SUBVOLUME="/"
+        # Path of the subvolume or mount point.
+        # There is no default value. The value must always be specified.
+
+FSTYPE=btrfs
+        # Filesystem type for the subvolume.
+        # Default value is "btrfs" but it's recommended to always specify the
+        # filesystem type.
+
+ALLOW_USERS=""
+        # List of users allowed to operate with the config. The user-names
+        # must be separated by spaces. Spaces in usernames can be escaped with
+        # a "\".
+        # Also see the PERMISSONS section in snapper(8).
+        # Default value is "" but "root" is always implicitly included.
+
+ALLOW_GROUPS="snapper"
+        # List of groups allowed to operate with the config. The group-names
+        # must be separated by spaces. Spaces in group-names can be escaped
+        # with a "\".
+        # Also see the PERMISSONS section in snapper(8).
+        # Default value is "".
+
+SYNC_ACL=yes
+        # Defines whether snapper will sync the users and groups from
+        # ALLOW_USERS and ALLOW_GROUPS to the ACL of the .snapshots directory.
+        # Also see the PERMISSONS section in snapper(8).
+        # Default value is "no".
+        # New in version 0.2.0.
+
+BACKGROUND_COMPARISON=yes
+        # Defines whether pre and post snapshots should be compared in the
+        # background after creation.
+        # Default value is "yes".
+
+### CLEANUP ALGORITHMS
+######################
+
+### NUMBER
+NUMBER_CLEANUP=no
+        # Defines whether the number cleanup algorithm should be run for the
+        # config.
+        # Default value is "no".
+
+NUMBER_MIN_AGE=1800
+        # Minimal age for snapshots to be deleted by the number cleanup
+        # algorithm.
+        # Default value is "1800".
+
+NUMBER_LIMIT=50
+        # Defines how many snapshots the number cleanup algorithm should
+        # keep. The youngest snapshots will be kept.
+        # Default value is "50".
+
+NUMBER_LIMIT_IMPORTANT=10
+        # Defines how many important snapshots the number cleanup algorithm
+        # should keep. Important snapshots have important=yes in the userdata.
+        # The youngest important snapshots will be kept.
+        # The number of normal and important snapshots are counted
+        # independently.
+        # Default value is "10".
+        # New in version 0.1.8.
+
+### TIMELINE
+TIMELINE_CREATE=yes
+        # Defines whether hourly snapshots should be created.
+        # Together with the timeline cleanup algorithm this will create a
+        # collection of snapshots with more snapshots is the near past and less
+        # snapshots in the far past.
+        # Default value is "no".
+
+TIMELINE_CLEANUP=yes
+        # Defines whether the timeline cleanup algorithm should be run for
+        # the config.
+        # Default value is "no".
+
+TIMELINE_MIN_AGE=14400
+        # Minimal age for snapshots to be deleted by the timeline cleanup
+        # algorithm.
+        # Default value is "1800".
+
+TIMELINE_LIMIT_HOURLY=23
+        # Defines how many hourly snapshots the timeline cleanup algorithm
+        # should keep. An hourly snapshot is the first snapshot in an hour. The
+        # youngest hourly snapshots will be kept.
+        # Default value is "10".
+
+TIMELINE_LIMIT_DAILY=14
+        # Defines how many daily snapshots the timeline cleanup algorithm
+        # should keep. A daily snapshot is the first snapshot in a day. The
+        # youngest daily snapshots will be kept.
+        # Default value is "10".
+
+TIMELINE_LIMIT_MONTHLY=6
+        # Defines how many monthly snapshots the timeline cleanup algorithm
+        # should keep. A monthly snapshot is the first snapshot in a month. The
+        # youngest monthly snapshots will be kept.
+        # Default value is "10".
+
+TIMELINE_LIMIT_YEARLY=1
+        # Defines how many yearly snapshots the timeline cleanup algorithm
+        # should keep. A yearly snapshot is the first snapshot in a year. The
+        # youngest yearly snapshots will be kept.
+        # Default value is "10".
+
+### EMTPY PRE POST
+EMPTY_PRE_POST_CLEANUP=yes
+        # Defines whether the empty-pre-post cleanup algorithm should be run
+        # for the config.
+        # Default value is "no".
+
+EMPTY_PRE_POST_MIN_AGE=1800
+        # Minimal age for snapshots to be deleted by the empty-pre-post
+        # cleanup algorithm.
+        # Default value is "1800".
+```
+
+Что mlocate не индексировал снапшоты, редактируем `/etc/updatedb.conf`:
+
+```config
+...
+PRUNENAMES = ".git .hg .svn .snapshots"
+...
+```
+
+```bash
+# Включаем автоматическое создания снапшотов
+$ sudo systemctl enable snapper-timeline.timer
+Created symlink /etc/systemd/system/timers.target.wants/snapper-timeline.timer → /usr/lib/systemd/system/snapper-timeline.timer.
+```
+
+```bash
+# Просмотр логов
+$ tail -f /var/log/snapper.log
+```
+
 # Установка и настройка Postgres
 
 ```bash
@@ -1180,6 +1369,50 @@ $ psql db < /tmp/dump.sql
 # Замена стандартному top
 $ yay -S htop
 $ htop
+```
+
+# systemd
+
+```bash
+# Все сервисы
+
+# Покажут только включенные
+$ systemctl
+$ systemctl list-units --type service
+
+# + выключенные
+$ systemctl list-unit-files --type service
+
+$ sudo systemctl enable docker
+
+$ sudo systemctl disable docker
+
+$ sudo systemctl restart nginx.service
+
+$ sudo systemctl start application.service
+
+$ sudo systemctl start application.service
+
+$ systemctl status nginx.service
+```
+
+Создание своего сервиса:
+
+`/etc/systemd/system/rot13.service`:
+```config
+[Unit]
+Description=ROT13 demo service
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=centos
+ExecStart=/usr/bin/env php /path/to/server.php
+
+[Install]
+WantedBy=multi-user.target
 ```
 
 # Git
@@ -1980,6 +2213,12 @@ cat <<EOF
 джигурда
 EOF
 
+cat >> /path/to/file <<EOL
+хуй
+пизда
+джигурда
+EOL
+
 # ==============================================================================
 #
 # Написание скриптов
@@ -2056,33 +2295,6 @@ error: failed to prepare transaction (could not satisfy dependencies)
 $ yay -Rdd nautilus-sendto
 
 # Теперь можно снести gnome-extra
-
-# ==============================================================================
-#
-# systemd
-#
-# ==============================================================================
-
-# Все сервисы
-
-# Покажут только включенные
-$ systemctl
-$ systemctl list-units --type service
-
-# + выключенные
-$ systemctl list-unit-files --type service
-
-$ sudo systemctl enable docker
-
-$ sudo systemctl disable docker
-
-$ sudo systemctl restart nginx.service
-
-$ sudo systemctl start application.service
-
-$ sudo systemctl start application.service
-
-$ systemctl status nginx.service
 
 # ==============================================================================
 #
@@ -2227,8 +2439,8 @@ $ less /path/to/file
 # или более короткая версия в ZSH
 $ < /path/to/file
 
-# Просмотр логов в обратном порядке
-$ tail -r /var/log/syslog | less
+# Просмотр логов в реальном времени
+$ tail -f /var/log/syslog | less
 
 # Вывести строки не соответствующие шаблону
 $ grep -Pv <exclude_pattern> <filename>
