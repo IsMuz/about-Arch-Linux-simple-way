@@ -1328,6 +1328,16 @@ Created symlink /etc/systemd/system/timers.target.wants/snapper-timeline.timer �
 $ tail -f /var/log/snapper.log
 ```
 
+GUI:
+
+```bash
+$ yay -S snapper-gui-git
+```
+
+Ссылки:
+
+* [Snapper](https://wiki.archlinux.org/index.php/Snapper).
+
 # Установка и настройка Postgres
 
 ```bash
