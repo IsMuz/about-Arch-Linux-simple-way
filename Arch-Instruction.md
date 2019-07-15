@@ -1278,7 +1278,7 @@ $ snapper -c CONFIG delete snapshot_number
 $ snapper -c CONFIG delete snapshot_X-snapshot_Y
 
 # Включаем автоматическое создания снапшотов
-# Запускаем бекап через 5 минут после загрузки и далее каждые 24 часов
+# Запускаем бекап через 5 минут после загрузки и далее каждые 24 часа
 $ sudo nano $(locate snapper-timeline.timer)
 ...
 [Timer]
