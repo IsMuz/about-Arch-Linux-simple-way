@@ -1065,6 +1065,16 @@ $ sudo lvrename <oldname> <newname>
 $ sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
+# Btrfs
+
+```bash
+$ sudo btrfs subvol list -a /
+[sudo] password for sergey: 
+ID 257 gen 831 top level 5 path <FS_TREE>/@root
+ID 258 gen 831 top level 5 path <FS_TREE>/@home
+
+```
+
 # Установка и настройка Postgres
 
 ```bash
