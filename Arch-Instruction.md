@@ -1225,6 +1225,12 @@ $ cp -aR --reflink /.snapshots/@home_YYYY-MM-DD-ssssssssss /@home
 # Таким же способом можно переименовывать подразделы/снапшоты
 $ mv /.snapshots/@home_YYYY-MM-DD-ssssssssss /@home
 
+$ btrfs filesystem df / 
+Data, single: total=15.01GiB, used=12.42GiB
+System, single: total=4.00MiB, used=16.00KiB
+Metadata, single: total=1.01GiB, used=772.20MiB
+GlobalReserve, single: total=44.47MiB, used=0.00B
+
 # Можно так же добавлять новые разделы и устройства в уже существующую ФС
 # Можно так же сделатиь ограничения на размер подраздела, добавив его в группу и включив для него квоту
 $ man btrfs
