@@ -1194,11 +1194,12 @@ $ sudo btrfs sub snap -r /home /.snapshots/@home_`date +%F-%s`
 Create a readonly snapshot of '/home' in '/.snapshots/@home_2019-07-15-1563181292'
 
 # В другой Btrfs мы можем только воссаздать весь подраздел
-$ sudo btrfs send /@home | btrfs receive /mnt/backup/@home
+# У receive первый аргумент точка монтирования
+$ sudo btrfs send /@home | btrfs receive /mnt/backup/home
 
 # Если точка назначения имеет отличную ФС от Btrfs
 $ sudo btrfs send -f /mnt/backup/home.bak /@home
-$ sudo btrfs receive -f /mnt/backup/home.bak /@home
+$ sudo btrfs receive -f /mnt/backup/home.bak /mnt/home
 
 # Отправка снапшота на сервер с Btrfs через SSH
 $ btrfs send /my/snapshot-YYYY-MM-DD | ssh user@host btrfs receive /my/backups
