@@ -714,6 +714,70 @@ d         | rwx      | r-x    | r-x
 
 * [Права доступа к файлам и каталогам](https://www.linuxcenter.ru/lib/books/kostromin/gl_04_05.phtml)
 
+# Монтирование
+
+```bash
+$ sudo mount [ -t <fs> ] <device> <path> [ -o <options> ]
+```
+
+Опции:
+
+```
+ro     Mount the filesystem read-only.
+
+rw     Mount the filesystem read-write.
+
+sync   All I/O to the filesystem should be done synchronously.  In  the
+	case  of  media with a limited number of write cycles (e.g. some
+	flash drives), sync may cause life-cycle shortening.
+
+user   Allow an ordinary user to mount the filesystem.  The name of the
+	mounting  user  is  written  to the mtab file (or to the private
+	libmount file in /run/mount on systems without a  regular  mtab)
+	so  that  this same user can unmount the filesystem again.  This
+	option implies the options noexec,  nosuid,  and  nodev  (unless
+	overridden   by  subsequent  options,  as  in  the  option  line
+	user,exec,dev,suid).
+      
+noexec ‒ запретить выполнение файлов
+noatime ‒ не обновлять время домступа к файлу
+defaults = rw,suid,dev,exec,auto,nouser,async
+uid ‒ 1000 для первого пользователя
+gid ‒ см. далее
+
+$ id     
+uid=1000(sergey) gid=985(users) groups=985(users),969(docker),998(wheel)
+
+users  Allow any user to mount and to unmount the filesystem, even when
+	some other ordinary user mounted it.  This  option  implies  the
+	options  noexec,  nosuid, and nodev (unless overridden by subse‐
+	quent options, as in the option line users,exec,dev,suid).
+
+umask=value
+	Set the umask (the bitmask  of  the  permissions  that  are  not
+	present).  The default is the umask of the current process.  The
+	value is given in octal.
+
+dmask=value
+	Set the umask applied to directories only.  The default  is  the
+	umask of the current process.  The value is given in octal.
+
+fmask=value
+	Set the umask applied to regular files only.  The default is the
+	umask of the current process.  The value is given in octal.
+	  
+Указываются права не в виде восьмиричного числа!
+
+    0   1   2   3   4   5   6   7
+r   +   +   +   +   -   -   -   -
+w   +   +   -   -   +   +   -   -
+x   +   -   +   -   +   -   +   -
+
+Например, 0755 будет 0022
+```
+
+* [mount](https://www.opennet.ru/man.shtml?topic=mount&category=8).
+
 # Добавляем путь в PATH
 
 * Bash Shell: `~.bash_profile`, `~/.bashrc` or `~/.profile`
@@ -1193,17 +1257,6 @@ $ sudo chmod 750 /.snapshots
 $ sudo btrfs sub snap -r /home /.snapshots/@home_`date +%F-%s`
 Create a readonly snapshot of '/home' in '/.snapshots/@home_2019-07-15-1563181292'
 
-# В другой Btrfs мы можем только воссаздать весь подраздел
-# У receive первый аргумент точка монтирования
-$ sudo btrfs send /@home | btrfs receive /mnt/backup/home
-
-# Если точка назначения имеет отличную ФС от Btrfs
-$ sudo btrfs send -f /mnt/backup/home.bak /@home
-$ sudo btrfs receive -f /mnt/backup/home.bak /mnt/home
-
-# Отправка снапшота на сервер с Btrfs через SSH
-$ btrfs send /my/snapshot-YYYY-MM-DD | ssh user@host btrfs receive /my/backups
-
 $ sudo btrfs sub li -a /
 ID 257 gen 1457 top level 5 path <FS_TREE>/@
 ID 258 gen 1458 top level 5 path <FS_TREE>/@home
@@ -1231,6 +1284,12 @@ Data, single: total=15.01GiB, used=12.42GiB
 System, single: total=4.00MiB, used=16.00KiB
 Metadata, single: total=1.01GiB, used=772.20MiB
 GlobalReserve, single: total=44.47MiB, used=0.00B
+
+# Как сделать бекап и восстановить его в другой ФС
+$ btrfs send /source/subvolume >/another/filesystem/subvolume-image   # just a file
+# (or you can gzip it and/or send with nc on the fly, whatever)
+# then later
+$ </another/filesystem/subvolume-image btrfs receive /some/btrfs/directory
 
 # Можно так же добавлять новые разделы и устройства в уже существующую ФС
 # Можно так же сделатиь ограничения на размер подраздела, добавив его в группу и включив для него квоту
