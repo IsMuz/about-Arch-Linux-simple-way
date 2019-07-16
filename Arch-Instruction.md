@@ -24,6 +24,7 @@
    1. [Ставим Gnome](#%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BC-gnome)
    1. [Завершение установки](#%D0%B7%D0%B0%D0%B2%D0%B5%D1%80%D1%88%D0%B5%D0%BD%D0%B8%D0%B5-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B8)
 1. [man & help](#man--help)
+1. [Типы файлов в выводе ls и других стандартных команд](#%D1%82%D0%B8%D0%BF%D1%8B-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2-%D0%B2-%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%D0%B5-ls-%D0%B8-%D0%B4%D1%80%D1%83%D0%B3%D0%B8%D1%85-%D1%81%D1%82%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%D1%82%D0%BD%D1%8B%D1%85-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4)
 1. [Пакетные менеджеры](#%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BD%D1%8B%D0%B5-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D1%8B)
 1. [Нужные пакеты](#%D0%BD%D1%83%D0%B6%D0%BD%D1%8B%D0%B5-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B)
 1. [Заменяем ядро на стабильное](#%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC-%D1%8F%D0%B4%D1%80%D0%BE-%D0%BD%D0%B0-%D1%81%D1%82%D0%B0%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5)
@@ -35,6 +36,7 @@
 1. [Гибернация](#%D0%B3%D0%B8%D0%B1%D0%B5%D1%80%D0%BD%D0%B0%D1%86%D0%B8%D1%8F)
 1. [RAID](#raid)
 1. [Права](#%D0%BF%D1%80%D0%B0%D0%B2%D0%B0)
+1. [Монтирование](#%D0%BC%D0%BE%D0%BD%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5)
 1. [Добавляем путь в PATH](#%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC-%D0%BF%D1%83%D1%82%D1%8C-%D0%B2-path)
 1. [bin в домашнем каталоге](#bin-%D0%B2-%D0%B4%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D0%B5%D0%BC-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%B5)
 1. [Монтируем Windows разделы](#%D0%BC%D0%BE%D0%BD%D1%82%D0%B8%D1%80%D1%83%D0%B5%D0%BC-windows-%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D1%8B)
@@ -314,13 +316,17 @@ nano /etc/hosts
 
 ## Initramfs
 
+> mkinitcpio это Bash скрипт используемый для создания начального загрузочного диска системы. Из mkinitcpio man page:
+
+> ⚠ Это обязательный шаг даже, если не используется LVM, а так же при изменение пути до корня
+
 При использовании LVM нужно отредактировать `/etc/mkinitcpio.conf` и модифицировать список HOOKS, добавив `lvm2` **ДО ЗНАЧЕНИЯ** `filesystems`:
 
 ```
 HOOKS=(base udev autodetect modconf block lvm2 filesystems keyboard fsck)
 ```
 
-Генерация (обязательный шаг даже, если не используется LVM):
+Генерация:
 
 ```bash
 mkinitcpio -p linux
@@ -462,6 +468,33 @@ $ man 1p printf
 # Краткая справка по функции
 $ command -h
 $ command --help
+```
+
+# Типы файлов в выводе ls и других стандартных команд
+
+There is only 1 command you need to know, which will help you to identify and categorize all the seven different file types found on the Linux system.
+
+```bash
+$ ls -ld <file name>
+```
+
+Here is an example output of the above command.
+
+```bash
+ $ ls -ld /etc/services 
+-rw-r--r-- 1 root root 19281 Feb 14  2012 /etc/services
+```
+
+ls command will show the file type as an encoded symbol found as the first character of the file permission part. In this case it is "-", which means "regular file". It is important to point out that Linux file types are not to be mistaken with file extensions. Let us have a look at a short summary of all the seven different types of Linux file types and ls command identifiers:
+
+```
+- : regular file
+d : directory
+c : character device file
+b : block device file
+s : local socket file
+p : named pipe
+l : symbolic link
 ```
 
 # Пакетные менеджеры
@@ -713,6 +746,70 @@ d         | rwx      | r-x    | r-x
 Ссылки:
 
 * [Права доступа к файлам и каталогам](https://www.linuxcenter.ru/lib/books/kostromin/gl_04_05.phtml)
+
+# Монтирование
+
+```bash
+$ sudo mount [ -t <fs> ] <device> <path> [ -o <options> ]
+```
+
+Опции:
+
+```
+ro     Mount the filesystem read-only.
+
+rw     Mount the filesystem read-write.
+
+sync   All I/O to the filesystem should be done synchronously.  In  the
+	case  of  media with a limited number of write cycles (e.g. some
+	flash drives), sync may cause life-cycle shortening.
+
+user   Allow an ordinary user to mount the filesystem.  The name of the
+	mounting  user  is  written  to the mtab file (or to the private
+	libmount file in /run/mount on systems without a  regular  mtab)
+	so  that  this same user can unmount the filesystem again.  This
+	option implies the options noexec,  nosuid,  and  nodev  (unless
+	overridden   by  subsequent  options,  as  in  the  option  line
+	user,exec,dev,suid).
+      
+noexec ‒ запретить выполнение файлов
+noatime ‒ не обновлять время домступа к файлу
+defaults = rw,suid,dev,exec,auto,nouser,async
+uid ‒ 1000 для первого пользователя
+gid ‒ см. далее
+
+$ id     
+uid=1000(sergey) gid=985(users) groups=985(users),969(docker),998(wheel)
+
+users  Allow any user to mount and to unmount the filesystem, even when
+	some other ordinary user mounted it.  This  option  implies  the
+	options  noexec,  nosuid, and nodev (unless overridden by subse‐
+	quent options, as in the option line users,exec,dev,suid).
+
+umask=value
+	Set the umask (the bitmask  of  the  permissions  that  are  not
+	present).  The default is the umask of the current process.  The
+	value is given in octal.
+
+dmask=value
+	Set the umask applied to directories only.  The default  is  the
+	umask of the current process.  The value is given in octal.
+
+fmask=value
+	Set the umask applied to regular files only.  The default is the
+	umask of the current process.  The value is given in octal.
+	  
+Указываются права не в виде восьмиричного числа!
+
+    0   1   2   3   4   5   6   7
+r   +   +   +   +   -   -   -   -
+w   +   +   -   -   +   +   -   -
+x   +   -   +   -   +   -   +   -
+
+Например, 0755 будет 0022
+```
+
+* [mount](https://www.opennet.ru/man.shtml?topic=mount&category=8).
 
 # Добавляем путь в PATH
 
@@ -1193,16 +1290,6 @@ $ sudo chmod 750 /.snapshots
 $ sudo btrfs sub snap -r /home /.snapshots/@home_`date +%F-%s`
 Create a readonly snapshot of '/home' in '/.snapshots/@home_2019-07-15-1563181292'
 
-# В другой Btrfs мы можем только воссаздать весь подраздел
-$ sudo btrfs send /@home | btrfs receive /mnt/backup/@home
-
-# Если точка назначения имеет отличную ФС от Btrfs
-$ sudo btrfs send -f /mnt/backup/home.bak /@home
-$ sudo btrfs receive -f /mnt/backup/home.bak /@home
-
-# Отправка снапшота на сервер с Btrfs через SSH
-$ btrfs send /my/snapshot-YYYY-MM-DD | ssh user@host btrfs receive /my/backups
-
 $ sudo btrfs sub li -a /
 ID 257 gen 1457 top level 5 path <FS_TREE>/@
 ID 258 gen 1458 top level 5 path <FS_TREE>/@home
@@ -1225,9 +1312,41 @@ $ cp -aR --reflink /.snapshots/@home_YYYY-MM-DD-ssssssssss /@home
 # Таким же способом можно переименовывать подразделы/снапшоты
 $ mv /.snapshots/@home_YYYY-MM-DD-ssssssssss /@home
 
+$ btrfs filesystem df / 
+Data, single: total=15.01GiB, used=12.42GiB
+System, single: total=4.00MiB, used=16.00KiB
+Metadata, single: total=1.01GiB, used=772.20MiB
+GlobalReserve, single: total=44.47MiB, used=0.00B
+
+# Как сделать бекап и восстановить его в другой ФС
+$ btrfs send /source/subvolume >/another/filesystem/subvolume-image   # just a file
+# (or you can gzip it and/or send with nc on the fly, whatever)
+# then later
+$ </another/filesystem/subvolume-image btrfs receive /some/btrfs/directory
+
 # Можно так же добавлять новые разделы и устройства в уже существующую ФС
 # Можно так же сделатиь ограничения на размер подраздела, добавив его в группу и включив для него квоту
 $ man btrfs
+```
+
+```
+бтрфс ничего не жмет.
+наилучший вариант сделать ридонли снапшот системы, потом из снапшота сделать образ через send и уж его можно жать и в хвост и в гриву
+к примеру 
+
+sudo btrfs filesystem sync /
+sudo btrfs subvolume snapshot -r / /mnt/backup/root_base
+sudo btrfs send /mnt/b11/root_base | gzip > root_`date '+%F'`.gz
+
+но почему бы не воспользоваться обыденным tar ??
+так-то формат упаковки btrfs-stream (формат выхода btrfs send) не фундаментально отличается от формата tar. выполнить на сервере
+
+sudo tar -czpf %backup%/srv4full-`date "+%F"`.tgz -X /etc/backupfull_exclude /
+
+в файл /etc/backupfull_exclude пишешь список того что не нужно упаковывать в архив с системой (кроме классических /dev /proc /run /sys и прочих еще докинуть саму директорию куда архивишься  и плюс рабочие директории сервисов, к примеру база данных такую архивацию не всегда переживет)
+а далее восстановление из tar архива
+
+если свободного места на сервере будет меньше трети всего объема то такой бекап может не прокатить, либо жать сильнее к примеру через lzma (жрет памяти и проц очень хорошо) либо писать напрямую по интернету к себе (если будет разрыв то передача обломится)
 ```
 
 # [Snapper](https://github.com/openSUSE/snapper)
@@ -1277,8 +1396,18 @@ $ snapper -c CONFIG delete snapshot_number
 # Удалить диапазон снапшотов
 $ snapper -c CONFIG delete snapshot_X-snapshot_Y
 
+<<<<<<< HEAD
 # Включаем автоматическое создания снапшотов
 # Запускаем бекап через 5 минут после загрузки и далее каждые 24 часа
+=======
+# Добавляем .snapshots в исключения для mlocate
+$ sudo nano /etc/updatedb.conf
+...
+PRUNENAMES = ".git .hg .svn .snapshots"
+...
+
+# Делаем снимки через 5 минут после загрузки и далее каждые 24 часов
+>>>>>>> c67ee04f7511ffe5c7ed83f2c751da05ac42de29
 $ sudo nano $(locate snapper-timeline.timer)
 ...
 [Timer]
@@ -1286,17 +1415,16 @@ OnBootSec=5min
 OnUnitActiveSec=24h
 ...
 
-# Из-за того, что mlocate индексирует снапшоты, система может тормозить
-$ sudo nano /etc/updatedb.conf
-...
-PRUNENAMES = ".git .hg .svn .snapshots"
-...
+# Включаем автоматическое создания снапшотов
+$ sudo systemctl enable snapper-timeline.timer && sudo systemctl start snapper-timeline.timer
 
-# Запускаем задание
-$ sudo systemctl enable snapper-timeline.timer
-Created symlink /etc/systemd/system/timers.target.wants/snapper-timeline.timer → /usr/lib/systemd/system/snapper-timeline.timer.
+# Можно так же периодичность очистки снапшотов изменить
+$ sudo nano $(locate snapper-cleanup.timer)
 
-# Просмотр логов
+# Автоматически  удаляет снапшоты при превышении квот
+$ sudo systemctl enable snapper-cleanup.timer && sudo systemctl start snapper-cleanup.timer
+
+# Просмотр логов 
 $ tail -f /var/log/snapper.log
 ```
 
