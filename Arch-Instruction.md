@@ -314,13 +314,17 @@ nano /etc/hosts
 
 ## Initramfs
 
+> mkinitcpio это Bash скрипт используемый для создания начального загрузочного диска системы. Из mkinitcpio man page:
+
+> ⚠ Это обязательный шаг даже, если не используется LVM, а так же при изменение пути до корня
+
 При использовании LVM нужно отредактировать `/etc/mkinitcpio.conf` и модифицировать список HOOKS, добавив `lvm2` **ДО ЗНАЧЕНИЯ** `filesystems`:
 
 ```
 HOOKS=(base udev autodetect modconf block lvm2 filesystems keyboard fsck)
 ```
 
-Генерация (обязательный шаг даже, если не используется LVM):
+Генерация:
 
 ```bash
 mkinitcpio -p linux
