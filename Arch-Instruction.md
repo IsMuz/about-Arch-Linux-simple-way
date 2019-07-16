@@ -1277,8 +1277,13 @@ $ snapper -c CONFIG delete snapshot_number
 # Удалить диапазон снапшотов
 $ snapper -c CONFIG delete snapshot_X-snapshot_Y
 
-# Включаем автоматическое создания снапшотов
-# Запускаем бекап через 5 минут после загрузки и далее каждые 24 часов
+# Добавляем .snapshots в исключения для mlocate
+$ sudo nano /etc/updatedb.conf
+...
+PRUNENAMES = ".git .hg .svn .snapshots"
+...
+
+# Делаем снимки через 5 минут после загрузки и далее каждые 24 часов
 $ sudo nano $(locate snapper-timeline.timer)
 ...
 [Timer]
@@ -1286,17 +1291,16 @@ OnBootSec=5min
 OnUnitActiveSec=24h
 ...
 
-# Из-за того, что mlocate индексирует снапшоты, система может тормозить
-$ sudo nano /etc/updatedb.conf
-...
-PRUNENAMES = ".git .hg .svn .snapshots"
-...
+# Включаем автоматическое создания снапшотов
+$ sudo systemctl enable snapper-timeline.timer && sudo systemctl start snapper-timeline.timer
 
-# Запускаем задание
-$ sudo systemctl enable snapper-timeline.timer
-Created symlink /etc/systemd/system/timers.target.wants/snapper-timeline.timer → /usr/lib/systemd/system/snapper-timeline.timer.
+# Можно так же периодичность очистки снапшотов изменить
+$ sudo nano $(locate snapper-cleanup.timer)
 
-# Просмотр логов
+# Автоматически  удаляет снапшоты при превышении квот
+$ sudo systemctl enable snapper-cleanup.timer && sudo systemctl start snapper-cleanup.timer
+
+# Просмотр логов 
 $ tail -f /var/log/snapper.log
 ```
 
