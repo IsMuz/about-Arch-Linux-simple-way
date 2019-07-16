@@ -481,7 +481,7 @@ $ ls -ld <file name>
 Here is an example output of the above command.
 
 ```bash
- $ ls -ld /etc/services 
+ $ ls -ld /etc/services
 -rw-r--r-- 1 root root 19281 Feb 14  2012 /etc/services
 ```
 
@@ -771,14 +771,14 @@ user   Allow an ordinary user to mount the filesystem.  The name of the
 	option implies the options noexec,  nosuid,  and  nodev  (unless
 	overridden   by  subsequent  options,  as  in  the  option  line
 	user,exec,dev,suid).
-      
+
 noexec ‒ запретить выполнение файлов
 noatime ‒ не обновлять время домступа к файлу
 defaults = rw,suid,dev,exec,auto,nouser,async
 uid ‒ 1000 для первого пользователя
 gid ‒ см. далее
 
-$ id     
+$ id
 uid=1000(sergey) gid=985(users) groups=985(users),969(docker),998(wheel)
 
 users  Allow any user to mount and to unmount the filesystem, even when
@@ -798,7 +798,7 @@ dmask=value
 fmask=value
 	Set the umask applied to regular files only.  The default is the
 	umask of the current process.  The value is given in octal.
-	  
+
 Указываются права не в виде восьмиричного числа!
 
     0   1   2   3   4   5   6   7
@@ -1312,7 +1312,7 @@ $ cp -aR --reflink /.snapshots/@home_YYYY-MM-DD-ssssssssss /@home
 # Таким же способом можно переименовывать подразделы/снапшоты
 $ mv /.snapshots/@home_YYYY-MM-DD-ssssssssss /@home
 
-$ btrfs filesystem df / 
+$ btrfs filesystem df /
 Data, single: total=15.01GiB, used=12.42GiB
 System, single: total=4.00MiB, used=16.00KiB
 Metadata, single: total=1.01GiB, used=772.20MiB
@@ -1332,7 +1332,7 @@ $ man btrfs
 ```
 бтрфс ничего не жмет.
 наилучший вариант сделать ридонли снапшот системы, потом из снапшота сделать образ через send и уж его можно жать и в хвост и в гриву
-к примеру 
+к примеру
 
 sudo btrfs filesystem sync /
 sudo btrfs subvolume snapshot -r / /mnt/backup/root_base
@@ -1424,7 +1424,7 @@ $ sudo nano $(locate snapper-cleanup.timer)
 # Автоматически  удаляет снапшоты при превышении квот
 $ sudo systemctl enable snapper-cleanup.timer && sudo systemctl start snapper-cleanup.timer
 
-# Просмотр логов 
+# Просмотр логов
 $ tail -f /var/log/snapper.log
 ```
 
@@ -2039,6 +2039,8 @@ $ git clone --depth=1 https://github.com/pindexis/marker ~/.marker && ~/.marker/
 * Ctrl-k (or marker mark): Bookmark a command.
 * Ctrl-t: place the cursor at the next placeholder, identified by '{{anything}}'
 * marker remove: remove a bookmark
+
+![image](https://user-images.githubusercontent.com/12753171/61332778-a3a7b480-a814-11e9-88cb-cdbff8cf5734.png)
 
 ## [TLDR](https://github.com/tldr-pages/tldr)
 
