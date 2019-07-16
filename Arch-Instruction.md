@@ -464,6 +464,33 @@ $ command -h
 $ command --help
 ```
 
+# Типы файлов в выводе ls и других стандартных команд
+
+There is only 1 command you need to know, which will help you to identify and categorize all the seven different file types found on the Linux system.
+
+```bash
+$ ls -ld <file name>
+```
+
+Here is an example output of the above command.
+
+```bash
+ $ ls -ld /etc/services 
+-rw-r--r-- 1 root root 19281 Feb 14  2012 /etc/services
+```
+
+ls command will show the file type as an encoded symbol found as the first character of the file permission part. In this case it is "-", which means "regular file". It is important to point out that Linux file types are not to be mistaken with file extensions. Let us have a look at a short summary of all the seven different types of Linux file types and ls command identifiers:
+
+```
+- : regular file
+d : directory
+c : character device file
+b : block device file
+s : local socket file
+p : named pipe
+l : symbolic link
+```
+
 # Пакетные менеджеры
 
 Пакетным менеджером по-умолчанию для Arch Linux является pacman. Для подсветки вывода pacman в `/etc/pacman.conf` нужно раскомментировать `Color`. Пользовательским репозиторием является [AUR](https://aur.archlinux.org/). Пакеты из него можно использовать только на свой страх и риск. Чтобы не собирать пакеты из него ручками можно поставить yay:
