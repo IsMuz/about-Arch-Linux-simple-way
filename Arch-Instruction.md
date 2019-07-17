@@ -867,7 +867,7 @@ $ sudo mkdir /mnt/c
 
 Редактируем `/etc/fstab`:
 
-```conf
+```conf                  
 /dev/nvme0n1p4 /mnt/c ntfs-3g rw,user,fmask=0111,dmask=0000 0 0
 ```
 
@@ -2271,6 +2271,10 @@ $ git clone --depth=1 https://github.com/pindexis/marker ~/.marker && ~/.marker/
 * marker remove: remove a bookmark
 
 ![image](https://user-images.githubusercontent.com/12753171/61332778-a3a7b480-a814-11e9-88cb-cdbff8cf5734.png)
+
+Пользовательские команды хранятся в `~/.local/share/marker/user_commands.txt`.
+
+"Встроенные" в `/home/sergey/.marker/tldr/`.
 
 ## [TLDR](https://github.com/tldr-pages/tldr)
 
