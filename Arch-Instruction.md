@@ -929,6 +929,235 @@ $ cp /etc/hosts ~/Documents/hosts.bak
 $ wget -qO- https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee --append /etc/hosts
 ```
 
+# Информация о железе
+
+```bash
+$ lspci
+00:00.0 Host bridge: Intel Corporation 2nd Generation Core Processor Family DRAM Controller (rev 09)
+00:01.0 PCI bridge: Intel Corporation Xeon E3-1200/2nd Generation Core Processor Family PCI Express Root Port (rev 09)
+00:02.0 VGA compatible controller: Intel Corporation 2nd Generation Core Processor Family Integrated Graphics Controller (rev 09)
+00:14.0 USB controller: Intel Corporation 7 Series/C210 Series Chipset Family USB xHCI Host Controller (rev 04)
+00:16.0 Communication controller: Intel Corporation 7 Series/C216 Chipset Family MEI Controller #1 (rev 04)
+00:1a.0 USB controller: Intel Corporation 7 Series/C216 Chipset Family USB Enhanced Host Controller #2 (rev 04)
+00:1b.0 Audio device: Intel Corporation 7 Series/C216 Chipset Family High Definition Audio Controller (rev 04)
+00:1c.0 PCI bridge: Intel Corporation 7 Series/C216 Chipset Family PCI Express Root Port 1 (rev c4)
+00:1c.4 PCI bridge: Intel Corporation 7 Series/C210 Series Chipset Family PCI Express Root Port 5 (rev c4)
+00:1c.5 PCI bridge: Intel Corporation 7 Series/C210 Series Chipset Family PCI Express Root Port 6 (rev c4)
+00:1c.6 PCI bridge: Intel Corporation 7 Series/C210 Series Chipset Family PCI Express Root Port 7 (rev c4)
+00:1d.0 USB controller: Intel Corporation 7 Series/C216 Chipset Family USB Enhanced Host Controller #1 (rev 04)
+00:1f.0 ISA bridge: Intel Corporation H77 Express Chipset LPC Controller (rev 04)
+00:1f.2 IDE interface: Intel Corporation 7 Series/C210 Series Chipset Family 4-port SATA Controller [IDE mode] (rev 04)
+00:1f.3 SMBus: Intel Corporation 7 Series/C216 Chipset Family SMBus Controller (rev 04)
+00:1f.5 IDE interface: Intel Corporation 7 Series/C210 Series Chipset Family 2-port SATA Controller [IDE mode] (rev 04)
+03:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 09)
+04:00.0 Network controller: Qualcomm Atheros AR9485 Wireless Network Adapter (rev 01)
+05:00.0 IDE interface: Marvell Technology Group Ltd. 88SE9172 SATA III 6Gb/s RAID Controller (rev 11)
+
+# Видеоадаптер(ы)
+$ lspci -v | grep "VGA" -A 12
+
+# SATA-устройства
+$ lsscsi
+
+# Список USB-устройств
+$ lsusb
+
+# Очень подробная информация о всех устройствах
+$ inxi -Fx
+
+$ hwinfo --short         
+cpu:                                                            
+                       Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz, 3500 MHz
+                       Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz, 3480 MHz
+                       Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz, 3500 MHz
+                       Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz, 3491 MHz
+                       Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz, 3550 MHz
+                       Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz, 3484 MHz
+                       Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz, 3492 MHz
+                       Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz, 3496 MHz
+keyboard:
+  /dev/input/event2    Logitech Keyboard K120
+mouse:
+  /dev/input/mice      Logitech M-U0004 810-001317 [B110 Optical USB Mouse]
+monitor:
+                       SAMSUNG SMS24A650
+                       SAMSUNG SMB2340
+graphics card:
+                       Intel 2nd Generation Core Processor Family Integrated Graphics Controller
+sound:
+                       Intel 7 Series/C216 Chipset Family High Definition Audio Controller
+storage:
+                       Intel 7 Series/C210 Series Chipset Family 4-port SATA Controller [IDE mode]
+                       Intel 7 Series/C210 Series Chipset Family 2-port SATA Controller [IDE mode]
+                       Marvell 88SE9172 SATA III 6Gb/s RAID Controller
+network:
+  enp3s0               Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller
+  wlp4s0               Qualcomm Atheros AR9485 Wireless Network Adapter
+network interface:
+  docker0              Ethernet network interface
+  enp3s0               Ethernet network interface
+  lo                   Loopback network interface
+  wlp4s0               Ethernet network interface
+  br-1d7c88a3dc61      Ethernet network interface
+disk:
+  /dev/sdb             WDC WD5000AZLX-0
+  /dev/sda             INTEL SSDSC2CW24
+partition:
+  /dev/sdb1            Partition
+  /dev/sda1            Partition
+  /dev/sda2            Partition
+  /dev/sda3            Partition
+usb controller:
+                       Intel 7 Series/C216 Chipset Family USB Enhanced Host Controller #2
+                       Intel 7 Series/C216 Chipset Family USB Enhanced Host Controller #1
+                       Intel 7 Series/C210 Series Chipset Family USB xHCI Host Controller
+bios:
+                       BIOS
+bridge:
+                       Intel 7 Series/C216 Chipset Family PCI Express Root Port 1
+                       Intel H77 Express Chipset LPC Controller
+                       Intel Xeon E3-1200/2nd Generation Core Processor Family PCI Express Root Port
+                       Intel 7 Series/C210 Series Chipset Family PCI Express Root Port 6
+                       Intel 2nd Generation Core Processor Family DRAM Controller
+                       Intel 7 Series/C210 Series Chipset Family PCI Express Root Port 7
+                       Intel 7 Series/C210 Series Chipset Family PCI Express Root Port 5
+hub:
+                       Intel Integrated Rate Matching Hub
+                       Linux Foundation 2.0 root hub
+                       Linux Foundation 3.0 root hub
+                       Linux Foundation 2.0 root hub
+                       Intel Integrated Rate Matching Hub
+                       Linux Foundation 2.0 root hub
+memory:
+                       Main Memory
+unknown:
+                       FPU
+                       DMA controller
+                       PIC
+                       Keyboard controller
+  /dev/lp0             Parallel controller
+                       Intel 7 Series/C216 Chipset Family MEI Controller #1
+                       Intel 7 Series/C216 Chipset Family SMBus Controller
+                       Serial controller
+  /dev/input/event3    Logitech Keyboard K120
+  
+# Список блочных устройств
+$ lsblk
+
+# Покажет разделы и занимаемое ими место
+$ df -h
+
+# Fdisk is a utility to modify partitions on hard drives, and can be used to list out the partition information as well.
+
+$ sudo fdisk -l
+
+Disk /dev/sda: 500.1 GB, 500107862016 bytes
+255 heads, 63 sectors/track, 60801 cylinders, total 976773168 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x30093008
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *          63   146801969    73400953+   7  HPFS/NTFS/exFAT
+/dev/sda2       146802031   976771071   414984520+   f  W95 Ext'd (LBA)
+/dev/sda5       146802033   351614654   102406311    7  HPFS/NTFS/exFAT
+/dev/sda6       351614718   556427339   102406311   83  Linux
+/dev/sda7       556429312   560427007     1998848   82  Linux swap / Solaris
+/dev/sda8       560429056   976771071   208171008   83  Linux
+
+# The mount is used to mount/unmount and view mounted file systems.
+
+$ mount | column -t
+/dev/sda6    on  /                                            type  ext4             (rw,errors=remount-ro)
+proc         on  /proc                                        type  proc             (rw,noexec,nosuid,nodev)
+sysfs        on  /sys                                         type  sysfs            (rw,noexec,nosuid,nodev)
+none         on  /sys/fs/cgroup                               type  tmpfs            (rw)
+none         on  /sys/fs/fuse/connections                     type  fusectl          (rw)
+none         on  /sys/kernel/debug                            type  debugfs          (rw)
+none         on  /sys/kernel/security                         type  securityfs       (rw)
+udev         on  /dev                                         type  devtmpfs         (rw,mode=0755)
+devpts       on  /dev/pts                                     type  devpts           (rw,noexec,nosuid,gid=5,mode=0620)
+tmpfs        on  /run                                         type  tmpfs            (rw,noexec,nosuid,size=10%,mode=0755)
+none         on  /run/lock                                    type  tmpfs            (rw,noexec,nosuid,nodev,size=5242880)
+none         on  /run/shm                                     type  tmpfs            (rw,nosuid,nodev)
+none         on  /run/user                                    type  tmpfs            (rw,noexec,nosuid,nodev,size=104857600,mode=0755)
+none         on  /sys/fs/pstore                               type  pstore           (rw)
+/dev/sda8    on  /media/13f35f59-f023-4d98-b06f-9dfaebefd6c1  type  ext4             (rw,nosuid,nodev,errors=remount-ro)
+/dev/sda5    on  /media/4668484A68483B47                      type  fuseblk          (rw,nosuid,nodev,allow_other,blksize=4096)
+binfmt_misc  on  /proc/sys/fs/binfmt_misc                     type  binfmt_misc      (rw,noexec,nosuid,nodev)
+systemd      on  /sys/fs/cgroup/systemd                       type  cgroup           (rw,noexec,nosuid,nodev,none,name=systemd)
+gvfsd-fuse   on  /run/user/1000/gvfs                          type  fuse.gvfsd-fuse  (rw,nosuid,nodev,user=enlightened)
+
+# Again, use grep to filter out only those file systems that you want to see
+
+$ mount | column -t | grep ext
+
+# The dmidecode command is different from all other commands. It extracts hardware information by reading data from the SMBOIS data structures (also called DMI tables).
+
+# display information about the processor/cpu
+$ sudo dmidecode -t processor
+
+# memory/ram information
+$ sudo dmidecode -t memory
+
+# bios details
+$ sudo dmidecode -t bios
+
+# cpu information
+$ cat /proc/cpuinfo
+
+# memory information
+$ cat /proc/meminfo
+
+$ cat /proc/version
+Linux version 3.11.0-12-generic (buildd@allspice) (gcc version 4.8.1 (Ubuntu/Linaro 4.8.1-10ubuntu7) ) #19-Ubuntu SMP Wed Oct 9 16:20:46 UTC 2013
+
+# SCSI/Sata devices
+
+$ cat /proc/scsi/scsi 
+Attached devices:
+Host: scsi3 Channel: 00 Id: 00 Lun: 00
+  Vendor: ATA      Model: ST3500418AS      Rev: CC38
+  Type:   Direct-Access                    ANSI  SCSI revision: 05
+Host: scsi4 Channel: 00 Id: 00 Lun: 00
+  Vendor: SONY     Model: DVD RW DRU-190A  Rev: 1.63
+  Type:   CD-ROM                           ANSI  SCSI revision: 05
+Partitions
+
+$ cat /proc/partitions 
+major minor  #blocks  name
+
+   8        0  488386584 sda
+   8        1   73400953 sda1
+   8        2          1 sda2
+   8        5  102406311 sda5
+   8        6  102406311 sda6
+   8        7    1998848 sda7
+   8        8  208171008 sda8
+  11        0    1048575 sr0
+  
+# The hdparm command gets information about sata devices like hard disks.
+
+$ sudo hdparm -i /dev/sda
+
+/dev/sda:
+
+ Model=ST3500418AS, FwRev=CC38, SerialNo=9VMJXV1N
+ Config={ HardSect NotMFM HdSw>15uSec Fixed DTR>10Mbs RotSpdTol>.5% }
+ RawCHS=16383/16/63, TrkSize=0, SectSize=0, ECCbytes=4
+ BuffType=unknown, BuffSize=16384kB, MaxMultSect=16, MultSect=16
+ CurCHS=16383/16/63, CurSects=16514064, LBA=yes, LBAsects=976773168
+ IORDY=on/off, tPIO={min:120,w/IORDY:120}, tDMA={min:120,rec:120}
+ PIO modes:  pio0 pio1 pio2 pio3 pio4 
+ DMA modes:  mdma0 mdma1 mdma2 
+ UDMA modes: udma0 udma1 udma2 udma3 udma4 udma5 *udma6 
+ AdvancedPM=no WriteCache=enabled
+ Drive conforms to: unknown:  ATA/ATAPI-4,5,6,7
+
+ * signifies the current active mode
+```
+
 # Редактирование DConf
 
 DConf хранит профили терминала в `~/.config/dconf/user`, в формате GVDB [пруф](https://en.wikipedia.org/wiki/Dconf).
