@@ -216,10 +216,15 @@ mount /dev/nvme0n1p2 /mnt/boot/efi
 ## Вариант 2: Btrfs
 
 ```bash
+# Все стоит делать именно в такой последовательно!!!
+# Сначала монтируем диск
 mount /dev/nvme0n1p5 /mnt
+# Потом создаем на нем подразделы
 btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@home
+# Теперь мы демонтируем устройство
 umount /mnt
+# и монтируем созданные подразделы
 mount -o noatime,compress=lzo,space_cache,subvol=@ /dev/nvme0n1p5 /mnt
 mkdir /mnt/home
 mount -o noatime,compress=lzo,space_cache,subvol=@home /dev/nvme0n1p5 /mnt/home
@@ -237,6 +242,8 @@ swapon /mnt/swapfile
 mkdir -p /mnt/boot/efi
 mount /dev/nvme0n1p2 /mnt/boot/efi
 ```
+
+[Эта инструкция лучше](https://gist.github.com/idvoretskyi/9a516921fab0ad4e3ea0)
 
 ## Устанавливаем ядро
 
