@@ -2274,6 +2274,21 @@ $ git clone --depth=1 https://github.com/pindexis/marker ~/.marker && ~/.marker/
 
 Пользовательские команды хранятся в `~/.local/share/marker/user_commands.txt`.
 
+Пример:
+
+```
+yay -S {{package}}##install package
+yay -S --noconfirm {{package}}##install package without confirmations
+yay -Ss {{search}}##search packages
+yay -Si {{package}}##package information
+yay -Sc##clean
+yay -Syu##update all packages
+yay -Ps##print system stats
+yay -Pu##print list of packages that needs to be updated
+yay -Rns {{package}}##remove package
+exec "$SHELL"##reload shell
+```
+
 "Встроенные" в `/home/sergey/.marker/tldr/`.
 
 ## [TLDR](https://github.com/tldr-pages/tldr)
