@@ -1586,6 +1586,28 @@ sudo tar -czpf %backup%/srv4full-`date "+%F"`.tgz -X /etc/backupfull_exclude /
 если свободного места на сервере будет меньше трети всего объема то такой бекап может не прокатить, либо жать сильнее к примеру через lzma (жрет памяти и проц очень хорошо) либо писать напрямую по интернету к себе (если будет разрыв то передача обломится)
 ```
 
+Типы файловых систем:
+
+```
+Flat:
+
+toplevel         (volume root directory, not to be mounted by default)
+  +-- root       (subvolume root directory, to be mounted at /)
+  +-- home       (subvolume root directory, to be mounted at /home)
+  +-- var        (directory)
+  |   \-- www    (subvolume root directory, to be mounted at /var/www)
+  \-- postgres   (subvolume root directory, to be mounted at /var/lib/postgresql)
+
+Nested:
+
+toplevel                  (volume root directory, to be mounted at /)
++-- home                  (subvolume root directory)
++-- var                   (subvolume root directory)
+    +-- www               (subvolume root directory)
+    +-- lib               (directory)
+         \-- postgresql   (subvolume root directory)
+```
+
 # [Snapper](https://github.com/openSUSE/snapper)
 
 Snapper ‒ это утилита для управления снапшотами для LVM и Btrfs.
