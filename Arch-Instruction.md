@@ -256,7 +256,7 @@ pacstrap /mnt base base-devel
 ## Генерируем fstab
 
 ```bash
-genfstab /mnt >> /mnt/etc/fstab
+genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
 ## arch-chroot
