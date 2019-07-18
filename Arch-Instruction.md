@@ -1902,6 +1902,14 @@ $ yay -S snapper-gui-git
 $ yay -S timeshift
 ```
 
+## Логи
+
+Логи ядра Linux:
+
+```bash
+$ dmesg | less
+```
+
 # Установка и настройка Postgres
 
 ```bash
