@@ -719,7 +719,16 @@ $ sudo filefrag -v /swapfile | awk 'NR == 4 {print $5}' | cut -d ':' -f 1
 GRUB_CMDLINE_LINUX_DEFAULT="quiet resume=UUID=217df373-d154-4f2e-9497-fcac21709729 resume_offset=1423360"
 ```
 
-Теперь нужно обновить grub и сгенерировать initramfs:
+resume_offset нужен только для файла, для блочных устройству UUID указывать не  нужно. Можно просто: /dev/sda3 или /dev/mapper/linux-swap.
+
+Теперь нужно изменить /etc/mkinitcpio.conf:
+
+```conf
+# resume должен следовать после filesystems
+HOOKS=(...filesystems resume...)
+```
+
+Обновляем grub и генерируем initramfs:
 
 ```bash
 sudo grub-mkconfig -o /boot/grub/grub.cfg
