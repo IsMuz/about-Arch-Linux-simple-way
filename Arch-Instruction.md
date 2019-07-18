@@ -932,6 +932,22 @@ yay -S ttf-emojione
 | → | 2192 |
 | λ | 03bb |
 
+# Сетевые интерфесы
+
+```bash
+$ ifconfig -a
+```
+
+Расшифрорвка имен:
+
+```
+Two character prefixes based on the type of interface:
+ *   en -- ethernet
+ *   sl -- serial line IP (slip)
+ *   wl -- wlan
+ *   ww -- wwan
+```
+
 # Блокируем сайты с рекламой через hosts
 
 ```bash
