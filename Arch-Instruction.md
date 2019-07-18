@@ -763,6 +763,9 @@ d         | rwx      | r-x    | r-x
 
 ```bash
 $ sudo mount [ -t <fs> ] <device> <path> [ -o <options> ]
+
+# Можно монтировать образы, созданные через dd
+mount -t fstype -o loop,ro image.dd /mntpoint
 ```
 
 Опции:
