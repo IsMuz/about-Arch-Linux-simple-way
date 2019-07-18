@@ -936,6 +936,12 @@ yay -S ttf-emojione
 
 ```bash
 $ ifconfig -a
+...
+enp5s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.0.106  netmask 255.255.255.0  broadcast 192.168.0.255
+...
+
+# inet 192.168.0.106 ‒ это наш адрес в локальной сети, если запустить на локальной машине nginx, то перейдя по ссылке http://192.168.0.106 мы увидим приветствие Nginx
 ```
 
 Расшифрорвка имен:
@@ -947,6 +953,12 @@ Two character prefixes based on the type of interface:
  *   wl -- wlan
  *   ww -- wwan
 ```
+
+Так же можно менять свой локальный ip.
+
+Ссылки:
+
+(Linux ifconfig command)[https://www.computerhope.com/unix/uifconfi.htm].
 
 # Блокируем сайты с рекламой через hosts
 
