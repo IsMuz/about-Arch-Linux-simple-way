@@ -651,6 +651,43 @@ gsettings reset org.gnome.mutter experimental-features
 
 ![image](https://user-images.githubusercontent.com/41215002/53286773-8bab9780-3784-11e9-8e41-44edba435356.png)
 
+# Добавляем новые действия в контекстное Nautilus
+
+```bash
+$ yay -S filemanager-actions
+```
+
+У программы есть интерфейс, который позволяет добавлять свои команды. Существуют два плейсхолдера: %d для текущего каталога и %f для файла.
+
+To install nautilus-action on Ubuntu, run simply this command via the Terminal:
+
+sudo apt-get install nautilus-actions
+(or equivalant packet manager as yum or pacman)
+
+After the installation is complete, let's now see a quick example of how to add an extra action to the right-click menu with nautilus-actions.
+
+The example consists of adding to the right-click menu the "Edit With Gimp" action to edit, for example, image files using The Gimp (Image Editor).
+
+_Using the dash search "nautilus-actions" and click Nautilus-Actions Configuration.
+
+_Under the Action tab, fill the following fields:
+
+Context label: The text that will be displayed in the right-click menu, in our example, it's "Edit With Gimp"
+Icon: This option allows to select an icon for your action (optional)
+_Open now the Command tab and fill in the following fields:
+
+Label: Enter any label of your choice for your action.
+Path: Enter the path to the program you want to use using the Browse button. For our example, we will simply type "gimp".
+Parameters: Click the Legend button to get suggested parameters. In our example, we will use the %f parameter to be able to edit image files with The Gimp.
+_Log out the current session and log on again, or simply restart Nautilus with these commands from the Terminal:
+
+nautilus -q
+nautilus
+
+[Страница проекта](https://github.com/GNOME/filemanager-actions).
+
+
+
 # Шаблоны файлов
 
 Чтобы в Nautilus в контекстном меню отображался пункт `New Document`, нужно в `~/Templaytes` создать шаблоны файлов:
