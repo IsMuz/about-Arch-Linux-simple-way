@@ -867,7 +867,7 @@ r   +   +   +   +   -   -   -   -
 w   +   +   -   -   +   +   -   -
 x   +   -   +   -   +   -   +   -
 
-Например, 0755 будет 0022
+Например, 0755 = 0022
 ```
 
 * [mount](https://www.opennet.ru/man.shtml?topic=mount&category=8).
