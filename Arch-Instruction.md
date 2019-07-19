@@ -32,6 +32,7 @@
 1. [Расширения для Gnome](#%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B4%D0%BB%D1%8F-gnome)
 1. [Пользовательские сочетания клавиш](#%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5-%D1%81%D0%BE%D1%87%D0%B5%D1%82%D0%B0%D0%BD%D0%B8%D1%8F-%D0%BA%D0%BB%D0%B0%D0%B2%D0%B8%D1%88)
 1. [Запуск исполняемых файлов по двойному клику в Nautilus](#%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D0%BD%D1%8F%D0%B5%D0%BC%D1%8B%D1%85-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2-%D0%BF%D0%BE-%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%BE%D0%BC%D1%83-%D0%BA%D0%BB%D0%B8%D0%BA%D1%83-%D0%B2-nautilus)
+1. [Добавляем новые действия в контекстное Nautilus](#%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC-%D0%BD%D0%BE%D0%B2%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F-%D0%B2-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%BA%D1%81%D1%82%D0%BD%D0%BE%D0%B5-nautilus)
 1. [Шаблоны файлов](#%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2)
 1. [Гибернация](#%D0%B3%D0%B8%D0%B1%D0%B5%D1%80%D0%BD%D0%B0%D1%86%D0%B8%D1%8F)
 1. [RAID](#raid)
@@ -43,7 +44,9 @@
 1. [Шрифты](#%D1%88%D1%80%D0%B8%D1%84%D1%82%D1%8B)
 1. [Emoji](#emoji)
 1. [Спецсимволы](#%D1%81%D0%BF%D0%B5%D1%86%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D1%8B)
+1. [Сетевые интерфесы](#%D1%81%D0%B5%D1%82%D0%B5%D0%B2%D1%8B%D0%B5-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D1%81%D1%8B)
 1. [Блокируем сайты с рекламой через hosts](#%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D1%83%D0%B5%D0%BC-%D1%81%D0%B0%D0%B9%D1%82%D1%8B-%D1%81-%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BE%D0%B9-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-hosts)
+1. [Информация о железе](#%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F-%D0%BE-%D0%B6%D0%B5%D0%BB%D0%B5%D0%B7%D0%B5)
 1. [Редактирование DConf](#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-dconf)
 1. [ZSH](#zsh)
    1. [Установка ZSH](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-zsh)
@@ -64,6 +67,7 @@
 1. [Btrfs](#btrfs)
 1. [Snapper](#snapper)
 1. [Timeshift](#timeshift)
+1. [Логи](#%D0%BB%D0%BE%D0%B3%D0%B8)
 1. [Установка и настройка Postgres](#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-postgres)
 1. [Мониторинг процессов](#%D0%BC%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2)
 1. [systemd](#systemd)
@@ -72,6 +76,7 @@
 1. [Tor Service](#tor-service)
 1. [Менеджер паролей pass](#%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80-%D0%BF%D0%B0%D1%80%D0%BE%D0%BB%D0%B5%D0%B9-pass)
 1. [Частые проблемы](#%D1%87%D0%B0%D1%81%D1%82%D1%8B%D0%B5-%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D1%8B)
+   1. [Система не грузится дальше rootfs](#%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0-%D0%BD%D0%B5-%D0%B3%D1%80%D1%83%D0%B7%D0%B8%D1%82%D1%81%D1%8F-%D0%B4%D0%B0%D0%BB%D1%8C%D1%88%D0%B5-rootfs)
    1. [Grub Rescue](#grub-rescue)
    1. [Случайно нажали Ctrl + Alt + F* и экран стал темным](#%D1%81%D0%BB%D1%83%D1%87%D0%B0%D0%B9%D0%BD%D0%BE-%D0%BD%D0%B0%D0%B6%D0%B0%D0%BB%D0%B8-ctrl--alt--f-%D0%B8-%D1%8D%D0%BA%D1%80%D0%B0%D0%BD-%D1%81%D1%82%D0%B0%D0%BB-%D1%82%D0%B5%D0%BC%D0%BD%D1%8B%D0%BC)
    1. [Что делать, если каталоги открываются в VSCode?](#%D1%87%D1%82%D0%BE-%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D0%B5%D1%81%D0%BB%D0%B8-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%B8-%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D0%B2%D0%B0%D1%8E%D1%82%D1%81%D1%8F-%D0%B2-vscode)
@@ -927,7 +932,7 @@ $ sudo mkdir /mnt/c
 
 Редактируем `/etc/fstab`:
 
-```conf                  
+```conf
 /dev/nvme0n1p4 /mnt/c ntfs-3g rw,user,fmask=0111,dmask=0000 0 0
 ```
 
@@ -1053,8 +1058,8 @@ $ lsusb
 # Очень подробная информация о всех устройствах
 $ inxi -Fx
 
-$ hwinfo --short         
-cpu:                                                            
+$ hwinfo --short
+cpu:
                        Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz, 3500 MHz
                        Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz, 3480 MHz
                        Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz, 3500 MHz
@@ -1128,7 +1133,7 @@ unknown:
                        Intel 7 Series/C216 Chipset Family SMBus Controller
                        Serial controller
   /dev/input/event3    Logitech Keyboard K120
-  
+
 # Список блочных устройств
 $ lsblk
 
@@ -1203,7 +1208,7 @@ Linux version 3.11.0-12-generic (buildd@allspice) (gcc version 4.8.1 (Ubuntu/Lin
 
 # SCSI/Sata devices
 
-$ cat /proc/scsi/scsi 
+$ cat /proc/scsi/scsi
 Attached devices:
 Host: scsi3 Channel: 00 Id: 00 Lun: 00
   Vendor: ATA      Model: ST3500418AS      Rev: CC38
@@ -1213,7 +1218,7 @@ Host: scsi4 Channel: 00 Id: 00 Lun: 00
   Type:   CD-ROM                           ANSI  SCSI revision: 05
 Partitions
 
-$ cat /proc/partitions 
+$ cat /proc/partitions
 major minor  #blocks  name
 
    8        0  488386584 sda
@@ -1224,7 +1229,7 @@ major minor  #blocks  name
    8        7    1998848 sda7
    8        8  208171008 sda8
   11        0    1048575 sr0
-  
+
 # The hdparm command gets information about sata devices like hard disks.
 
 $ sudo hdparm -i /dev/sda
@@ -1237,9 +1242,9 @@ $ sudo hdparm -i /dev/sda
  BuffType=unknown, BuffSize=16384kB, MaxMultSect=16, MultSect=16
  CurCHS=16383/16/63, CurSects=16514064, LBA=yes, LBAsects=976773168
  IORDY=on/off, tPIO={min:120,w/IORDY:120}, tDMA={min:120,rec:120}
- PIO modes:  pio0 pio1 pio2 pio3 pio4 
- DMA modes:  mdma0 mdma1 mdma2 
- UDMA modes: udma0 udma1 udma2 udma3 udma4 udma5 *udma6 
+ PIO modes:  pio0 pio1 pio2 pio3 pio4
+ DMA modes:  mdma0 mdma1 mdma2
+ UDMA modes: udma0 udma1 udma2 udma3 udma4 udma5 *udma6
  AdvancedPM=no WriteCache=enabled
  Drive conforms to: unknown:  ATA/ATAPI-4,5,6,7
 
@@ -1911,13 +1916,34 @@ $ yay -S snapper-gui-git
 $ yay -S timeshift
 ```
 
-## Логи
-
-Логи ядра Linux:
+# Логи
 
 ```bash
+# Как посмотреть логи?
+$ less /var/log/messages
+$ more -f /var/log/messages
+$ cat /var/log/messages
+$ tail -f /var/log/messages
+$ grep -i error /var/log/messages
+
+# Сообщения ядра Linux
 $ dmesg | less
 ```
+| Файл | Описание |
+| -- | -- |
+| `/var/log/messages ` |  General message and system related stuff |
+| `/var/log/auth.log ` |  Authenication logs |
+| `/var/log/kern.log ` |  Kernel logs |
+| `/var/log/cron.log ` |  Crond logs (cron job) |
+| `/var/log/maillog ` |  Mail server logs |
+| `/var/log/qmail/ ` |  Qmail log directory (more files inside this directory) |
+| `/var/log/httpd/ ` |  Apache access and error logs directory |
+| `/var/log/lighttpd/ ` |  Lighttpd access and error logs directory |
+| `/var/log/boot.log ` |  System boot log |
+| `/var/log/mysqld.log ` |  MySQL database server log file |
+| `/var/log/secure` or `/var/log/auth.log ` |  Authentication log |
+| `/var/log/utmp or /var/log/wtmp ` |  Login records file |
+| `/var/log/yum.log ` |  Yum command log file. |
 
 # Установка и настройка Postgres
 
