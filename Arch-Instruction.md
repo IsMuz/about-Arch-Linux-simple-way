@@ -695,8 +695,6 @@ nautilus
 
 [Страница проекта](https://github.com/GNOME/filemanager-actions).
 
-
-
 # Шаблоны файлов
 
 Чтобы в Nautilus в контекстном меню отображался пункт `New Document`, нужно в `~/Templaytes` создать шаблоны файлов:
@@ -757,6 +755,8 @@ systemctl hibernate
 
 # RAID
 
+## Аппаратный RAID
+
 В Linux RAID на аппаратном уровне называют FakeRAID. Для работы с FakeRAID  используется пакет dmraid.
 
 Редактируем конфиг mkinitcpio:
@@ -776,6 +776,70 @@ HOOKS=(base udev autodetect modconf block lvm2 dmraid filesystems keyboard fsck)
 ```bash
 sudo mkinitcpio -p linux
 ```
+
+На моей материнке с чипсетом b450 с апаратным RAID из Linux работать нельзя: нет драйвера.
+
+## Программный RAID Windows
+
+Этот раздел можно было бы озаглавит как RAID, доступный в Windows и в Linux. В Windows, в [Disk Management](https://www.lifewire.com/how-to-open-disk-management-2626080) нужно создать Stripped Volumeб аналог RAID 0 (правой кнопкой мыши по нужному диску). Это когда данные пишутся параллельно на разные устройства (без дублирования). Таким образом при использовании 2 дисков мы получаем двойную скорость чтения/записи.
+
+```bash
+$ yay -S ldmtool
+
+$ sudo ldmtool scan                                                
+[
+  "8d0cc1a7-b10c-11e9-80d3-b42e9916909d"
+]
+
+$ sudo ldmtool show diskgroup 8d0cc1a7-b10c-11e9-80d3-b42e9916909d 
+{
+  "name" : "DESKTOP-VR9KKHM-Dg0",
+  "guid" : "8d0cc1a7-b10c-11e9-80d3-b42e9916909d",
+  "volumes" : [
+    "Volume1"
+  ],
+  "disks" : [
+    "Disk1",
+    "Disk2"
+  ]
+}
+
+$ sudo ldmtool create all                                          
+[
+  "ldm_vol_DESKTOP-VR9KKHM-Dg0_Volume1"
+]
+```
+
+Теперь можно монтировать устройство `/dev/mapper/ldm_vol_DESKTOP-VR9KKHM-Dg0_Volume1`.
+
+Но нам нужно чтобы устройство автоматически создавалось. Для этого нужно создать сервис ``:
+
+```bash
+[Unit]
+Description=Windows Dynamic Disk Mount
+Before=local-fs-pre.target
+DefaultDependencies=no
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/ldmtool create all
+[Install]
+WantedBy=local-fs-pre.target
+```
+
+Включим его:
+
+```bash
+$ sudo systemctl enable ldmtool.service
+```
+
+Редактируем `/etc/fstab`:
+
+```config
+/dev/mapper/ldm_vol_DESKTOP-VR9KKHM-Dg0_Volume1 /mnt/d ntfs-3g rw,user,fmask=0111,dmask=0000 0 0
+```
+
+В Windows есть так же технология Storage Spaces, но ее поддержка в Linux не реализована.
 
 # Права
 
