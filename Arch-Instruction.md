@@ -3484,3 +3484,13 @@ i3-msg "workspace 1; append_layout ~/.i3/workspace-1.json"
 Требует установки зависимостей.
 
 [Документация](https://i3wm.org/docs/layout-saving.html).
+
+--
+
+# Анимированные обои
+
+```bash
+$ yay -S komorebi
+```
+
+[Видео-инструкция](https://www.youtube.com/watch?v=Q7O8Aadz31c).
