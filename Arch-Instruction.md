@@ -3502,3 +3502,5 @@ $ yay -S komorebi
 ```bash
 $ journalctl /usr/bin/gnome-shell -f
 ```
+
+Либо можно нажать `Alt+F2` и ввести `lg` и поебаться с консолечкой. Закрыть ее можно с помощью клавиши `Esc`.
