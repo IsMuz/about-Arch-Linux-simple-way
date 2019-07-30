@@ -3494,3 +3494,11 @@ $ yay -S komorebi
 ```
 
 [Видео-инструкция](https://www.youtube.com/watch?v=Q7O8Aadz31c).
+
+# Ошибки при установке расширений для Gnome
+
+Посмотрить их можно так:
+
+```bash
+$ journalctl /usr/bin/gnome-shell -f
+```
