@@ -258,7 +258,7 @@ mount /dev/nvme0n1p2 /mnt/boot/efi
 ## Устанавливаем ядро
 
 ```bash
-pacstrap /mnt base base-devel
+pacstrap /mnt base base-devel sudo btrfs-progs ...
 ```
 
 ## Генерируем fstab
