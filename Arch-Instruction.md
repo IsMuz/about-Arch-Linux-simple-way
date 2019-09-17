@@ -1397,6 +1397,10 @@ source $ZSH/oh-my-zsh.sh
 * [Сторонние темы](https://github.com/robbyrussell/oh-my-zsh/wiki/External-themes);
 * [Так же можно поискать на Github'е](https://github.com/search?o=desc&q=oh+my+zsh+theme&s=stars&type=Repositories).
 
+## [ZGen](https://github.com/tarjoilija/zgen)
+
+Позволяет избавиться от мусора в `~/.zshrc`.
+
 ## Темы Oh My Zsh!
 
 ### [Bullet Train for oh-my-zsh](https://github.com/caiogondim/bullet-train.zsh)
