@@ -1409,7 +1409,7 @@ $ yay -S zgen-git
 
 Пример файла `~/.zshrc`:
 
-```rc
+```bash
 # load zgen
 source /usr/share/zsh/share/zgen.zsh
 
