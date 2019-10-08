@@ -1348,6 +1348,7 @@ $ chsh -s $(which zsh)
 
 Чтобы изменения вступили в силу нужно залогиниться по-новой.
 
+<s>
 ## [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)
 
 Установка:
@@ -1396,10 +1397,48 @@ source $ZSH/oh-my-zsh.sh
 * [Встроенные темы](https://github.com/robbyrussell/oh-my-zsh/wiki/Themes);
 * [Сторонние темы](https://github.com/robbyrussell/oh-my-zsh/wiki/External-themes);
 * [Так же можно поискать на Github'е](https://github.com/search?o=desc&q=oh+my+zsh+theme&s=stars&type=Repositories).
+</s>
 
 ## [ZGen](https://github.com/tarjoilija/zgen)
 
 Позволяет избавиться от мусора в `~/.zshrc`.
+
+```bash
+$ yay -S zgen-git
+```
+
+Пример файла `~/.zshrc`:
+
+```rc
+# load zgen
+source /usr/share/zsh/share/zgen.zsh
+
+# if the init script doesn't exist
+if ! zgen saved; then
+
+  # specify plugins here
+  zgen oh-my-zsh
+  zgen oh-my-zsh plugins/git
+  zgen oh-my-zsh plugins/sudo
+  zgen oh-my-zsh plugins/command-not-found
+  zgen oh-my-zsh plugins/extract 
+  zgen load zsh-users/zsh-autosuggestions
+  zgen load zsh-users/zsh-completions
+  zgen load zsh-users/zsh-syntax-highlighting
+  zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
+
+  # generate the init script from plugins above
+  zgen save
+fi
+```
+
+Порсле изменения `~/.zshrc` нужно делать `zgen rest` и логают? Либо вручную zgen load, zgen save.
+
+См. справку:
+
+```bash
+$ zgen --help
+```
 
 ## Темы Oh My Zsh!
 
