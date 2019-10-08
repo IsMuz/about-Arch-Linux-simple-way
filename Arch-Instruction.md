@@ -1432,7 +1432,7 @@ if ! zgen saved; then
 fi
 ```
 
-Порсле изменения `~/.zshrc` нужно делать `zgen rest` и логают? Либо вручную zgen load, zgen save.
+После изменения .zshrc делаем `zgen reset`, а потом `exec "$SHELL"`?
 
 См. справку:
 
