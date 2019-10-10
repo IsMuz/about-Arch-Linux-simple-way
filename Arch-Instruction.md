@@ -1039,7 +1039,7 @@ $ sudo ln -sf /mnt/c/Windows/Fonts /usr/share/fonts/WindowsFonts
 # Emoji
 
 ```yay
-yay -S ttf-emojione
+yay -S ttf-joypixels
 ```
 
 Я не совсем понимаю как отображаются emoji. В гномовских приложения они выглядят одинаково, а в сторонних, в том же VScode рендерятся по-другому.
