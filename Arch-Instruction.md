@@ -258,8 +258,10 @@ mount /dev/nvme0n1p2 /mnt/boot/efi
 ## Устанавливаем ядро
 
 ```bash
-pacstrap /mnt base linux linux-headers linux-firmware sudo btrfs-progs...
+pacstrap /mnt base base-devel
 ```
+
+base-devel содержит набор утилит для компиляции, позже пригодится
 
 ## Генерируем fstab
 
@@ -354,8 +356,13 @@ mkinitcpio -p linux
 Эти пакеты понадобятся далее:
 
 ```bash
-pacman -S sudo grub efibootmgr ntfs-3g os-prober alsa-utils xf86-video-ati xorg xorg-server
+pacman -S linux linux-headers linux-firmware btrfs-progs sudo grub efibootmgr ntfs-3g os-prober alsa-utils xf86-video-ati xorg xorg-server
 ```
+
+linux больше в base не входит, linux-headers для любителей покомпилировать, linux-firmware содержит набор драйверов.
+
+btrfs-progs нужен только, если используется файловая система btrfs.
+
 xf86-video-ati – свободный драйвер для видеокарт AMD. xorg и xorg-server можно не ставить, они являются зависимостями пакета gnome.
 
 ## Пользователи
