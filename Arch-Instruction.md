@@ -965,29 +965,26 @@ export PATH=/path/to/bin:$PATH
 # bin в домашнем каталоге
 
 ```bash
-mkdir ~/bin
-echo 'export PATH=$HOME/bin:$PATH' >> ~/.zprofile
+mkdir ~/.local/bin
+echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.zprofile
 # or
-echo 'export PATH=$HOME/bin:$PATH' >> ~/.zshrc
+echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.zshrc
 ```
 
-Теперь самописные скрипты можно кидать в `~/bin`, так они будут доступны только для текущего пользователя.
+Теперь самописные скрипты можно кидать в `~/.local/bin`, так они будут доступны только для текущего пользователя.
 
-`~/bin/hello`:
+`~/.local/bin/hello`:
 
 ```bash
 #!/usr/bin/env bash
-function hello() {
-  local name=${1:-World}
-  printf "Hello, %s!\n" $name
-}
-hello $@
+
+echo "Hello World!"
 ```
 
 Сделаем скрпит исполняемым:
 
 ```bash
-$ chmod +x ~/bin/hello
+$ chmod +x ~/.local/bin/hello
 ```
 
 Проверка:
@@ -995,8 +992,8 @@ $ chmod +x ~/bin/hello
 ```bash
 # Если не перелогинивались после добавления пути в ~/.zprofile, то сначала выполняем
 $ source ~/.zprofile
-$ hello $USER
-Hello, sergey!
+$ hello
+Hello World!
 ```
 
 # Монтируем Windows разделы
