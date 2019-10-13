@@ -1422,10 +1422,23 @@ if ! zgen saved; then
 
   # specify plugins here
   zgen oh-my-zsh
-  zgen oh-my-zsh plugins/git
-  zgen oh-my-zsh plugins/sudo
+  zgen oh-my-zsh
+  zgen oh-my-zsh plugins/archlinux
   zgen oh-my-zsh plugins/command-not-found
-  zgen oh-my-zsh plugins/extract 
+  zgen oh-my-zsh plugins/docker
+  zgen oh-my-zsh plugins/extract
+  zgen oh-my-zsh plugins/git
+  zgen oh-my-zsh plugins/git-flow-avh
+  zgen oh-my-zsh plugins/history
+  zgen oh-my-zsh plugins/httpie
+  zgen oh-my-zsh plugins/node
+  zgen oh-my-zsh plugins/npm
+  zgen oh-my-zsh plugins/pass
+  zgen oh-my-zsh plugins/pip
+  zgen oh-my-zsh plugins/python
+  zgen oh-my-zsh plugins/sudo
+  zgen oh-my-zsh plugins/systemd
+  zgen oh-my-zsh plugins/vscode
   zgen load zsh-users/zsh-autosuggestions
   zgen load zsh-users/zsh-completions
   zgen load zsh-users/zsh-syntax-highlighting
@@ -1436,13 +1449,37 @@ if ! zgen saved; then
 fi
 ```
 
-После изменения .zshrc делаем `zgen reset`, а потом `exec "$SHELL"`?
+После изменения `~/.zshrc` нужно перешрузить Shell:
+
+```zsh
+$ exec "$SHELL"
+```
+
+Все необходимые плагины будут скачены.
+
+Новые плагины можно добавлять из терминала:
+
+```zsh
+$ zgen load <plugin>
+$ zgen oh-my-zsh <plugin>
+```
+
+А можно прописать в секцию для установки, а потом выполнить:
+
+```zsh
+$ zgen reset
+$ exec "$SHELL"
+```
+
+Я не уверен, что последнее правильно.
 
 См. справку:
 
 ```bash
 $ zgen --help
 ```
+
+Новый плагины 
 
 ## Темы Oh My Zsh!
 
