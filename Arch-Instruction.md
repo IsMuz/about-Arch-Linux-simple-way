@@ -1403,6 +1403,30 @@ source $ZSH/oh-my-zsh.sh
 * [Так же можно поискать на Github'е](https://github.com/search?o=desc&q=oh+my+zsh+theme&s=stars&type=Repositories).
 </s>
 
+## Oh My ZSH/Command Not Found
+
+Чтобы этот плагин работал нужно выполняить [ряд действий](https://wiki.archlinux.org/index.php/Zsh#The_%22command_not_found%22_handler):
+
+```zsh
+# Устанавливаем пакет
+$ yay -S pkgfile
+
+# Инициализируем базу данных, где будет храниться информация о доступных пакетах
+$ sudo pkgfile --update
+
+# Включаем сервис для автообновления базы
+$ sudo systemctl start pkgfile-update.timer
+$ sudo systemctl enable pkgfile-update.timer
+
+# Результат
+$ ruby
+ruby may be found in the following packages:
+  extra/ruby 2.6.5-1            /usr/bin/ruby
+  community/gitlab 12.3.5-1     /usr/share/webapps/gitlab/vendor/bundle/ruby/2.5.0/gems/hamlit-2.8.8/bin/ruby
+  community/logstash 7.4.0-1    /usr/share/logstash/bin/ruby
+  community/ruby2.5 2.5.7-1     /opt/ruby2.5/bin/ruby
+```
+
 ## [ZGen](https://github.com/tarjoilija/zgen)
 
 Позволяет избавиться от мусора в `~/.zshrc`.
