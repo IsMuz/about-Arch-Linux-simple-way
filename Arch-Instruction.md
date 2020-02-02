@@ -1881,16 +1881,44 @@ Snapper ‒ это утилита для управления снапшотам
 $ yay -S snapper
 
 # Глобальные настройки
-$ sudo nano /etc/conf.d/snapper
+$ sudoedit /etc/conf.d/snapper
 
-# Из этого шаблона генерируются другие конфиги
-# Тут мы увеличим время после которого снапшоты будут удаляться до 24 часов
-$ sudo sed -ri 's/MIN_AGE="[0-9]+"/MIN_AGE="86400"/g' /etc/snapper/config-templates/default
+$ cd /etc/snapper/config-templates
+$ sudo cp default custom
 
-# Создаем конфиги для каждого подраздела отдельно
-$ sudo snapper -c root create-config /
-$ sudo snapper -c home create-config /home
-$ sudo snapper -c var create-config /var
+# Снапшоты делаются через промежуток времени, заданный в юните systemd
+$ sudo systemctl cat snapper-timeline.timer
+# /usr/lib/systemd/system/snapper-timeline.timer
+
+[Unit]
+Description=Timeline of Snapper Snapshots
+Documentation=man:snapper(8) man:snapper-configs(5)
+
+[Timer]
+OnCalendar=hourly
+
+[Install]
+WantedBy=timers.target
+
+$ sudoedit /usr/lib/systemd/system/snapper-timeline.timer
+
+# По-умолчанию snapper делает снапшоты слишком часто и хранит долго, поэтому настроки
+$ sudoedit custom
+
+...
+TIMELINE_LIMIT_HOURLY="3" 
+TIMELINE_LIMIT_DAILY="2"
+TIMELINE_LIMIT_WEEKLY="0" 
+TIMELINE_LIMIT_MONTHLY="0"
+TIMELINE_LIMIT_YEARLY="0"
+...
+
+# Помощь по настройкам
+man snapper-configs
+
+# Создаем конфиги для каждого подраздела отдельно, используя конфиг custom
+$ sudo snapper -c root create-config -t custom /
+$ sudo snapper -c home create-config -t custom /home
 
 # Сгенерированные шаблоны находятся в /etc/snapper/configs
 
@@ -1900,7 +1928,6 @@ Config | Subvolume
 -------+----------
 home   | /home
 root   | /
-var    | /var
 
 # Созданные конфиги меют такой адрес: /etc/snapper/configs/<config>
 
@@ -1929,156 +1956,17 @@ $ sudo nano /etc/updatedb.conf
 PRUNENAMES = ".git .hg .svn .snapshots"
 ...
 
-# Делаем снимки через 5 минут после загрузки и далее каждые 24 часов
->>>>>>> c67ee04f7511ffe5c7ed83f2c751da05ac42de29
-$ sudo nano $(locate snapper-timeline.timer)
-...
-[Timer]
-OnBootSec=5min
-OnUnitActiveSec=24h
-...
-
 # Включаем автоматическое создания снапшотов
 $ sudo systemctl enable snapper-timeline.timer && sudo systemctl start snapper-timeline.timer
 
 # Можно так же периодичность очистки снапшотов изменить
-$ sudo nano $(locate snapper-cleanup.timer)
+$ sudoedit $(locate snapper-cleanup.timer)
 
 # Автоматически  удаляет снапшоты при превышении квот
 $ sudo systemctl enable snapper-cleanup.timer && sudo systemctl start snapper-cleanup.timer
 
 # Просмотр логов
 $ tail -f /var/log/snapper.log
-```
-
-Описание настроек:
-
-```config
-### SNAPPER-CONFIGS(5)# Filesystem Snapshot Management
-### Boolean values must be "yes" or "no".
-
-SUBVOLUME="/"
-        # Path of the subvolume or mount point.
-        # There is no default value. The value must always be specified.
-
-FSTYPE=btrfs
-        # Filesystem type for the subvolume.
-        # Default value is "btrfs" but it's recommended to always specify the
-        # filesystem type.
-
-ALLOW_USERS=""
-        # List of users allowed to operate with the config. The user-names
-        # must be separated by spaces. Spaces in usernames can be escaped with
-        # a "\".
-        # Also see the PERMISSONS section in snapper(8).
-        # Default value is "" but "root" is always implicitly included.
-
-ALLOW_GROUPS="snapper"
-        # List of groups allowed to operate with the config. The group-names
-        # must be separated by spaces. Spaces in group-names can be escaped
-        # with a "\".
-        # Also see the PERMISSONS section in snapper(8).
-        # Default value is "".
-
-SYNC_ACL=yes
-        # Defines whether snapper will sync the users and groups from
-        # ALLOW_USERS and ALLOW_GROUPS to the ACL of the .snapshots directory.
-        # Also see the PERMISSONS section in snapper(8).
-        # Default value is "no".
-        # New in version 0.2.0.
-
-BACKGROUND_COMPARISON=yes
-        # Defines whether pre and post snapshots should be compared in the
-        # background after creation.
-        # Default value is "yes".
-
-### CLEANUP ALGORITHMS
-######################
-
-### NUMBER
-NUMBER_CLEANUP=no
-        # Defines whether the number cleanup algorithm should be run for the
-        # config.
-        # Default value is "no".
-
-NUMBER_MIN_AGE=1800
-        # Minimal age for snapshots to be deleted by the number cleanup
-        # algorithm.
-        # Default value is "1800".
-
-NUMBER_LIMIT=50
-        # Defines how many snapshots the number cleanup algorithm should
-        # keep. The youngest snapshots will be kept.
-        # Default value is "50".
-
-NUMBER_LIMIT_IMPORTANT=10
-        # Defines how many important snapshots the number cleanup algorithm
-        # should keep. Important snapshots have important=yes in the userdata.
-        # The youngest important snapshots will be kept.
-        # The number of normal and important snapshots are counted
-        # independently.
-        # Default value is "10".
-        # New in version 0.1.8.
-
-### TIMELINE
-TIMELINE_CREATE=yes
-        # Defines whether hourly snapshots should be created.
-        # Together with the timeline cleanup algorithm this will create a
-        # collection of snapshots with more snapshots is the near past and less
-        # snapshots in the far past.
-        # Default value is "no".
-
-TIMELINE_CLEANUP=yes
-        # Defines whether the timeline cleanup algorithm should be run for
-        # the config.
-        # Default value is "no".
-
-TIMELINE_MIN_AGE=14400
-        # Minimal age for snapshots to be deleted by the timeline cleanup
-        # algorithm.
-        # Default value is "1800".
-
-TIMELINE_LIMIT_HOURLY=23
-        # Defines how many hourly snapshots the timeline cleanup algorithm
-        # should keep. An hourly snapshot is the first snapshot in an hour. The
-        # youngest hourly snapshots will be kept.
-        # Default value is "10".
-
-TIMELINE_LIMIT_DAILY=14
-        # Defines how many daily snapshots the timeline cleanup algorithm
-        # should keep. A daily snapshot is the first snapshot in a day. The
-        # youngest daily snapshots will be kept.
-        # Default value is "10".
-
-TIMELINE_LIMIT_MONTHLY=6
-        # Defines how many monthly snapshots the timeline cleanup algorithm
-        # should keep. A monthly snapshot is the first snapshot in a month. The
-        # youngest monthly snapshots will be kept.
-        # Default value is "10".
-
-TIMELINE_LIMIT_YEARLY=1
-        # Defines how many yearly snapshots the timeline cleanup algorithm
-        # should keep. A yearly snapshot is the first snapshot in a year. The
-        # youngest yearly snapshots will be kept.
-        # Default value is "10".
-
-### EMTPY PRE POST
-EMPTY_PRE_POST_CLEANUP=yes
-        # Defines whether the empty-pre-post cleanup algorithm should be run
-        # for the config.
-        # Default value is "no".
-
-EMPTY_PRE_POST_MIN_AGE=1800
-        # Minimal age for snapshots to be deleted by the empty-pre-post
-        # cleanup algorithm.
-        # Default value is "1800".
-```
-
-GUI:
-
-```bash
-# Не запускается
-$ yay -S snapper-gui-git
 ```
 
 Ссылки:
