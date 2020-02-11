@@ -720,13 +720,34 @@ touch ~/Templates/{Empty\ Document,Text\ Document.txt,README.md,pyfile.py}
 
 При переходе в режим гибернации делается дамп используемой оперативной памяти на диск. Размер файла/раздела подкачки для этих целей советуют делать не менее 2/5 от объема RAM на современных компьютерах. Так же можно применять сжатие при дампе. Про гибернацию лучше почитать [здесь](https://help.ubuntu.ru/wiki/%D1%81%D0%BF%D1%8F%D1%89%D0%B8%D0%B9_%D1%80%D0%B5%D0%B6%D0%B8%D0%BC).
 
-Режим гибернации по-умолчанию отключен. Чтобы его включить для начала нужно узнать UUID раздела, где расположен своп, а так же смещение своп-файла относительно начала раздела:
+Режим гибернации по-умолчанию отключен. Чтобы его включить для начала нужно узнать UUID раздела, где расположен своп:
 
-```bash
+
+```zsh
 $ lsblk `df /swapfile | awk '/^\/dev/ {print $1}'` -no UUID
 217df373-d154-4f2e-9497-fcac21709729
+```
+
+А затем сектор диска с которого начинается файл:
+
+```bash
 $ sudo filefrag -v /swapfile | awk 'NR == 4 {print $5}' | cut -d ':' -f 1
 1423360
+```
+
+Если swapfile размещен на Btrfs, то описанный выше способ работать не будет.
+
+```zsh
+# Для начала нужно скачать специальную утилиту для определения физического расположения файла
+$ cd /tmp
+$ wget https://raw.githubusercontent.com/osandov/osandov-linux/master/scripts/btrfs_map_physical.c
+$ gcc -O2 -o btrfs_map_physical btrfs_map_physical.c  
+# переместим исполняемый файл
+$ sudo mv btrfs_map_physical /usr/local/bin
+$ sudo chmod +x /usr/local/bin/btrfs_map_physical
+
+# Использование
+$ sudo btrfs_map_physical /swap/swapfile | head -n 2 | tail -n 1 | cut -f9
 ```
 
 ![screenshot from 2019-02-23 02-12-34](https://user-images.githubusercontent.com/41215002/53276552-8f053b80-3710-11e9-9770-5dd5e733f70a.png)
