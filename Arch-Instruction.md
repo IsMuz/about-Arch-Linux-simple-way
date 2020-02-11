@@ -747,7 +747,14 @@ $ sudo mv btrfs_map_physical /usr/local/bin
 $ sudo chmod +x /usr/local/bin/btrfs_map_physical
 
 # Использование
-$ sudo btrfs_map_physical /swap/swapfile | head -n 2 | tail -n 1 | cut -f9
+$ sudo btrfs_map_physical /swap/swapfile
+FILE OFFSET	FILE SIZE	EXTENT OFFSET	EXTENT TYPE	LOGICAL SIZE	LOGICAL OFFSET	PHYSICAL SIZE	DEVID	PHYSICAL OFFSET
+0	4096	0	regular	268435456	91029504	268435456	191029504
+...
+
+# Нас интересует последняя цифра. Ее нужно поделить на 4096 (размер блока) и результат указать в resume_offset
+$ echo $((`sudo btrfs_map_physical /swap/swapfile | head -n 2 | tail -n 1 | cut -f9` / 4096))
+22224
 ```
 
 ![screenshot from 2019-02-23 02-12-34](https://user-images.githubusercontent.com/41215002/53276552-8f053b80-3710-11e9-9770-5dd5e733f70a.png)
