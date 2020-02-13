@@ -1503,6 +1503,11 @@ zplug  "plugins/git",                       from:oh-my-zsh
 zplug  "plugins/history",                   from:oh-my-zsh
 zplug  "plugins/history-substring-search",  from:oh-my-zsh
 zplug  "plugins/man",                       from:oh-my-zsh
+zplug  "plugins/sudo",                      from:oh-my-zsh
+zplug  "plugins/themes",                    from:oh-my-zsh
+zplug  "plugins/urltools",                  from:oh-my-zsh
+zplug  "plugins/vscode",                    from:oh-my-zsh
+zplug  "plugins/web-search",                from:oh-my-zsh
 
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
