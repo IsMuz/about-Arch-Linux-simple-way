@@ -1461,7 +1461,7 @@ ruby may be found in the following packages:
 
 ## [ZPlug](https://github.com/b4b4r07/zplug)
 
-Упрощает управление плагинами, позволяя все их прописать в одном месте.
+Упрощает управление плагинами, позволяя все их прописать в одном месте. Лучше zgen тем, недостающие плагины сами ставятся.
 
 ```zsh
 $ yay -S zplug
@@ -1518,16 +1518,15 @@ zplug "caiogondim/bullet-train.zsh", use:bullet-train.zsh-theme, defer:3 # defer
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
- printf "Install? [y/N]: "
- if read -q; then
- echo; zplug install
- fi
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  fi
 fi
 
 # Флаг --verbose служит для вывода отладочной информации
 zplug load # --verbose
 ```
-
 
 ## [ZGen](https://github.com/tarjoilija/zgen)
 
