@@ -1502,7 +1502,6 @@ zplug  "plugins/extract",                   from:oh-my-zsh
 zplug  "plugins/git",                       from:oh-my-zsh
 zplug  "plugins/history",                   from:oh-my-zsh
 zplug  "plugins/history-substring-search",  from:oh-my-zsh
-zplug  "plugins/httpie",                    from:oh-my-zsh
 zplug  "plugins/man",                       from:oh-my-zsh
 
 zplug "zsh-users/zsh-autosuggestions"
