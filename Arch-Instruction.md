@@ -1459,7 +1459,75 @@ ruby may be found in the following packages:
   community/ruby2.5 2.5.7-1     /opt/ruby2.5/bin/ruby
 ```
 
+## [ZPlug](https://github.com/b4b4r07/zplug)
+
+Упрощает управление плагинами, позволяя все их прописать в одном месте.
+
+```zsh
+$ yay -S zplug
+```
+
+Пример `~/.zshrc`:
+
+```zsh
+#!/usr/bin/env zsh
+
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+# Шарим историю между сессиями
+setopt SHARE_HISTORY
+# Не сохраняем команды с пробелами в начале
+setopt HIST_IGNORE_SPACE
+
+fpath+=~/.zfunc
+
+# if [[ ! -d ~/.zplug ]];then
+#   git clone https://github.com/b4b4r07/zplug ~/.zplug
+# fi
+
+source /usr/share/zsh/scripts/zplug/init.zsh
+
+# https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins-Overview
+zplug  "plugins/archlinux",                 from:oh-my-zsh
+zplug  "plugins/colored-man-pages",         from:oh-my-zsh
+zplug  "plugins/colorize",                  from:oh-my-zsh
+zplug  "plugins/compleat",                  from:oh-my-zsh
+zplug  "plugins/command-not-found",         from:oh-my-zsh
+zplug  "plugins/common-aliases",            from:oh-my-zsh
+zplug  "plugins/copydir",                   from:oh-my-zsh
+zplug  "plugins/copyfile",                  from:oh-my-zsh
+zplug  "plugins/extract",                   from:oh-my-zsh
+zplug  "plugins/git",                       from:oh-my-zsh
+zplug  "plugins/history",                   from:oh-my-zsh
+zplug  "plugins/history-substring-search",  from:oh-my-zsh
+zplug  "plugins/httpie",                    from:oh-my-zsh
+zplug  "plugins/man",                       from:oh-my-zsh
+
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting"
+
+setopt prompt_subst # Make sure prompt is able to be generated properly.
+zplug "caiogondim/bullet-train.zsh", use:bullet-train.zsh-theme, defer:3 # defer until other plugins like oh-my-zsh is loaded
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+ printf "Install? [y/N]: "
+ if read -q; then
+ echo; zplug install
+ fi
+fi
+
+# Флаг --verbose служит для вывода отладочной информации
+zplug load # --verbose
+```
+
+
 ## [ZGen](https://github.com/tarjoilija/zgen)
+
+Устарел.
 
 Позволяет избавиться от мусора в `~/.zshrc`.
 
