@@ -232,22 +232,23 @@ mount /dev/nvme0n1p2 /mnt/boot/efi
 # Сначала монтируем раздел
 mount /dev/nvme0n1p5 /mnt
 
-# Потом создаем на нем подразделы
+# Потом создаем на нем подтома
 btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@home
+btrfs subvolume create /mnt/@swap
 
 # Теперь мы демонтируем устройство
 umount /mnt
 
-# и монтируем созданные подразделы
-mount -o rw,noatime,compress=zstd:3,ssd,space_cache,subvol=@ /dev/nvme0n1p5 /mnt
-
 mkdir -p /mnt/boot/efi /mnt/swap /mnt/home
 
+# Монтируемся
+mount -o rw,noatime,compress=zstd:3,ssd,space_cache,subvol=@ /dev/nvme0n1p5 /mnt
 mount /dev/nvme0n1p2 /mnt/boot/efi
 mount -o noatime,compress=zstd:3,space_cache,subvol=@home /dev/nvme0n1p5 /mnt/home
 mount -o rw,noatime,compress=no,ssd,space_cache,subvol=@swap /dev/nvme0n1p5 /mnt/swap
 
+# Создаем файл подкачки
 touch /mnt/swap/swapfile
 # chattr +C должна быть применена к пустому файлу!
 # Тут я перестраховываюсь, так как для подтома сжатие отключено
