@@ -193,7 +193,7 @@ cfdisk /dev/nvme0n1
 Создаем раздел в FAT-32 размером, а затем форматируем его:
 
 ```bash
-mkfs.fat -F32 /dev/nvme0n1p1
+mkfs.fat -F32 -n ESP /dev/nvme0n1p1
 ```
 
 Для FAT32 [https://en.wikipedia.org/wiki/File_Allocation_Table#Size_limits](лимит) на минимальный размер раздела составляет от 32 до 256 мегабайт в зависимости от размера логического сектора.
@@ -231,36 +231,38 @@ mount /dev/nvme0n1p2 /mnt/boot/efi
 ```bash
 # Сначала монтируем раздел
 mount /dev/nvme0n1p5 /mnt
+
 # Потом создаем на нем подразделы
 btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@home
+
 # Теперь мы демонтируем устройство
 umount /mnt
+
 # и монтируем созданные подразделы
-mount -o noatime,compress=lzo,space_cache,subvol=@ /dev/nvme0n1p5 /mnt
-mkdir /mnt/home
-mount -o noatime,compress=lzo,space_cache,subvol=@home /dev/nvme0n1p5 /mnt/home
-# Файл подкачки нужно создавать так
-# И что очень важно: поддержка файлов подкачки в Btrfs доступна в версией ядра linux, начниная с 5.0.0
-truncate -s 0 /mnt/swapfile
-chattr +C /mnt/swapfile
-btrfs property set /mnt/swapfile compression none
-# fallocate -l 2G /mnt/swapfile
-# С fallocate могут возникнуть проблемы
-dd if=/dev/zero of=/mnt/swapfile count=2000 bs=1M
-chmod 600 /mnt/swapfile
-mkswap /mnt/swapfile
-swapon /mnt/swapfile
-mkdir -p /mnt/boot/efi
+mount -o rw,noatime,compress=zstd:3,ssd,space_cache,subvol=@ /dev/nvme0n1p5 /mnt
+
+mkdir -p /mnt/boot/efi /mnt/swap /mnt/home
+
 mount /dev/nvme0n1p2 /mnt/boot/efi
+mount -o noatime,compress=zstd:3,space_cache,subvol=@home /dev/nvme0n1p5 /mnt/home
+mount -o rw,noatime,compress=no,ssd,space_cache,subvol=@swap /dev/nvme0n1p5 /mnt/swap
+
+touch /mnt/swap/swapfile
+# chattr +C должна быть применена к пустому файлу!
+# Тут я перестраховываюсь, так как для подтома сжатие отключено
+chattr +C /mnt/swap/swapfile
+# С 16GB оперативной памяти нужно иметь файл подкачки минимум 4GB, 8 ‒ еще лучше (для гибернации нужно не менее 1/3 размера от RAM), а 32GB ‒ идеально
+fallocate -l 4GiB /mnt/swap/swapfile
+chmod 600 /mnt/swap/swapfile
+mkswap /mnt/swap/swapfile
+swapon /mnt/swap/swapfile
 ```
 
-[Эта инструкция лучше](https://gist.github.com/idvoretskyi/9a516921fab0ad4e3ea0)
-
-## Устанавливаем ядро
+## Установка пакетов
 
 ```bash
-pacstrap /mnt base base-devel
+pacstrap /mnt base base-devel linux linux-firmware linux-headers btrfs-progs efibootmgr ntfs-3g exfat-utils os-prober grub iw dialog wpa_supplicant nano vim wget zsh gnome gnome-extra
 ```
 
 base-devel содержит набор утилит для компиляции, позже пригодится
@@ -305,17 +307,35 @@ nano /etc/locale.gen
 Раскоментируем:
 
 ```bash
-en_US.UTF-8
+en_US.UTF-8 UTF-8
+...
+ru_RU.UTF-8 UTF-8
 ```
 
-Генерируем локаль:
+Генерируем локали:
 
 ```bash
 locale-gen
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
 ```
 
-Если пропустить этот шаг, то не будет запускаться терминал.
+Задаем язык системы:
+
+```zsh
+localectl set-locale LANG=en_US.UTF-8
+```
+
+Так же нужно настроить Linux Console (в нее мы можем попасть, нажав случайно Ctrl+Alt+F3):
+
+```zsh
+# Список всех доступных русских раскладок клавиатуры
+ls /usr/share/kbd/keymaps/i386/qwerty/ru*
+
+# Русская раскладка с переключением по Alt+Shift
+echo 'KEYMAP="ruwin_alt_sh-UTF-8"' > /etc/vconsole.conf
+
+# Шрифт с поддержкой кирилицы
+echo 'FONT="cyr-sun16"' >> /etc/vconsole.conf
+```
 
 ## Прописываем хосты
 
@@ -353,32 +373,12 @@ HOOKS=(base udev autodetect modconf block lvm2 filesystems keyboard fsck)
 mkinitcpio -p linux
 ```
 
-## Ставим пакеты
-
-Эти пакеты понадобятся далее:
-
-```bash
-pacman -S linux linux-headers linux-firmware btrfs-progs sudo grub efibootmgr ntfs-3g os-prober alsa-utils xf86-video-ati xorg xorg-server
-```
-
-linux больше в base не входит, linux-headers для любителей покомпилировать, linux-firmware содержит набор драйверов.
-
-btrfs-progs нужен только, если используется файловая система btrfs.
-
-xf86-video-ati – свободный драйвер для видеокарт AMD. xorg и xorg-server можно не ставить, они являются зависимостями пакета gnome.
-
 ## Пользователи
-
-Задаем пароль для супер-пользователя:
-
-```bash
-passwd
-```
 
 Создаем пользователя:
 
 ```bash
-useradd -m -g users -G wheel -s /bin/bash sergey
+useradd -m -g users -G wheel -s /bin/zsh sergey
 ```
 
 Устанавливаем пароль для нового пользователя:
@@ -386,8 +386,8 @@ useradd -m -g users -G wheel -s /bin/bash sergey
 ```bash
 $ passwd sergey
 
-# Можно задать время через которое нужно менять пароль
-$ chage -M 10 sergey
+# Лочим пользователя root
+$ passwd -l root
 ```
 
 Пароль для пользователя можно ставить 1, так как при логине придется его сменит.
@@ -400,8 +400,8 @@ $ chage -M 10 sergey
 
 ## Установка grub
 
-```bash
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id="Arch Linux"
+```zsh
+grub-install --target=x86_64-efi --efi-directory=/boot/efi
 ```
 
 Чтобы отключить автоматическую загрузку Linux, редактируем дефолтный конфиг груба:
@@ -422,36 +422,12 @@ GRUB_TIMEOUT=-1
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-## Ставим Gnome
 
-```bash
-pacman -S gnome
-# Включаем Gnome Display Manager
+## Завершение
+
+```zsh
 systemctl enable gdm
-```
-
-Вместо Gnome можно попробовать тайловый менеджер [i3](#i3).
-
-## Завершение установки
-
-Включаем NetworkManager для автоматического подключения к сети:
-
-```bash
 systemctl enable NetworkManager
-```
-
-Надо еще настроить звук:
-
-```bash
-# Сохраним на всякий случай состояние
-alsactl store
-# Для автоматического сохранения/восстановления значения громкости звука:
-systemctl enable alsa-restore
-```
-
-Теперь можно выходить и перегружаться:
-
-```bash
 exit
 reboot
 ```
@@ -588,7 +564,7 @@ yay -Sy linux-headers \ # нужны для компиляции некотор�
   \ # postgresql \ # лучшая SQL база данных
   \ # phpenv \ # менеджер версий для PHP
   \ # pyenv \ # менеджер версий для Python
-  asdf-vm \ # Заменяет собой все выше перечисленные менеджеры версий + умеет управлять базами
+  asdf-vm \ # Заменяет собой все выше перечисленные менеджеры версий
   \ # pgadmin4 \ # админка для Postgres
   \ # pgmodeler \ # визуальный редактор для моделирования в Postgres
   \ # redis \ # СУБД в оперативной памяти, используемая для межпроцессового взаимодействия
