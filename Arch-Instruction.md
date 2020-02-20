@@ -1972,7 +1972,11 @@ OnCalendar=hourly
 [Install]
 WantedBy=timers.target
 
-$ sudoedit /usr/lib/systemd/system/snapper-timeline.timer
+# при необходимости меняем значение таймера
+$ sudo systemctl edit snapper-timeline.timer
+
+[Timer]
+OnCalendar=<новое значение>
 
 # По-умолчанию snapper хранит снапшоты слишклм долго
 $ sudoedit custom
