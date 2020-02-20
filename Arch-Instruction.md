@@ -1974,12 +1974,13 @@ WantedBy=timers.target
 
 $ sudoedit /usr/lib/systemd/system/snapper-timeline.timer
 
-# По-умолчанию snapper делает снапшоты слишком часто и хранит долго, поэтому настроки
+# По-умолчанию snapper хранит снапшоты слишклм долго
 $ sudoedit custom
 
+# Храним удаленные файлы неделю, после чего их восстановить уже не получится
 ...
-TIMELINE_LIMIT_HOURLY="3" 
-TIMELINE_LIMIT_DAILY="2"
+TIMELINE_LIMIT_HOURLY="24" 
+TIMELINE_LIMIT_DAILY="7"
 TIMELINE_LIMIT_WEEKLY="0" 
 TIMELINE_LIMIT_MONTHLY="0"
 TIMELINE_LIMIT_YEARLY="0"
