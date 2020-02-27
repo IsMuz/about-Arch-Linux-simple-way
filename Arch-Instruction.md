@@ -1693,17 +1693,19 @@ yay -S asdf-vm
 . /opt/asdf-vm/completions/asdf.bash
 ```
 
-В `~/.zprofile`:
+Устанавливаем переменную ASDF_DIR (нужна для плагина asdf oh-my-zsh) и добавляем в PATH путь до исполняемого файлаЖ.
 
-```bash
-export PATH=/opt/asdf-vm/bin:$PATH
+```zsh
+cat << EOF | sudo tee > /etc/profile.d/asdf.sh
+export ASDF_DIR="/opt/asdf-vm"
+export PATH="$ASDF_DIR/bin:$PATH"
+EOF
 ```
-
-Эту строку можно и в `~/.zshrc`.
 
 Удаление:
 
 ```bash
+yay -Rns asdf-vm
 rm -rf ~/.asdf/ ~/.tool-versions
 ```
 
