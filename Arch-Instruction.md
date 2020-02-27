@@ -1460,6 +1460,8 @@ fpath+=~/.zfunc
 
 source /usr/share/zsh/scripts/zplug/init.zsh
 
+zplug "robbyrussell/oh-my-zsh", as:plugin, use:"lib/*.zsh"
+
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins-Overview
 zplug  "plugins/archlinux",                 from:oh-my-zsh
 zplug  "plugins/colored-man-pages",         from:oh-my-zsh
