@@ -196,35 +196,13 @@ mkfs.fat -F32 -n ESP /dev/nvme0n1p1
 
 Для FAT32 [https://en.wikipedia.org/wiki/File_Allocation_Table#Size_limits](лимит) на минимальный размер раздела составляет от 32 до 260 мегабайт в зависимости от размера логического сектора.
 
+Немного про swap: в Linux есть компонент ядра OOM-killer (Out-of-Memory), который запускается когда кончается доступная память, тогда он убивает наименее приоритетные процессы, например, может убить IDE с несохраненным прогрессом. Такие ситуации могут возникнуть, например, при компиляции из исходников, утечках. Так же swap используется при гибернации, когда содержимое оперативной памяти сохраняется на диск и при следующем запуске вы сможете полностью восстановить состояние.
+
 В дальнейших примерах предполагается, что у нас установлена Windows, которая занимает 4 раздела: recovery, efi, reserved, Windows. Поэтому в примерах новый раздел nvme0n1p**5**.
 
-## Вариант 1: LVM
+## Создание файловой системы и монтирование
 
-```bash
-# Создадим группу на разделе без файловой системы
-vgcreate linux /dev/nvme0n1p5
-# Теперь создадим в ней логические разделы:
-lvcreate -L 30G linux -n root
-lvcreate -L 20G linux -n home
-# Можно для раздела отдать все оставшееся место
-lvcreate -L +100%FREE linux -n home
-mkfs.ext4 /dev/linux/root
-mkfs.ext4 /dev/linux/home
-mount /dev/linux/root /mnt
-mkdir /mnt/home
-mount /dev/linux/home /mnt/home
-# Создаем файл подкачки. Не нужно верить дурачкам: он нужен всегда. Без него система будет лагать
-fallocate -l 2G /mnt/swapfile
-# Если хотим использовать гибернацию, то размер файла подкачки должен составлять около 2/5 от размера оперативной памяти на современном компьютере, в идеале он должен быть ему равен либо даже больше
-# fallocate -l `awk '/Mem:/ {print $2}' <(free -m)`M /mnt/swapfile
-chmod 600 /mnt/swapfile
-mkswap /mnt/swapfile
-swapon /mnt/swapfile
-mkdir -p /mnt/boot/efi
-mount /dev/nvme0n1p2 /mnt/boot/efi
-```
-
-## Вариант 2: Btrfs
+### Вариант №1: Btrfs
 
 ```bash
 # Сначала монтируем раздел
@@ -260,7 +238,31 @@ mkswap /mnt/swap/swapfile
 swapon /mnt/swap/swapfile
 ```
 
-Немного про swap: в Linux есть компонент ядра OOM-killer (Out-of-Memory), который запускается когда кончается доступная память, тогда он убивает наименее приоритетные процессы. Такие ситуации могут возникнуть, например, при компиляции из исходников.
+### Вариант №2: LVM
+
+```bash
+# Создадим группу на разделе без файловой системы
+vgcreate linux /dev/nvme0n1p5
+# Теперь создадим в ней логические разделы:
+lvcreate -L 30G linux -n root
+lvcreate -L 20G linux -n home
+# Можно для раздела отдать все оставшееся место
+lvcreate -L +100%FREE linux -n home
+mkfs.ext4 /dev/linux/root
+mkfs.ext4 /dev/linux/home
+mount /dev/linux/root /mnt
+mkdir /mnt/home
+mount /dev/linux/home /mnt/home
+# Создаем файл подкачки. Не нужно верить дурачкам: он нужен всегда. Без него система будет лагать
+fallocate -l 2G /mnt/swapfile
+# Если хотим использовать гибернацию, то размер файла подкачки должен составлять около 2/5 от размера оперативной памяти на современном компьютере, в идеале он должен быть ему равен либо даже больше
+# fallocate -l `awk '/Mem:/ {print $2}' <(free -m)`M /mnt/swapfile
+chmod 600 /mnt/swapfile
+mkswap /mnt/swapfile
+swapon /mnt/swapfile
+mkdir -p /mnt/boot/efi
+mount /dev/nvme0n1p2 /mnt/boot/efi
+```
 
 ## Установка пакетов
 
