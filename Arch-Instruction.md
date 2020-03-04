@@ -2048,18 +2048,27 @@ $ snapper -c CONFIG list
 $ sudo snapper -c CONFIG delete-config
 
 # Создать новый снапшот
-$ snapper -c CONFIG snapshot
+$ sudo snapper -c CONFIG snapshot
 
 # Удалить снапшот
-$ snapper -c CONFIG delete snapshot_number
+$ sudo snapper -c CONFIG delete N
 
 # Удалить диапазон снапшотов
-$ snapper -c CONFIG delete snapshot_X-snapshot_Y
+$ sudo snapper -c CONFIG delete X-Y
 
-<<<<<<< HEAD
-# Включаем автоматическое создания снапшотов
-# Запускаем бекап через 5 минут после загрузки и далее каждые 24 часа
-=======
+# Список созданных/измененных/удаленных файлов
+# 0 ‒ это текущий подтом (снапшоты тоже подтома)
+$ sudo snapper -c <config> status N..0
+
+# Изменение в файле
+$ sudo snapper -c <config> diff N..0 <filename>
+
+# Восстановить файл
+$ sudo snapper -c <config> undochanges N..0 <filename>
+
+# Откатиться к снапшоту
+$ sudo snapper -c <config> undochanges N..0 <filename>
+
 # Добавляем .snapshots в исключения для mlocate
 $ sudo nano /etc/updatedb.conf
 ...
