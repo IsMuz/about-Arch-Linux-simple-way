@@ -2079,7 +2079,7 @@ PRUNENAMES = ".git .hg .svn .snapshots"
 $ sudo systemctl enable snapper-timeline.timer && sudo systemctl start snapper-timeline.timer
 
 # Можно так же периодичность очистки снапшотов изменить на OnUnitActiveSec=1h
-$ sudoedit $(locate snapper-cleanup.timer)
+$ sudo systemctl edit snapper-cleanup.timer
 
 # Автоматически  удаляет снапшоты при превышении квот
 $ sudo systemctl enable snapper-cleanup.timer && sudo systemctl start snapper-cleanup.timer
