@@ -2067,7 +2067,7 @@ $ sudo snapper -c <config> diff N..0 <filename>
 $ sudo snapper -c <config> undochanges N..0 <filename>
 
 # Откатиться к снапшоту
-$ sudo snapper -c <config> undochanges N..0 <filename>
+$ sudo snapper -c <config> undochanges N..0
 
 # Добавляем .snapshots в исключения для mlocate
 $ sudo nano /etc/updatedb.conf
