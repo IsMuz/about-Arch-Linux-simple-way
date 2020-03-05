@@ -2080,10 +2080,11 @@ $ sudo systemctl enable snapper-timeline.timer && sudo systemctl start snapper-t
 
 # Можно так же периодичность очистки снапшотов изменить:
 
+$ sudo systemctl edit snapper-cleanup.timer
+
+# /etc/systemd/system/snapper-cleanup.timer.d/override.conf
 # [Timer]
 # OnUnitActiveSec=1h
-
-$ sudo systemctl edit snapper-cleanup.timer
 
 # Автоматически  удаляет снапшоты при превышении квот
 $ sudo systemctl enable snapper-cleanup.timer && sudo systemctl start snapper-cleanup.timer
