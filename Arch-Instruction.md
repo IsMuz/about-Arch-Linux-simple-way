@@ -1725,7 +1725,7 @@ yay -S asdf-vm
 Устанавливаем переменную ASDF_DIR (нужна для плагина asdf oh-my-zsh) и добавляем в PATH путь до исполняемого файлаЖ.
 
 ```zsh
-cat << EOF | sudo tee > /etc/profile.d/asdf.sh
+sudo tee /etc/profile.d/asdf.sh << EOF > /dev/null
 export ASDF_DIR="/opt/asdf-vm"
 export PATH="$ASDF_DIR/bin:$PATH"
 EOF
@@ -2078,7 +2078,11 @@ PRUNENAMES = ".git .hg .svn .snapshots"
 # Включаем автоматическое создания снапшотов
 $ sudo systemctl enable snapper-timeline.timer && sudo systemctl start snapper-timeline.timer
 
-# Можно так же периодичность очистки снапшотов изменить на OnUnitActiveSec=1h
+# Можно так же периодичность очистки снапшотов изменить:
+
+# [Timer]
+# OnUnitActiveSec=1h
+
 $ sudo systemctl edit snapper-cleanup.timer
 
 # Автоматически  удаляет снапшоты при превышении квот
