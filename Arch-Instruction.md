@@ -2075,6 +2075,12 @@ $ sudo nano /etc/updatedb.conf
 PRUNENAMES = ".git .hg .svn .snapshots"
 ...
 
+# Для KDE
+$ vim ~/.config/baloofilerc
+...
+exclude filters=...,.snaphots
+...
+
 # Включаем автоматическое создания снапшотов
 $ sudo systemctl enable snapper-timeline.timer && sudo systemctl start snapper-timeline.timer
 
