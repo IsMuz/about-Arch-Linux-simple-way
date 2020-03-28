@@ -1069,9 +1069,13 @@ $ sudo ln -sf /mnt/c/Windows/Fonts /usr/share/fonts/WindowsFonts
 
 ```yay
 yay -S ttf-joypixels
+# Добавим конфиг с фолбэками
+sudo ln -s /etc/fonts/conf.avail/75-joypixels.conf  /etc/fonts/conf.d
+# Обновим кэш шрифтов
+fc-cache -f
 ```
 
-Я не совсем понимаю как отображаются emoji. В гномовских приложения они выглядят одинаково, а в сторонних, в том же VScode рендерятся по-другому.
+Теперь глифы эмодзи, если они отсутствуют у шрифта будут браться из JoyPixels. 
 
 # Спецсимволы
 
