@@ -1081,35 +1081,34 @@ mkdir -p ~/.config/fontconfig
 cat << __EOF__ > ~/.config/fontconfig/fonts.conf
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-
 <fontconfig>
-  <match>
+  <match target="pattern">
     <test name="family"><string>sans-serif</string></test>
-    <edit name="family" mode="prepend" binding="strong">
+    <edit name="family" mode="append">
       <string>Noto Color Emoji</string>
     </edit>
   </match>
-  <match>
+  <match target="pattern">
     <test name="family"><string>serif</string></test>
-    <edit name="family" mode="prepend" binding="strong">
+    <edit name="family" mode="append">
       <string>Noto Color Emoji</string>
     </edit>
   </match>
-  <match>
+  <match target="pattern">
     <test name="family"><string>monospace</string></test>
-    <edit name="family" mode="prepend" binding="strong">
+    <edit name="family" mode="append">
       <string>Noto Color Emoji</string>
     </edit>
   </match>
-  <match>
+  <match target="pattern">
     <test name="family"><string>Apple Color Emoji</string></test>
-    <edit name="family" mode="prepend" binding="strong">
+    <edit name="family" mode="append">
       <string>Noto Color Emoji</string>
     </edit>
   </match>
 </fontconfig>
 __EOF__
-fc-cache -f
+fc-cache -f -v
 ```
 
 Теперь глифы эмодзи, если они отсутствуют у шрифта будут браться из JoyPixels. 
