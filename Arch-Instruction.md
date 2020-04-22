@@ -1068,10 +1068,47 @@ $ sudo ln -sf /mnt/c/Windows/Fonts /usr/share/fonts/WindowsFonts
 # Emoji
 
 ```yay
+# Вариант 1
 yay -S ttf-joypixels
-# Добавим конфиг с фолбэками
+# Добавим конфиг с фолбэками (убедитесь, что он там есть)
 sudo ln -s /etc/fonts/conf.avail/75-joypixels.conf  /etc/fonts/conf.d
 # Обновим кэш шрифтов
+fc-cache -f
+
+# Вариант 2
+yay -S noto-fonts-emoji
+mkdir -p ~/.config/fontconfig
+cat << __EOF__ > ~/.config/fontconfig/fonts.conf
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+
+<fontconfig>
+  <match>
+    <test name="family"><string>sans-serif</string></test>
+    <edit name="family" mode="prepend" binding="strong">
+      <string>Noto Color Emoji</string>
+    </edit>
+  </match>
+  <match>
+    <test name="family"><string>serif</string></test>
+    <edit name="family" mode="prepend" binding="strong">
+      <string>Noto Color Emoji</string>
+    </edit>
+  </match>
+  <match>
+    <test name="family"><string>monospace</string></test>
+    <edit name="family" mode="prepend" binding="strong">
+      <string>Noto Color Emoji</string>
+    </edit>
+  </match>
+  <match>
+    <test name="family"><string>Apple Color Emoji</string></test>
+    <edit name="family" mode="prepend" binding="strong">
+      <string>Noto Color Emoji</string>
+    </edit>
+  </match>
+</fontconfig>
+__EOF__
 fc-cache -f
 ```
 
