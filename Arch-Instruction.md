@@ -382,7 +382,7 @@ mkinitcpio -p linux
 
 ```zsh
 # Создаем нового пользователя
-useradd -m -g users -G wheel -s /bin/zsh serg
+useradd -m -g users -G wheel -s /bin/zsh sergey
 
 # Устанавливаем для него пароль
 passwd sergey
@@ -409,7 +409,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi
 nano /etc/default/grub
 ```
 
-Меняем **GRUB_TIMEOUT**:
+Меняем **GRUB_TIMEOUT**, если не хотите чтобы Arch грузился автоматически через 5 секунд ожидания на экране Grub:
 
 ```
 GRUB_TIMEOUT=-1
