@@ -1,3 +1,4 @@
+# [>>> Установщик Arch Linux <<<](https://github.com/tz4678/arch-installer)
 
 <!-- nav -->
 # Table of Contents
