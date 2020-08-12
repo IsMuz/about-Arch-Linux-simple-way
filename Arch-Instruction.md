@@ -350,6 +350,8 @@ echo 'FONT="cyr-sun16"' >> /etc/vconsole.conf
 $ localectl set-x11-keymap us,ru pc105 grp:alt_shift_toggle --no-convert
 ```
 
+> pc105 отличается от pc104 наличием клавиш: «|», «<», «>». 
+
 ## Прописываем хосты
 
 ```bash
