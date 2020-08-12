@@ -226,7 +226,6 @@ mount -o rw,noatime,compress=zstd:3,ssd,space_cache,subvol=@ /dev/nvme0n1p5 /mnt
 mount /dev/nvme0n1p2 /mnt/boot/efi
 mount -o noatime,compress=zstd:3,space_cache,subvol=@home /dev/nvme0n1p5 /mnt/home
 mount -o rw,noatime,compress=no,ssd,space_cache,subvol=@swap /dev/nvme0n1p5 /mnt/var/swap
-
 # Создаем файл подкачки
 touch /mnt/var/swap/swapfile
 # chattr +C должна быть применена к пустому файлу!
@@ -239,6 +238,7 @@ mkswap /mnt/var/swap/swapfile
 swapon /mnt/vra/swap/swapfile
 ```
 
+<s>
 ### Вариант №2: LVM
 
 ```bash
@@ -264,6 +264,7 @@ swapon /mnt/swapfile
 mkdir -p /mnt/boot/efi
 mount /dev/nvme0n1p2 /mnt/boot/efi
 ```
+</s>
 
 ## Установка пакетов
 
@@ -330,7 +331,7 @@ locale-gen
 localectl set-locale LANG=en_US.UTF-8
 ```
 
-Так же нужно настроить Linux Console (в нее мы можем попасть, нажав случайно Ctrl+Alt+F3):
+Так же нужно настроить Linux Console (в нее мы можем попасть, нажав случайно Ctrl+Alt+F<N>):
 
 ```zsh
 # Список всех доступных русских раскладок клавиатуры
@@ -341,6 +342,12 @@ echo 'KEYMAP="ruwin_alt_sh-UTF-8"' > /etc/vconsole.conf
 
 # Шрифт с поддержкой кирилицы
 echo 'FONT="cyr-sun16"' >> /etc/vconsole.conf
+```
+
+Настройка клавиатуры для X.Org:
+
+```zsh
+$ localectl --no-convert set-x11-keymap us,ru pc105 dvorak, grp:alt_shift_toggle
 ```
 
 ## Прописываем хосты
