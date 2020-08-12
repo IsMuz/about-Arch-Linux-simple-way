@@ -347,7 +347,7 @@ echo 'FONT="cyr-sun16"' >> /etc/vconsole.conf
 Настройка клавиатуры для X.Org:
 
 ```zsh
-$ localectl --no-convert set-x11-keymap us,ru pc105 dvorak, grp:alt_shift_toggle
+$ localectl set-x11-keymap us,ru pc105 grp:alt_shift_toggle --no-convert
 ```
 
 ## Прописываем хосты
