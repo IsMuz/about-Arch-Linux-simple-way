@@ -347,8 +347,8 @@ echo 'FONT="cyr-sun16"' >> /etc/vconsole.conf
 Настройка клавиатуры для X.Org:
 
 ```zsh
-$ localectl set-keymap us ru --no-convert
-$ localectl set-x11-keymap us,ru pc105 grp:alt_shift_toggle --no-convert
+$ localectl --no-convert set-keymap us ru
+$ localectl --no-convert set-x11-keymap us,ru "" grp:alt_shift_toggle
 ```
 
 > pc105 отличается от pc104 наличием клавиш: «|», «<», «>». 
