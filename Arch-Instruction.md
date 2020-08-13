@@ -340,15 +340,17 @@ ls /usr/share/kbd/keymaps/i386/qwerty/ru*
 # Русская раскладка с переключением по Alt+Shift
 echo 'KEYMAP="ruwin_alt_sh-UTF-8"' > /etc/vconsole.conf
 
+# аналогично вызову
+localectl set-keymap ruwin_alt-UTF-8
+
 # Шрифт с поддержкой кирилицы
 echo 'FONT="cyr-sun16"' >> /etc/vconsole.conf
 ```
 
-Настройка клавиатуры для X.Org:
+Переключение раскладки, например, в GDM:
 
 ```zsh
-$ localectl --no-convert set-keymap us ru
-$ localectl --no-convert set-x11-keymap us,ru "" grp:alt_shift_toggle
+localectl --no-convert set-x11-keymap us,ru pc105 "" grp:alt_shift_toggle
 ```
 
 > pc105 отличается от pc104 наличием клавиш: «|», «<», «>». 
