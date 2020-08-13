@@ -347,7 +347,7 @@ localectl set-keymap ruwin_alt_sh-UTF-8
 echo 'FONT="cyr-sun16"' >> /etc/vconsole.conf
 ```
 
-Переключение раскладки, например, в GDM:
+Настройка раскладки клавиатуры в X.Org:
 
 ```zsh
 localectl --no-convert set-x11-keymap us,ru pc105 "" grp:alt_shift_toggle
