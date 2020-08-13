@@ -341,7 +341,7 @@ ls /usr/share/kbd/keymaps/i386/qwerty/ru*
 echo 'KEYMAP="ruwin_alt_sh-UTF-8"' > /etc/vconsole.conf
 
 # аналогично вызову
-localectl set-keymap ruwin_alt-UTF-8
+localectl set-keymap ruwin_alt_sh-UTF-8
 
 # Шрифт с поддержкой кирилицы
 echo 'FONT="cyr-sun16"' >> /etc/vconsole.conf
