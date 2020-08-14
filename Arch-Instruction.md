@@ -1001,19 +1001,25 @@ x   +   -   +   -   +   -   +   -
 
 * Bash Shell: `~.bash_profile`, `~/.bashrc` or `~/.profile`
 * Korn Shell: `~/.kshrc` or `~/.profile`
-* Z Shell: `~/.zshrc` or `~/.zprofile`
+* Z Shell: `~/.zshrc` or `~/.zshenv`
 
 ```bash
 export PATH=/path/to/bin:$PATH
 ```
 
+# Системные переменные окружения
+
+Edit `/etc/environment` format: **KEY=VALUE**.
+
 # bin в домашнем каталоге
 
 ```bash
 mkdir ~/.local/bin
-echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.zprofile
-# or
-echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.zshrc
+
+cat << __EOF__ >> ~/.zshenv
+typeset -U path
+path=(~/.local/bin ~/bin $path[@])
+__EOF__
 ```
 
 Теперь самописные скрипты можно кидать в `~/.local/bin`, так они будут доступны только для текущего пользователя.
@@ -1035,8 +1041,7 @@ $ chmod +x ~/.local/bin/hello
 Проверка:
 
 ```bash
-# Если не перелогинивались после добавления пути в ~/.zprofile, то сначала выполняем
-$ source ~/.zprofile
+$ source ~/.zshenv
 $ hello
 Hello World!
 ```
